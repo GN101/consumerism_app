@@ -1,0 +1,42 @@
+.navbar {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  background-color: black;
+  height: 70px;
+}
+
+.navbar_navigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.navbar_logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.navbar_navigation-item a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar_navigation-item a:hover, .navbar_navigation-item a:active {
+  color: grey;
+}
+
+.navbar_navigation-item ul {
+  display: flex;
+}
+
+.navbar_navigation-item li {
+  padding: 1rem;
+}
+
+.spacing {
+  flex: 1;
+}
