@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 
-const Navbar = props => (
+const Navbar = () => (
   <header className="navbar">
     <nav className="navbar_navigation">
       <div></div>

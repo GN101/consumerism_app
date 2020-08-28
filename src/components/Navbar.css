@@ -3,7 +3,7 @@
   top:0;
   left:0;
   width: 100%;
-  background-color: black;
+  background-color: #F5AD5C;
   height: 70px;
 }
 
@@ -30,6 +30,7 @@
 }
 
 .navbar_navigation-item ul {
+  list-style-type: none;
   display: flex;
 }
 
