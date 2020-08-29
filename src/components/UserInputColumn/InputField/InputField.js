@@ -2,15 +2,13 @@ import React from 'react';
 import styles from './InputField.module.css';
 
 const InputField = (props) => {
-  // const { label, placeholder } = props;
+  const { label, placeholder, category } = props;
 
   return (
-    <div>
-      <form className={styles.Form}>
-        <label htmlFor="expense">Please insert your expenses
-          <input type="text" id="expense" placeholder={props.placeholder} />
-        </label>
-      </form>
+    <div className={styles.Form}>
+      <label className={styles.Label} htmlFor={category}>{label}
+        <input className={styles.Input} type="text" id={category} placeholder={placeholder} />
+      </label>
     </div>
   );
 };

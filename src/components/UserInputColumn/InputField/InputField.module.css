@@ -1,3 +1,15 @@
 .Form {
   padding: 10px 6px;
+  width: auto;
+}
+
+.Input {
+  display: block;
+  width: 90%;
+}
+
+.Label {
+  color: #ffeb3b;
+  text-transform: capitalize;
+  padding: 4px 0;
 }
