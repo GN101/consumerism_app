@@ -1,0 +1,22 @@
+.Column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  color: whitesmoke;
+  height: auto;
+  margin: 10px 20px;
+}
+
+.Button {
+  margin: 10px 50px;
+  padding: 8px;
+  background-color: yellowgreen;
+  width: 20%;
+}
+
+h2 {
+  text-align: center;
+  margin: auto;
+  width: 70%;
+}
