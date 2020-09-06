@@ -1,0 +1,36 @@
+.Form {
+  text-align: left;
+  position: inherit;
+  padding: 20% 6px;
+  margin:10px auto;
+  
+}
+
+.Header {
+  color: white;
+}
+
+.Label {
+  
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  color: #ffeb3b;
+  padding: 20px 0;
+}
+
+.Input {
+  margin: 7px auto;
+  max-width: 200px;
+  display: flex;
+}
+
+.Button {
+  position: relative;
+  margin: 0 auto;
+  background-color: yellowgreen;
+  top: 100%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

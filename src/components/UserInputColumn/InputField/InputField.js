@@ -4,6 +4,7 @@ import styles from './InputField.module.css';
 const InputField = (props) => {
   const { label, placeholder, category } = props;
 
+
   return (
     <div className={styles.Form}>
       <label className={styles.Label} htmlFor={category}>{label}
