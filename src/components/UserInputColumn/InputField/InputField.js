@@ -12,7 +12,8 @@ const InputField = (props) => {
         <input
           className={styles.Input}
           type="text"
-          id={category}
+          id={label}
+          name={label}
           placeholder={placeholder}
           onChange={changed}
           onClick={clicked}
