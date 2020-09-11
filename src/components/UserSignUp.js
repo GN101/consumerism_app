@@ -1,36 +1,41 @@
 import React, { Component } from 'react';
+import InputField from './UserInputColumn/InputField/InputField';
 import styles from './UserSignUp.module.css';
 
 class UserSignUp extends Component {
-  state = {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      'First Name': '',
+      'Last Name': '',
+      email: '',
+      location: '',
+      'Date Of Birth': ''
+    };
   }
 
   render() {
+    const listOfUserInfo = Object.keys(this.state);
+
+    const signUpForm = listOfUserInfo.map((items) => (
+      <InputField
+        classname={styles.Input}
+        label={items}
+        placeholder={`Please write ${items} here`}
+        category={items}
+
+      />
+
+    ));
+
     return (
       <div className={styles.Form}>
-        <h2 className={styles.Header}>Let&apos; s Get Started!</h2>
+        <h2 className={styles.Header}>{'Let\'s Get Started!'}</h2>
         <div className={styles.Label}>
-          <label htmlFor="Username" id="Username">Username
-            <input type="text" className={styles.Input}></input>
-          </label>
-          <label htmlFor="FirstName" id="FirstName">First Name
-            <input type="text" className={styles.Input}></input>
-          </label>
-          <label htmlFor="LastName" id="LastName">Last Name
-            <input type="text" className={styles.Input}></input>
-          </label>
-          <label htmlFor="Email" id="Email">e-mail
-            <input type="text" className={styles.Input}></input>
-          </label>
-          <label htmlFor="Location" id="Location">Location
-            <input type="text" className={styles.Input}></input>
-          </label>
-          <label htmlFor="DateOfBirth" id="DateOfBirth">Date Of Birth
-            <input type="text" className={styles.Input}></input>
-          </label>
+          {signUpForm}
         </div>
-        <button className={styles.Button} type="submit">SIGN UP</button>
       </div>
     );
   }

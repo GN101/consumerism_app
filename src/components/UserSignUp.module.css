@@ -2,12 +2,13 @@
   text-align: left;
   position: inherit;
   padding: 20% 6px;
-  margin:10px auto;
-  
+  margin: 10px auto;
+
 }
 
 .Header {
   color: white;
+  margin-top: 10px;
 }
 
 .Label {
@@ -21,7 +22,9 @@
 
 .Input {
   margin: 7px auto;
-  max-width: 200px;
+  width: 80%;
+  min-width: 200px;
+  max-width: 400px;
   display: flex;
 }
 
