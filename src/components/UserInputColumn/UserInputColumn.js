@@ -15,6 +15,7 @@ class UserInputColumn extends Component {
     const InputForm = (
       listOfCostsCategories.map((listItems) => (
         <InputField
+          key={listItems}
           label={listItems}
           placeholder={`insert expenses for ${listItems} here`}
           category={listItems}

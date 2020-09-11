@@ -21,13 +21,12 @@ class UserSignUp extends Component {
 
     const signUpForm = listOfUserInfo.map((items) => (
       <InputField
+        key={items}
         classname={styles.Input}
         label={items}
         placeholder={`Please write ${items} here`}
         category={items}
-
       />
-
     ));
 
     return (
@@ -35,6 +34,7 @@ class UserSignUp extends Component {
         <h2 className={styles.Header}>{'Let\'s Get Started!'}</h2>
         <div className={styles.Label}>
           {signUpForm}
+          <button className={styles.Button} type="submit">SIGN UP</button>
         </div>
       </div>
     );

@@ -29,11 +29,10 @@
 }
 
 .Button {
-  position: relative;
-  margin: 0 auto;
   background-color: yellowgreen;
-  top: 100%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin: 10px 50px;
+  padding: 8px;
+  width: 50%;
+  min-width: 150px;
+  max-width: 200px;
 }
