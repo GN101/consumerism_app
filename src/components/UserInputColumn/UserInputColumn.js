@@ -9,6 +9,7 @@ class UserInputColumn extends Component {
   };
 
   render() {
+    // eslint-disable-next-line max-len
     const listOfCostsCategories = ['outdoor snacks', 'indoor snacks', 'groceries', 'expensive trips', 'cheap trips', 'cloths',
       'shoes', 'gas / vehicle fuel', 'art', 'furniture / equipment', 'entertainment (outdoors)', 'entertainment (indoors'];
     const InputForm = (
