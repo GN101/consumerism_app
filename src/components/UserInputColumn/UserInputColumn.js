@@ -2,71 +2,83 @@
 /* eslint-disable guard-for-in */
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
-import InputField from './components/InputField/InputField';
+import InputField from '../InputField/InputField';
 
 
 class UserInputColumn extends Component {
   state = {
     userInput: [
       {
-        name: 'snacks_indoor',
+        name: 'snacks indoor',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'snacks_outdoor',
+        name: 'snacks outdoor',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
         name: 'groceries',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'trips_cheap',
+        name: 'trips cheap',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'trips_expensive',
+        name: 'trips expensive',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
         name: 'clothes',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
         name: 'shoes',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
         name: 'jewelry',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'personal_vehicle',
+        name: 'personal vehicle',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'public_transportation',
+        name: 'public transportation',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'entertainment_indoors',
+        name: 'entertainment indoors',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       },
       {
-        name: 'entertainment_outdoors',
+        name: 'entertainment outdoors',
         value: '',
-        categories: []
+        categories: [],
+        range: []
       }
     ],
     totalCost: ''
@@ -106,9 +118,9 @@ class UserInputColumn extends Component {
     const list = Object.values(userInput);
 
     // TODO: investigate on how to implement this in another way
-    for (let key in list) {
-      list[key].name = list[key].name.replace(/_/g, ' ');
-    }
+    // for (const key in list) {
+    //   list[key].name = list[key].name.replace(/_/g, ' ');
+    // }
 
     console.log('%c list :::', 'color: yellow', list);
     console.log('%c final state :::', 'color: red', userInput);

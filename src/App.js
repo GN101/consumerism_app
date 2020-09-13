@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import UserInputColumn from './components/UserInputColumn/UserInputColumn';
-import UserSignUp from './components/UserSignUp';
+import UserSignUp from './components/UserSignUp/UserSignUp';
 
 
 const App = () => (
