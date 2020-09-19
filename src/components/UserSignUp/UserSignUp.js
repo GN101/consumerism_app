@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../InputField/InputField'
+import InputField from '../InputField/InputField';
 import styles from './UserSignUp.module.css';
 
 class UserSignUp extends Component {

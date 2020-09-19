@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
+import WorldDataColumn from '../WorldDataColumn/WorldDataColumn';
 
 
 class UserInputColumn extends Component {
@@ -197,7 +198,7 @@ class UserInputColumn extends Component {
     updatedForm[index] = updatedFormEl;
 
     let formIsValid = true;
-    for (let index in updatedForm) {
+    for (const index in updatedForm) {
       formIsValid = updatedForm[index].valid && formIsValid;
     }
 
@@ -229,7 +230,6 @@ class UserInputColumn extends Component {
 
     if (obj.validation.range) {
       isSuspicious = obj.value < obj.validation.range[0] || obj.value > obj.validation.range[1];
-      console.log('isSuspicious :::::::::::::::::::::::::', isSuspicious);
     }
 
     if (obj.validation.type === 'number') {
@@ -271,12 +271,23 @@ class UserInputColumn extends Component {
         />
       )));
 
+    const worldForm = <WorldDataColumn />;
+
     return (
-      <form className={styles.Column} onSubmit={this.submitFormHandler}>
-        <h2>Please fill the form below!</h2>
-        {inputForm}
-        <button className={styles.Button} type="submit">SUBMIT</button>
-      </form>
+      <div className={styles.Container}>
+        <div className={styles.Field}>
+          <form className={styles.Column} onSubmit={this.submitFormHandler}>
+            <h3>Please fill the form below!</h3>
+            {inputForm}
+            <button className={styles.Button} type="submit">SUBMIT</button>
+          </form>
+
+          {worldForm}
+          {/* The below will be replaced by Average User Expenses. Included for cosmetic reasons :). */}
+          {worldForm}
+
+        </div>
+      </div>
     );
   }
 }

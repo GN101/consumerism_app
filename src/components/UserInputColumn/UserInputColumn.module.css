@@ -1,11 +1,17 @@
-.Column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.Container{
+  margin-top: 100px;
+}
+.Field{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  
+  margin: 100px 20px;
+  
+}
+.Column{  
+  
   width: auto;
   color: whitesmoke;
-  height: auto;
-  margin: 100px 20px;
+  min-height: 50px;
 }
 
 .Button {
@@ -18,7 +24,25 @@
 }
 
 h2 {
+  padding: 0;
   text-align: center;
-  margin: auto;
-  width: 70%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .Field{
+    
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .Field{
+    
+    display: grid;
+    grid-template-columns:100%;
+    
+}
 }

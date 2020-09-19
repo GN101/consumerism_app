@@ -1,0 +1,55 @@
+.Column {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+  
+}
+
+.Hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+  height: 0;
+}
+
+.Field {
+  padding-top: 10px;;
+}
+
+.Form {
+  margin-top: 10px;
+  padding: 10px 6px;
+  
+}
+
+.Input {
+  display: block;
+  width: 70%;
+  min-width: 200px;
+  max-width: 500px;
+  
+  
+}
+
+.Label {
+  color: #ffeb3b;
+  text-transform: capitalize;
+  padding: 4px 0;
+}
+
+.Button {
+  text-align: center;
+  margin: 7px;
+  padding: 0.5vh;
+  width: 50%;
+  max-width: 100px;;
+  background-color: yellowgreen;
+  
+}
+
+
+
+
+
+
+
