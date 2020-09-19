@@ -1,14 +1,14 @@
 .Form {
   display: block;
   text-align: left;
-  padding: 2% 0;
+  padding: 100px 0;
   margin: 10px auto;
 
 }
 
 .Header {
   color: white;
-  margin-top: 8vh;
+  margin-top: 10px;
 }
 
 .Label {
