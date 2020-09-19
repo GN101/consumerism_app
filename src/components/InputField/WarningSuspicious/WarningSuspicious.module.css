@@ -1,0 +1,32 @@
+.Suspicious {
+  padding: 2px 0;
+  text-transform: none;
+  font-size: 14px;
+  color:black;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 2px 4px crimson;
+  border-radius: 15px;
+  background-color: coral;
+  width: 80%;
+  min-width: 200px;
+  max-width: 600px;
+  margin: 10px 0 10px 0;
+}
+
+.Suspicious p {
+  display: inline;
+  padding: 0 10px;
+}
+
+.Button {
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #ffeb3b;
+  padding: 2px 8px;
+  margin: 0 2px;
+}
+
+.Closed {
+  display: none;
+}

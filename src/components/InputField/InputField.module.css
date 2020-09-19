@@ -6,11 +6,18 @@
 
 .Input {
   display: block;
-  width: 90%;
+  width: 70%;
+  min-width: 200px;
+  max-width: 500px;
 }
 
 .Label {
   color: #ffeb3b;
   text-transform: capitalize;
   padding: 4px 0;
+}
+
+.Invalid {
+  border: 1px solid red;
+  background-color: #FDA49A;
 }
