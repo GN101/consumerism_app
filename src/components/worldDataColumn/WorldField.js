@@ -5,13 +5,13 @@ import styles from './WorldDataColumn.module.css';
 
 const WorldField = (props) => {
   const {
-    label, category, classname, value
+    label, value
   } = props;
-  const inputClasses = [classname || styles.Input || styles.Hide];
+  const inputClasses = [styles.Input];
 
   return (
     <div className={styles.Form}>
-      <label className={styles.Label} htmlFor={category}>{label}
+      <label className={styles.Label} htmlFor={label}>{label}
         <input
           className={inputClasses.join(' ')}
           type="text"

@@ -1,14 +1,16 @@
 .Column {
-  visibility: visible;
+  /* visibility: visible;
   opacity: 1;
-  transition: visibility 0s linear 0s, opacity 300ms;
+  transition: visibility 0s linear 0s, opacity 300ms; */
   
 }
 
 .Hide {
-  visibility: hidden;
+  /* visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
+  height: 0; */
+  display: none;
   height: 0;
 }
 

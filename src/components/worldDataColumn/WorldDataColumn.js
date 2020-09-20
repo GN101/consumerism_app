@@ -6,7 +6,7 @@ import WorldField from './WorldField';
 
 class WorldDataColumn extends Component {
   state = {
-    userInput: [
+    worldData: [
       {
         name: 'snacks indoor',
         value: '25',
@@ -77,42 +77,20 @@ class WorldDataColumn extends Component {
     totalCost: ''
   };
 
-  // Couldn't get it to work without below function. Input field will be read only so maybe there's a better way to handle.
-
-  // worldformChangeHandler = (event, index) => {
-  //   const { userInput } = this.state;
-  //   const updatedForm = {
-  //     ...userInput
-  //   };
-  //   const updatedFormEl = {
-  //     ...updatedForm[index]
-  //   };
-  //   updatedFormEl.value = event.target.value;
-  //   updatedForm[index].value = updatedFormEl.value;
-
-  //   this.setState({ userInput: updatedForm });
-  // };
-
   toggleContent = (e) => {
     e.preventDefault();
     const { show } = this.state;
-    const hide = show;
-    if (hide === show) {
-      this.setState({ show: !hide });
-    } else {
-      this.setState({ show: true });
-    }
+    this.setState({ show: !show });
   }
 
   render() {
-    const { userInput, show } = this.state;
+    const { worldData, show } = this.state;
     const hideFields = show ? styles.Column : styles.Hide;
-    const list = Object.values(userInput);
+    const list = Object.values(worldData);
 
     const worldInputForm = (
       list.map((listItem) => (
         <WorldField
-          className={listItem.name}
           key={listItem.name}
           label={listItem.name}
           placeholder={`Expenses for: ${listItem.name}`}
@@ -121,12 +99,15 @@ class WorldDataColumn extends Component {
       )));
 
     return (
-      <form className={styles.Column}>
+      <div>
         <button type="button" className={styles.Button} onClick={this.toggleContent}> Toggle </button>
         <div className={hideFields}>
-          {worldInputForm}
+          {/* <button type="button" className={styles.Button} onClick={this.toggleContent}> Toggle </button> */}
+          <div>
+            {worldInputForm}
+          </div>
         </div>
-      </form>
+      </div>
     );
   }
 }
