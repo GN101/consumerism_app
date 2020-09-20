@@ -1,0 +1,19 @@
+.Field{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  
+  margin: 100px 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .Field{    
+    display: grid;
+    grid-template-columns:1fr 1fr;  
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Field{    
+    display: grid;
+    grid-template-columns:100%;  
+  }
+}

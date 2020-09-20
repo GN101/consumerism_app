@@ -197,16 +197,11 @@ class UserInputColumn extends Component {
     updatedForm[index] = updatedFormEl;
 
     let formIsValid = true;
-    for (let index in updatedForm) {
+    for (const index in updatedForm) {
       formIsValid = updatedForm[index].valid && formIsValid;
     }
 
     this.setState({ userInput: updatedForm, formIsValid: formIsValid });
-
-    // TODO: remove ALL console logs after code review
-    // console.log('%c updatedFormEl :::', 'color: cyan', updatedFormEl);
-    // console.log('%c updatedForm[index] :::', 'color: green', updatedForm[index]);
-    // console.log('%c new state :::', 'color: orange', userInput);
   };
 
   // FIXME: this is not completed yet and does not work. Ignore it for the time being. :)
@@ -229,26 +224,18 @@ class UserInputColumn extends Component {
 
     if (obj.validation.range) {
       isSuspicious = obj.value < obj.validation.range[0] || obj.value > obj.validation.range[1];
-      console.log('isSuspicious :::::::::::::::::::::::::', isSuspicious);
     }
 
     if (obj.validation.type === 'number') {
       const pattern = /^\d+$/;
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
-      // console.log('%c isValid :::', 'color: purple', isValid);
     }
-
-    // console.log('%c isValid :::', 'color: purple', isValid);
     return [isValid, isSuspicious];
   }
 
   render() {
     const { userInput } = this.state;
     const list = Object.values(userInput);
-    // TODO: investigate on how to implement this in another way
-    // for (const key in list) {
-    //   list[key].name = list[key].name.replace(/_/g, ' ');
-    // }
 
     // console.log('%c list :::', 'color: yellow', list);
     // console.log('%c final userInput :::', 'color: red', userInput);
@@ -272,11 +259,13 @@ class UserInputColumn extends Component {
       )));
 
     return (
-      <form className={styles.Column} onSubmit={this.submitFormHandler}>
-        <h2>Please fill the form below!</h2>
-        {inputForm}
-        <button className={styles.Button} type="submit">SUBMIT</button>
-      </form>
+      <div className={styles.Container}>
+        <form className={styles.Column} onSubmit={this.submitFormHandler}>
+          <h3>Please fill the form below!</h3>
+          {inputForm}
+          <button className={styles.Button} type="submit">SUBMIT</button>
+        </form>
+      </div>
     );
   }
 }

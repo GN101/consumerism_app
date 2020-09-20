@@ -1,11 +1,7 @@
-.Column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.Column {  
   width: auto;
   color: whitesmoke;
-  height: auto;
-  margin: 100px 20px;
+  min-height: 50px;
 }
 
 .Button {
@@ -18,7 +14,7 @@
 }
 
 h2 {
+  padding: 0;
   text-align: center;
-  margin: auto;
-  width: 70%;
+  width: 100%;
 }
