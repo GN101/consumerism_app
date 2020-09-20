@@ -102,7 +102,6 @@ class WorldDataColumn extends Component {
       <div>
         <button type="button" className={styles.Button} onClick={this.toggleContent}> Toggle </button>
         <div className={hideFields}>
-          {/* <button type="button" className={styles.Button} onClick={this.toggleContent}> Toggle </button> */}
           <div>
             {worldInputForm}
           </div>
