@@ -1,14 +1,4 @@
-.Container{
-  margin-top: 100px;
-}
-.Field{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;  
-  margin: 100px 20px;
-  
-}
-.Column{  
-  
+.Column {  
   width: auto;
   color: whitesmoke;
   min-height: 50px;
@@ -27,22 +17,4 @@ h2 {
   padding: 0;
   text-align: center;
   width: 100%;
-}
-
-@media only screen and (max-width: 1000px) {
-  .Field{
-    
-    display: grid;
-    grid-template-columns:1fr 1fr;
-    
-}
-}
-
-@media only screen and (max-width: 768px) {
-  .Field{
-    
-    display: grid;
-    grid-template-columns:100%;
-    
-}
 }
