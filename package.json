@@ -33,26 +33,26 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "@welldone-software/why-did-you-render": "github:welldone-software/why-did-you-render",
     "babel-preset-airbnb": "^3.2.0",
     "enzyme": "^3.4.3",
     "enzyme-adapter-react-16": "^1.2.0",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "3.3.0",
-    "eslint-import-resolver-webpack": "0.10.1",
-    "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-prettier": "3.0.0",
-    "eslint-plugin-redux-saga": "0.10.0",
-    "serve": "^10.1.1",
-    "source-map-explorer": "^1.6.0",
-    "why-did-you-update": "^0.1.1",
     "eslint-config-standard": "^14.1.1",
+    "eslint-import-resolver-webpack": "0.10.1",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "3.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-redux-saga": "0.10.0",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "serve": "^10.1.1",
+    "source-map-explorer": "^1.6.0"
   }
 }
