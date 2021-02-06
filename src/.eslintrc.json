@@ -36,7 +36,7 @@
     "import/no-webpack-loader-syntax": 0,
     "import/prefer-default-export": 0,
     "indent": [
-      2,
+      1,
       2,
       {
         "SwitchCase": 1
@@ -76,7 +76,8 @@
     "react/jsx-curly-spacing": 1,
     "object-curly-spacing": 1,
     "react/jsx-curly-brace-presence": 1,
-    "react/no-unused-state": 1
+    "react/no-unused-state": 1,
+    "prefer-destructuring": 1
   }
 }
 

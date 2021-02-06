@@ -46,136 +46,137 @@ class UserInputColumn extends Component {
         valid: false,
         touched: false,
       },
-      {
-        name: 'trips cheap',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 2000],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'trips expensive',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 5000],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'clothes',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'shoes',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'fitness',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 150],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'jewelry',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 200],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'personal vehicle',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 500],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'public transportation',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'entertainment indoors',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 200],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'entertainment outdoors',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 300],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
+      // TODO: these were commented out to make 'formIsValid' less tiresome - uncomment once component is ready
+      // {
+      //   name: 'trips cheap',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 2000],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'trips expensive',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 5000],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'clothes',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 100],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'shoes',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 100],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'fitness',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 150],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'jewelry',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 200],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'personal vehicle',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 500],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'public transportation',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 100],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'entertainment indoors',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 200],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
+      // {
+      //   name: 'entertainment outdoors',
+      //   value: '',
+      //   categories: [],
+      //   isSuspicious: false,
+      //   validation: {
+      //     required: true,
+      //     range: [0, 300],
+      //     type: 'number',
+      //   },
+      //   valid: false,
+      //   touched: false,
+      // },
     ],
     formIsValid: false,
     totalCost: '',
@@ -211,9 +212,12 @@ class UserInputColumn extends Component {
     const valuesSum = Object.values(userInput)
       .map((listItem) => listItem.value)
       .filter((value) => value !== '');
-    const totalC = valuesSum.reduce(
-      (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-    );
+    const totalC =
+      valuesSum.length !== 0
+        ? valuesSum.reduce(
+            (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
+          )
+        : console.log('No values were provided by the user!');
     // TODO: delete the logs after code review
     console.log(
       '%cVALUES SUM :::::::',
@@ -225,8 +229,13 @@ class UserInputColumn extends Component {
       'color: red;, font-size:18px',
       userInput
     );
-    console.log(totalC);
-    this.setState({ totalCost: totalC });
+    if (this.state.formIsValid) {
+      console.log('SUBMIT SUCCESFUL - totalC', totalC);
+      this.setState({ totalCost: totalC });
+    } else {
+      // TODO: we need to render a proper error message for such cases
+      console.log('SUBMIT FAILED - Form is invalid!');
+    }
   };
 
   checkValidity(obj) {
@@ -255,13 +264,10 @@ class UserInputColumn extends Component {
     const list = Object.values(userInput);
 
     // console.log('%c list :::', 'color: yellow', list);
-    // console.log('%c final userInput :::', 'color: red', userInput);
-    // console.log(
-    //   '%c final state :::',
-    //   'color: red',
-    //   this.state.userInput[0].valid
-    // );
-    // console.log('%c final total cost :::', 'color: red', this.state.totalCost);
+    console.log('%c final userInput :::', 'color: red', userInput);
+    console.log('%c final state :::', 'color: red', this.state.userInput);
+    console.log('%c final total cost :::', 'color: red', this.state.totalCost);
+    console.log('%c formIsValid :::', 'color: yellow', this.state.formIsValid);
 
     const inputForm = list.map((listItem, index) => (
       <InputField

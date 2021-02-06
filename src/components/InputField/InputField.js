@@ -14,30 +14,29 @@ const InputField = (props) => {
     touched,
     changed,
     clicked,
-    type,
   } = props;
   const inputClasses = [classname || styles.Input];
-  const [timerOn, setTimerOn] = useState(false);
+  const [showWarningMsg, setShowWarningMsg] = useState(false);
 
   if (!valid && valRequired && touched) {
     inputClasses.push(styles.Invalid);
   }
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isSuspicious) {
-        setTimerOn(true);
-      }
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, [isSuspicious]);
+  const focusOutHandler = () => {
+    // TODO: remove all console.logs after code review
+    console.log('%cisSuspicious', 'color: yellow', isSuspicious);
+    return isSuspicious
+      ? setTimeout(() => {
+          setShowWarningMsg(true);
+        }, 500)
+      : null;
+  };
 
   return (
     <div className={styles.Form}>
       <label className={styles.Label} htmlFor={category}>
         {label}
-        {/* {warningMsg()} */}
-        {isSuspicious && timerOn && <WarningSuspicious />}
+        {isSuspicious && showWarningMsg && <WarningSuspicious />}
         <input
           className={inputClasses.join(' ')}
           type="text"
@@ -46,6 +45,7 @@ const InputField = (props) => {
           placeholder={placeholder}
           onChange={changed}
           onClick={clicked}
+          onBlur={focusOutHandler}
         />
       </label>
     </div>
