@@ -6,12 +6,11 @@ import styles from './Home.module.css';
 
 class Home extends Component {
   render() {
-    console.log('miskas whisda');
     return (
       <div className={styles.Field}>
         <UserInputColumn />
-        {/* <WorldDataColumn />
-        <WorldDataColumn /> */}
+        {/* <WorldDataColumn /> */}
+        {/* <WorldDataColumn /> */}
       </div>
     );
   }

@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 
-
 class UserInputColumn extends Component {
   state = {
     userInput: [
@@ -16,10 +15,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 150],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'snacks outdoor',
@@ -29,10 +28,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 150],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'groceries',
@@ -42,10 +41,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [100, 400],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'trips cheap',
@@ -55,10 +54,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 2000],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'trips expensive',
@@ -68,10 +67,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 5000],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'clothes',
@@ -81,10 +80,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 100],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'shoes',
@@ -94,10 +93,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 100],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'fitness',
@@ -107,10 +106,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 150],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'jewelry',
@@ -120,10 +119,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 200],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'personal vehicle',
@@ -133,10 +132,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 500],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'public transportation',
@@ -146,10 +145,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 100],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'entertainment indoors',
@@ -159,10 +158,10 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 200],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       {
         name: 'entertainment outdoors',
@@ -172,47 +171,63 @@ class UserInputColumn extends Component {
         validation: {
           required: true,
           range: [0, 300],
-          type: 'number'
+          type: 'number',
         },
         valid: false,
-        touched: false
-      }
+        touched: false,
+      },
     ],
     formIsValid: false,
-    totalCost: ''
+    totalCost: '',
   };
 
   formChangeHandler = (event, index) => {
     const { userInput } = this.state;
     const updatedForm = {
-      ...userInput
+      ...userInput,
     };
     const updatedFormEl = {
-      ...updatedForm[index]
+      ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
+    // eslint-disable-next-line prefer-destructuring
     updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
+    // eslint-disable-next-line prefer-destructuring
     updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
 
     let formIsValid = true;
-    for (const index in updatedForm) {
-      formIsValid = updatedForm[index].valid && formIsValid;
+    for (const i in updatedForm) {
+      formIsValid = updatedForm[i].valid && formIsValid;
     }
 
-    this.setState({ userInput: updatedForm, formIsValid: formIsValid });
+    this.setState({ userInput: updatedForm, formIsValid });
   };
 
-  // FIXME: this is not completed yet and does not work. Ignore it for the time being. :)
-  // submitFormHandler = (event) => {
-  //   const { userInput } = this.state;
-  //   const list = Object.values(userInput);
-  //   event.preventDefault();
-  //   const totalC = list.reduce();
-  //   console.log(totalC);
-  //   this.setState({ totalCost: totalC });
-  // }
+  submitFormHandler = (event) => {
+    const { userInput } = this.state;
+    event.preventDefault();
+    const valuesSum = Object.values(userInput)
+      .map((listItem) => listItem.value)
+      .filter((value) => value !== '');
+    const totalC = valuesSum.reduce(
+      (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
+    );
+    // TODO: delete the logs after code review
+    console.log(
+      '%cVALUES SUM :::::::',
+      'color: cyan;, font-size:18px',
+      valuesSum
+    );
+    console.log(
+      '%cUSER INPUT STATE :::::::',
+      'color: red;, font-size:18px',
+      userInput
+    );
+    console.log(totalC);
+    this.setState({ totalCost: totalC });
+  };
 
   checkValidity(obj) {
     let isValid = true;
@@ -223,7 +238,9 @@ class UserInputColumn extends Component {
     }
 
     if (obj.validation.range) {
-      isSuspicious = obj.value < obj.validation.range[0] || obj.value > obj.validation.range[1];
+      isSuspicious =
+        obj.value < obj.validation.range[0] ||
+        obj.value > obj.validation.range[1];
     }
 
     if (obj.validation.type === 'number') {
@@ -239,31 +256,38 @@ class UserInputColumn extends Component {
 
     // console.log('%c list :::', 'color: yellow', list);
     // console.log('%c final userInput :::', 'color: red', userInput);
-    // console.log('%c final state :::', 'color: red', this.state.userInput[0].valid);
+    // console.log(
+    //   '%c final state :::',
+    //   'color: red',
+    //   this.state.userInput[0].valid
+    // );
+    // console.log('%c final total cost :::', 'color: red', this.state.totalCost);
 
-
-    const inputForm = (
-      list.map((listItem, index) => (
-        <InputField
-          key={listItem.name}
-          label={listItem.name}
-          placeholder={`Expenses for: ${listItem.name}`}
-          value={listItem.value}
-          valid={listItem.valid}
-          isSuspicious={listItem.isSuspicious}
-          touched={listItem.touched}
-          valRequired={listItem.validation.required}
-          changed={(event) => { this.formChangeHandler(event, index); }}
-          clicked={() => console.log(index)}
-        />
-      )));
+    const inputForm = list.map((listItem, index) => (
+      <InputField
+        key={listItem.name}
+        label={listItem.name}
+        type="number"
+        placeholder={`Expenses for: ${listItem.name}`}
+        value={listItem.value}
+        valid={listItem.valid}
+        isSuspicious={listItem.isSuspicious}
+        touched={listItem.touched}
+        valRequired={listItem.validation.required}
+        changed={(event) => {
+          this.formChangeHandler(event, index);
+        }}
+      />
+    ));
 
     return (
       <div className={styles.Container}>
         <form className={styles.Column} onSubmit={this.submitFormHandler}>
           <h3>Please fill the form below!</h3>
           {inputForm}
-          <button className={styles.Button} type="submit">SUBMIT</button>
+          <button className={styles.Button} type="submit">
+            SUBMIT
+          </button>
         </form>
       </div>
     );

@@ -4,7 +4,17 @@ import WarningSuspicious from './WarningSuspicious/WarningSuspicious';
 
 const InputField = (props) => {
   const {
-    label, placeholder, category, classname, valid, valRequired, isSuspicious, touched, changed, clicked
+    label,
+    placeholder,
+    category,
+    classname,
+    valid,
+    valRequired,
+    isSuspicious,
+    touched,
+    changed,
+    clicked,
+    type,
   } = props;
   const inputClasses = [classname || styles.Input];
   const [timerOn, setTimerOn] = useState(false);
@@ -12,7 +22,6 @@ const InputField = (props) => {
   if (!valid && valRequired && touched) {
     inputClasses.push(styles.Invalid);
   }
-  // At least I tried :) TODO: let's discuss about this. Let me know if you have any ideas on this.
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -22,18 +31,11 @@ const InputField = (props) => {
     }, 2000);
     return () => clearTimeout(timeout);
   }, [isSuspicious]);
-  // const warningMsg = () => {
-  //   if (isSuspicious) {
-  //     console.log('test123');
-  //     setTimeout(() => (
-  //       <WarningSuspicious />
-  //     ), 2000);
-  //   }
-  // };
 
   return (
     <div className={styles.Form}>
-      <label className={styles.Label} htmlFor={category}>{label}
+      <label className={styles.Label} htmlFor={category}>
+        {label}
         {/* {warningMsg()} */}
         {isSuspicious && timerOn && <WarningSuspicious />}
         <input

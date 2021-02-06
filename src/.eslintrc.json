@@ -75,7 +75,8 @@
     "eol-last": 1,
     "react/jsx-curly-spacing": 1,
     "object-curly-spacing": 1,
-    "react/jsx-curly-brace-presence": 1
+    "react/jsx-curly-brace-presence": 1,
+    "react/no-unused-state": 1
   }
 }
 
