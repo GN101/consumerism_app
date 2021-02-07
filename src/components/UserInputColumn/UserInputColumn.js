@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
+import axios from '../../axios-orders';
 
 class UserInputColumn extends Component {
   state = {
-    ...mockedUserInputState,
+    userInput: [...mockedUserInputState],
     formIsValid: false,
     totalCost: '',
   };
@@ -21,9 +22,8 @@ class UserInputColumn extends Component {
       ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
-    // eslint-disable-next-line prefer-destructuring
+
     updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
-    // eslint-disable-next-line prefer-destructuring
     updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
@@ -36,35 +36,52 @@ class UserInputColumn extends Component {
     this.setState({ userInput: updatedForm, formIsValid });
   };
 
-  submitFormHandler = (event) => {
-    const { userInput } = this.state;
-    event.preventDefault();
-    const valuesSum = Object.values(userInput)
-      .map((listItem) => listItem.value)
-      .filter((value) => value !== '');
-    const totalC =
-      valuesSum.length !== 0
-        ? valuesSum.reduce(
-            (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-          )
-        : console.log('No values were provided by the user!');
-    // TODO: delete the logs after code review
-    console.log(
-      '%cVALUES SUM :::::::',
-      'color: cyan;, font-size:18px',
-      valuesSum
-    );
-    console.log(
-      '%cUSER INPUT STATE :::::::',
-      'color: red;, font-size:18px',
-      userInput
-    );
-    if (this.state.formIsValid) {
-      console.log('SUBMIT SUCCESFUL - totalC', totalC);
-      this.setState({ totalCost: totalC });
-    } else {
-      // TODO: we need to render a proper error message for such cases
-      console.log('SUBMIT FAILED - Form is invalid!');
+  submitFormHandler = async (event) => {
+    try {
+      const { userInput, formIsValid } = this.state;
+      const userData = {};
+      event.preventDefault();
+      const valuesSum = Object.values(userInput)
+        .map((listItem) => listItem.value)
+        .filter((value) => value !== '');
+      const totalC =
+        valuesSum.length !== 0
+          ? valuesSum.reduce(
+              (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
+            )
+          : null;
+
+      // console.log(
+      //   '%cVALUES SUM :::::::',
+      //   'color: cyan;, font-size:18px',
+      //   valuesSum
+      // );
+      // console.log(
+      //   '%cUSER INPUT STATE :::::::',
+      //   'color: red;, font-size:18px',
+      //   userInput
+      // );
+
+      if (formIsValid) {
+        console.log('SUBMIT SUCCESFUL - totalC', totalC);
+        await this.setState({ totalCost: totalC });
+        const userInputArr = Object.values(userInput);
+        await userInputArr.map((userInfo) => {
+          userData[userInfo.name] = userInfo.value;
+        });
+        console.log('userData', userData);
+
+        // FIXME: not working as it is now - Bad Request 400
+        axios
+          .post('/users.json', userData)
+          .then((res) => console.log(res))
+          .catch((e) => console.log(e));
+      } else {
+        // TODO: we need to render a proper error message for such cases
+        console.log('SUBMIT FAILED - Form is invalid!');
+      }
+    } catch (e) {
+      console.log(`Error during User Input Form submittion: ${e}`);
     }
   };
 
@@ -90,14 +107,16 @@ class UserInputColumn extends Component {
   }
 
   render() {
+    // TODO: delete the logs after code review
     const { userInput } = this.state;
+    // console.log('typeof(userInput)', typeof userInput);
+    // console.log('%c final userInput :::', 'color: red', userInput);
     const list = Object.values(userInput);
 
     // console.log('%c list :::', 'color: yellow', list);
-    console.log('%c final userInput :::', 'color: red', userInput);
-    console.log('%c final state :::', 'color: red', this.state.userInput);
-    console.log('%c final total cost :::', 'color: red', this.state.totalCost);
-    console.log('%c formIsValid :::', 'color: yellow', this.state.formIsValid);
+    // console.log('%c final state :::', 'color: red', this.state);
+    // console.log('%c final total cost :::', 'color: red', this.state.totalCost);
+    // console.log('%c formIsValid :::', 'color: yellow', this.state.formIsValid);
 
     const inputForm = list.map((listItem, index) => (
       <InputField
