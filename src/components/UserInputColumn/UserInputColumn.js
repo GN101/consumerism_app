@@ -3,180 +3,11 @@
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
+import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
 
 class UserInputColumn extends Component {
   state = {
-    userInput: [
-      {
-        name: 'snacks indoor',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 150],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'snacks outdoor',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 150],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'groceries',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [100, 400],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'trips cheap',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 2000],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'trips expensive',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 5000],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'clothes',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'shoes',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'fitness',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 150],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'jewelry',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 200],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'personal vehicle',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 500],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'public transportation',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 100],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'entertainment indoors',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 200],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-      {
-        name: 'entertainment outdoors',
-        value: '',
-        categories: [],
-        isSuspicious: false,
-        validation: {
-          required: true,
-          range: [0, 300],
-          type: 'number',
-        },
-        valid: false,
-        touched: false,
-      },
-    ],
+    ...mockedUserInputState,
     formIsValid: false,
     totalCost: '',
   };
@@ -268,7 +99,7 @@ class UserInputColumn extends Component {
         key={listItem.name}
         label={listItem.name}
         type="number"
-        placeholder={`Expenses for: ${listItem.name}`}
+        placeholder={listItem.placeholder}
         value={listItem.value}
         valid={listItem.valid}
         isSuspicious={listItem.isSuspicious}

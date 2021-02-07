@@ -2,109 +2,48 @@ import React, { Component } from 'react';
 // eslint-disable-next-line max-len
 import styles from './WorldDataColumn.module.css';
 import WorldField from './WorldField';
-
+import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
 
 class WorldDataColumn extends Component {
   state = {
-    worldData: [
-      {
-        name: 'snacks indoor',
-        value: '25',
-        categories: [],
-      },
-      {
-        name: 'snacks outdoor',
-        value: '50',
-        categories: [],
-      },
-      {
-        name: 'groceries',
-        value: '250',
-        categories: [],
-      },
-      {
-        name: 'trips cheap',
-        value: '30',
-        categories: [],
-      },
-      {
-        name: 'trips expensive',
-        value: '250',
-        categories: [],
-      },
-      {
-        name: 'clothes',
-        value: '15',
-        categories: [],
-      },
-      {
-        name: 'shoes',
-        value: '10',
-        categories: [],
-      },
-      {
-        name: 'fitness',
-        value: '30',
-        categories: [],
-      },
-      {
-        name: 'jewelry',
-        value: '92',
-        categories: [],
-      },
-      {
-        name: 'personal vehicle',
-        value: '120',
-        categories: [],
-      },
-      {
-        name: 'public transportation',
-        value: '30',
-        categories: [],
-      },
-      {
-        name: 'entertainment indoors',
-        value: '60',
-        categories: [],
-      },
-      {
-        name: 'entertainment outdoors',
-        value: '80',
-        categories: [],
-      },
-    ],
+    ...mockedUserInputState,
     show: true,
-    totalCost: ''
+    totalCost: '',
   };
 
   toggleContent = (e) => {
     e.preventDefault();
     const { show } = this.state;
     this.setState({ show: !show });
-  }
+  };
 
   render() {
-    const { worldData, show } = this.state;
+    const { userInput, show } = this.state;
+    const worldData = userInput;
     const hideFields = show ? styles.Column : styles.Hide;
     const list = Object.values(worldData);
 
-    const worldInputForm = (
-      list.map((listItem) => (
-        <WorldField
-          key={listItem.name}
-          label={listItem.name}
-          placeholder={`Expenses for: ${listItem.name}`}
-          value={listItem.value}
-        />
-      )));
+    const worldInputForm = list.map((listItem) => (
+      <WorldField
+        key={`${listItem.name}world-data-id`}
+        label={listItem.name}
+        placeholder={listItem.placeholder}
+        value={listItem.value}
+      />
+    ));
 
     return (
       <div>
-        <button type="button" className={styles.Button} onClick={this.toggleContent}> Toggle </button>
+        <button
+          type="button"
+          className={styles.Button}
+          onClick={this.toggleContent}
+        >
+          {' '}
+          Toggle{' '}
+        </button>
         <div className={hideFields}>
-          <div>
-            {worldInputForm}
-          </div>
+          <div>{worldInputForm}</div>
         </div>
       </div>
     );

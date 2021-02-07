@@ -9,8 +9,8 @@ class Home extends Component {
     return (
       <div className={styles.Field}>
         <UserInputColumn />
-        {/* <WorldDataColumn /> */}
-        {/* <WorldDataColumn /> */}
+        <WorldDataColumn />
+        {/* TODO: <UsersAverageDataColumn /> to be placed here */}
       </div>
     );
   }
