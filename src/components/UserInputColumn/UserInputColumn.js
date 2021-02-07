@@ -3,15 +3,23 @@
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
-import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
+// import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
 import axios from '../../axios-orders';
-
 class UserInputColumn extends Component {
   state = {
-    userInput: [...mockedUserInputState],
+    userInput: [],
     formIsValid: false,
     totalCost: '',
   };
+
+  async componentDidMount() {
+    try {
+      const res = await axios.get('/userInputState.json');
+      this.setState({ userInput: res.data.userInputForm });
+    } catch (e) {
+      console.log(`Failure getting user input form - Error: ${e}`);
+    }
+  }
 
   formChangeHandler = (event, index) => {
     const { userInput } = this.state;
@@ -63,19 +71,17 @@ class UserInputColumn extends Component {
       // );
 
       if (formIsValid) {
-        console.log('SUBMIT SUCCESFUL - totalC', totalC);
-        await this.setState({ totalCost: totalC });
+        console.log('SUBMIT SUCCESFUL - totalCost: ', totalC);
+        this.setState({ totalCost: totalC });
         const userInputArr = Object.values(userInput);
-        await userInputArr.map((userInfo) => {
+        userInputArr.map((userInfo) => {
           userData[userInfo.name] = userInfo.value;
         });
-        console.log('userData', userData);
-
-        // FIXME: not working as it is now - Bad Request 400
+        // console.log('userData', typeof userData);
         axios
-          .post('/users.json', userData)
+          .post('/userData.json', userData)
           .then((res) => console.log(res))
-          .catch((e) => console.log(e));
+          .catch((e) => console.log(`FUCK YOU! ${e}`));
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
