@@ -47,7 +47,7 @@ class UserInputColumn extends Component {
   submitFormHandler = async (event) => {
     try {
       const { userInput, formIsValid } = this.state;
-      const userData = {};
+      const userData = { categories: {} };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
@@ -72,10 +72,11 @@ class UserInputColumn extends Component {
 
       if (formIsValid) {
         console.log('SUBMIT SUCCESFUL - totalCost: ', totalC);
-        this.setState({ totalCost: totalC });
+        await this.setState({ totalCost: totalC });
+        userData.totalCost = this.state.totalCost;
         const userInputArr = Object.values(userInput);
         userInputArr.map((userInfo) => {
-          userData[userInfo.name] = userInfo.value;
+          userData.categories[userInfo.name] = userInfo.value;
         });
         // console.log('userData', typeof userData);
         axios
