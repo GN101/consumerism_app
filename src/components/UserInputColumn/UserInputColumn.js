@@ -3,14 +3,23 @@
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
-import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
-
+// import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
+import axios from '../../axios-orders';
 class UserInputColumn extends Component {
   state = {
-    ...mockedUserInputState,
+    userInput: [],
     formIsValid: false,
     totalCost: '',
   };
+
+  async componentDidMount() {
+    try {
+      const res = await axios.get('/userInputState.json');
+      this.setState({ userInput: res.data.userInputForm });
+    } catch (e) {
+      console.log(`Failure getting user input form - Error: ${e}`);
+    }
+  }
 
   formChangeHandler = (event, index) => {
     const { userInput } = this.state;
@@ -21,9 +30,8 @@ class UserInputColumn extends Component {
       ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
-    // eslint-disable-next-line prefer-destructuring
+
     updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
-    // eslint-disable-next-line prefer-destructuring
     updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
@@ -36,28 +44,52 @@ class UserInputColumn extends Component {
     this.setState({ userInput: updatedForm, formIsValid });
   };
 
-  submitFormHandler = (event) => {
-    const { userInput } = this.state;
-    event.preventDefault();
-    const valuesSum = Object.values(userInput)
-      .map((listItem) => listItem.value)
-      .filter((value) => value !== '');
-    const totalC = valuesSum.reduce(
-      (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-    );
-    // TODO: delete the logs after code review
-    console.log(
-      '%cVALUES SUM :::::::',
-      'color: cyan;, font-size:18px',
-      valuesSum
-    );
-    console.log(
-      '%cUSER INPUT STATE :::::::',
-      'color: red;, font-size:18px',
-      userInput
-    );
-    console.log(totalC);
-    this.setState({ totalCost: totalC });
+  submitFormHandler = async (event) => {
+    try {
+      const { userInput, formIsValid } = this.state;
+      const userData = { categories: {} };
+      event.preventDefault();
+      const valuesSum = Object.values(userInput)
+        .map((listItem) => listItem.value)
+        .filter((value) => value !== '');
+      const totalC =
+        valuesSum.length !== 0
+          ? valuesSum.reduce(
+              (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
+            )
+          : null;
+
+      // console.log(
+      //   '%cVALUES SUM :::::::',
+      //   'color: cyan;, font-size:18px',
+      //   valuesSum
+      // );
+      // console.log(
+      //   '%cUSER INPUT STATE :::::::',
+      //   'color: red;, font-size:18px',
+      //   userInput
+      // );
+
+      if (formIsValid) {
+        console.log('SUBMIT SUCCESFUL - totalCost: ', totalC);
+        await this.setState({ totalCost: totalC });
+        userData.totalCost = this.state.totalCost;
+        const userInputArr = Object.values(userInput);
+        userInputArr.map((userInfo) => {
+          userData.categories[userInfo.name] = userInfo.value;
+        });
+        // console.log('userData', typeof userData);
+        axios
+          .post('/userData.json', userData)
+          .then((res) => console.log(res))
+          .catch((e) => console.log(`FUCK YOU! ${e}`));
+      } else {
+        // TODO: we need to render a proper error message for such cases
+        console.log('SUBMIT FAILED - Form is invalid!');
+      }
+    } catch (e) {
+      console.log(`Error during User Input Form submittion: ${e}`);
+    }
   };
 
   checkValidity(obj) {
@@ -82,17 +114,16 @@ class UserInputColumn extends Component {
   }
 
   render() {
+    // TODO: delete the logs after code review
     const { userInput } = this.state;
+    // console.log('typeof(userInput)', typeof userInput);
+    // console.log('%c final userInput :::', 'color: red', userInput);
     const list = Object.values(userInput);
 
     // console.log('%c list :::', 'color: yellow', list);
-    // console.log('%c final userInput :::', 'color: red', userInput);
-    // console.log(
-    //   '%c final state :::',
-    //   'color: red',
-    //   this.state.userInput[0].valid
-    // );
+    // console.log('%c final state :::', 'color: red', this.state);
     // console.log('%c final total cost :::', 'color: red', this.state.totalCost);
+    // console.log('%c formIsValid :::', 'color: yellow', this.state.formIsValid);
 
     const inputForm = list.map((listItem, index) => (
       <InputField
