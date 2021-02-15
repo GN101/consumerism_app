@@ -2,30 +2,41 @@ import React from 'react';
 import dataInputs from '../../mocks/dataInputs';
 
 const UsersAverageInputColumn = () => {
-  // const key = 'clothes';
-  // const average =
-  //   dataInputs.reduce((a, b) => (dataInputs[0][key] += b[key])) /
-  //   dataInputs.length;
-  // const result = Object.keys(dataInputs[0]).forEach((key) => average(key));
-  // console.log(result);
-  // console.log(dataInputs[1]['clothes']);
-
-  const average2 = dataInputs.reduce((basket, fruit) => {
-    for (const [key, value] of Object.entries(fruit)) {
-      if (!basket[key]) {
-        basket[key] = 0;
+  const average = dataInputs.reduce((a, b) => {
+    for (const [key, value] of Object.entries(b)) {
+      if (!a[key]) {
+        a[key] = 0;
       }
-      basket[key] += value;
+      a[key] += value / dataInputs.length;
     }
+    return a;
+  }, []);
 
-    return basket;
-  }, {});
-  console.log(average2);
+  const keys = Object.keys(average);
+  const values = Object.values(average);
+  const totalCost = values.reduce((a, b) => a + b);
 
-  return <div> {2} </div>;
-
-  // let filteredData = data.filter(({ gender }) => gender == 'female'),
-  // avg = filteredData.reduce((r, c) => r + c.age, 0) / filteredData.length;
+  return (
+    <div>
+      <h3>User Data averages!</h3>
+      <table>
+        <tbody>
+          {keys.map((key, index) => (
+            <tr>
+              <td>{key}</td>
+              <td>{values[index].toFixed(1)}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total Cost</td>
+            <td>{totalCost.toFixed(1)}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  );
 };
 
 export default UsersAverageInputColumn;
