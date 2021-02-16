@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../axios-orders';
 
 const UsersAverageInputColumn = () => {
-  const [usersData, setData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/userData.json');
-        setData(response.data);
+        setUsersData(response.data);
       } catch (e) {
         console.log(`Failure getting user input form - Error: ${e}`);
       }
@@ -40,7 +40,7 @@ const UsersAverageInputColumn = () => {
 
     return (
       <div>
-        <h3>User Data averages!</h3>
+        <h3>Users average Costs!</h3>
         <table>
           <tbody>
             {inputCategories.map((category, index) => (
@@ -59,9 +59,8 @@ const UsersAverageInputColumn = () => {
         </table>
       </div>
     );
-  } else {
-    return <div>loading</div>; //this gives a warning but I need it cause Async fetchData response [] and breaks code. does pretyfiy "malakizete"?
   }
+  return <div>loading</div>; // this gives a warning but I need it cause Async fetchData response [] and breaks code. does pretyfiy "malakizete"?
 };
 
 export default UsersAverageInputColumn;
