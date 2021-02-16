@@ -6,7 +6,7 @@ import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
 
 class WorldDataColumn extends Component {
   state = {
-    ...mockedUserInputState,
+    mockedUserInputState,
     show: true,
     totalCost: '',
   };
@@ -18,17 +18,16 @@ class WorldDataColumn extends Component {
   };
 
   render() {
-    const { userInput, show } = this.state;
-    const worldData = userInput;
+    const userInput = this.state.mockedUserInputState;
+    const { show } = this.state;
     const hideFields = show ? styles.Column : styles.Hide;
-    const list = Object.values(worldData);
 
-    const worldInputForm = list.map((listItem) => (
+    const worldInputForm = userInput.map((obj) => (
       <WorldField
-        key={`${listItem.name}world-data-id`}
-        label={listItem.name}
-        placeholder={listItem.placeholder}
-        value={listItem.value}
+        key={`${obj.name}world-data-id`}
+        label={obj.name}
+        placeholder={obj.placeholder}
+        value={obj.value}
       />
     ));
 
@@ -39,8 +38,7 @@ class WorldDataColumn extends Component {
           className={styles.Button}
           onClick={this.toggleContent}
         >
-          {' '}
-          Toggle{' '}
+          Toggle
         </button>
         <div className={hideFields}>
           <div>{worldInputForm}</div>

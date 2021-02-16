@@ -85,20 +85,6 @@ const mockedUserInputState = [
     touched: false,
   },
   {
-    name: 'hardware - software accessories',
-    value: '',
-    categories: [],
-    isSuspicious: false,
-    placeholder: 'tool kits, licensed apps, kitchen appliances, etc',
-    validation: {
-      required: true,
-      range: [0, 200],
-      type: 'number',
-    },
-    valid: false,
-    touched: false,
-  },
-  {
     name: 'miscellaneous',
     value: '',
     categories: [],
@@ -107,6 +93,20 @@ const mockedUserInputState = [
     validation: {
       required: true,
       range: [0, 100],
+      type: 'number',
+    },
+    valid: false,
+    touched: false,
+  },
+  {
+    name: 'hardware - software accessories',
+    value: '',
+    categories: [],
+    isSuspicious: false,
+    placeholder: 'tool kits, licensed apps, kitchen appliances, etc',
+    validation: {
+      required: true,
+      range: [0, 200],
       type: 'number',
     },
     valid: false,
