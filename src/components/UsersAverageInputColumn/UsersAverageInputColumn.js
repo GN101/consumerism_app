@@ -60,7 +60,7 @@ const UsersAverageInputColumn = () => {
       </div>
     );
   }
-  return <div>loading</div>; // this gives a warning but I need it cause Async fetchData response [] and breaks code. does pretyfiy "malakizete"?
+  return null;
 };
 
 export default UsersAverageInputColumn;
