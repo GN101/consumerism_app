@@ -1,0 +1,32 @@
+.Title {
+  width: auto;
+  color: whitesmoke;
+  min-height: 50px;
+}
+
+.Categories {
+  margin: 10px 50px;
+  padding: 10px;
+  color: yellow;
+  width: 50%;
+  min-width: 100px;
+  max-width: 300px;
+}
+
+.CategoriesValues {
+  margin: 10px 50px;
+  padding: 10px;
+  color: white;
+  width: 50%;
+  min-width: 100px;
+  max-width: 300px;
+}
+
+.Sum {
+  margin: 10px 50px;
+  padding: 10px;
+  color: yellowgreen;
+  width: 50%;
+  min-width: 100px;
+  max-width: 300px;
+}
