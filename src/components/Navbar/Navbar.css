@@ -50,10 +50,11 @@
   flex: auto;
 }
 
-.sideNav ul {
-  display: none;
+@media (min-width: 801px) {
+  .sideNav {
+    display: none;
+  }
 }
-
 @media (max-width: 800px) {
   .navbar {
     height: 50px;
@@ -122,13 +123,3 @@
     color: grey;
   }
 }
-
-/* 
-.navbar_navigation-item ul {
-  list-style-type: none;
-  display: flex;
-}
-
-.navbar_navigation-item li {
-  
-} */
