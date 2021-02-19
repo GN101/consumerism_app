@@ -1,32 +1,27 @@
 .Title {
   width: auto;
   color: whitesmoke;
-  min-height: 50px;
 }
 
 .Categories {
-  margin: 10px 50px;
-  padding: 10px;
+  /* margin: 30px 150px; */
   color: yellow;
-  width: 50%;
-  min-width: 100px;
-  max-width: 300px;
+  width: 80%;
+  padding: 5px 10px;
+  /* min-width: 100px; */
+  /* max-width: 300px; */
 }
 
 .CategoriesValues {
   margin: 10px 50px;
-  padding: 10px;
+  /* text-align: center; */
   color: white;
-  width: 50%;
-  min-width: 100px;
-  max-width: 300px;
 }
 
 .Sum {
-  margin: 10px 50px;
-  padding: 10px;
   color: yellowgreen;
-  width: 50%;
-  min-width: 100px;
-  max-width: 300px;
+}
+.Sumvalue {
+  position: relative;
+  left: -8px;
 }

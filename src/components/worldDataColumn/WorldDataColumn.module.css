@@ -11,13 +11,12 @@
 }
 
 .Field {
-  padding-top: 10px;;
+  padding-top: 10px;
 }
 
 .Form {
   margin-top: 10px;
   padding: 10px 6px;
-  
 }
 
 .Input {
@@ -25,8 +24,6 @@
   width: 70%;
   min-width: 200px;
   max-width: 500px;
-  
-  
 }
 
 .Label {
@@ -36,18 +33,10 @@
 }
 
 .Button {
-  text-align: center;
-  margin: 7px;
-  padding: 0.5vh;
+  margin: 10px 50px;
+  padding: 1vh;
   width: 50%;
-  max-width: 100px;;
+  min-width: 100px;
+  max-width: 300px;
   background-color: yellowgreen;
-  
 }
-
-
-
-
-
-
-

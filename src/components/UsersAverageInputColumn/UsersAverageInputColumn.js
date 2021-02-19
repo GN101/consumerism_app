@@ -45,8 +45,8 @@ const UsersAverageInputColumn = () => {
         <table>
           <tbody>
             {inputCategories.map((category, index) => (
-              <tr className={styles.Categories}>
-                <td>{category}</td>
+              <tr>
+                <td className={styles.Categories}>{category}</td>
                 <td className={styles.CategoriesValues}>
                   {aveCost[index].toFixed()}
                 </td>
@@ -56,7 +56,7 @@ const UsersAverageInputColumn = () => {
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Cost</td>
-              <td>{totalAveCost.toFixed()}</td>
+              <td className={styles.Sumvalue}>{totalAveCost.toFixed()}</td>
             </tr>
           </tfoot>
         </table>
