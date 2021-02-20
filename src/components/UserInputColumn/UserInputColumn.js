@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable guard-for-in */
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
