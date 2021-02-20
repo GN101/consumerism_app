@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line max-len
 import styles from './WorldDataColumn.module.css';
 import WorldField from './WorldField';
 import mockedUserInputState from '../../mocks/mockedUserInputColumnState';

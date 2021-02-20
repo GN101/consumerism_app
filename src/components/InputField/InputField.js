@@ -23,8 +23,6 @@ const InputField = (props) => {
   }
 
   const focusOutHandler = () => {
-    // TODO: remove all console.logs after code review
-    console.log('%cisSuspicious', 'color: yellow', isSuspicious);
     return isSuspicious
       ? setTimeout(() => {
           setShowWarningMsg(true);
