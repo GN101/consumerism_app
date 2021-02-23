@@ -4,17 +4,13 @@
 }
 
 .Categories {
-  /* margin: 30px 150px; */
   color: yellow;
   width: 80%;
   padding: 5px 10px;
-  /* min-width: 100px; */
-  /* max-width: 300px; */
 }
 
 .CategoriesValues {
-  margin: 10px 50px;
-  /* text-align: center; */
+  text-align: right;
   color: white;
 }
 
@@ -22,6 +18,5 @@
   color: yellowgreen;
 }
 .Sumvalue {
-  position: relative;
-  left: -8px;
+  text-align: right;
 }

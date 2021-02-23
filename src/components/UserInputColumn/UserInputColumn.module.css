@@ -12,10 +12,3 @@
   min-width: 100px;
   max-width: 300px;
 }
-
-h2 {
-  /* to h2 den xrisimopoihte sto UserImputColumn component na to sviso? h itheles na kanei kati me to h3 isos pou yparxei sto UserImputColumn? */
-  padding: 0;
-  text-align: center;
-  width: 100%;
-}

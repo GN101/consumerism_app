@@ -1,0 +1,34 @@
+@media (min-width: 801px) {
+  .sideNav {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .sideNav {
+    top: -1000px;
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    background-color: #74b30f;
+    transition: top 0.35s;
+  }
+
+  .sideNav li {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 1.2rem;
+  }
+
+  .sideNav a {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+  }
+
+  .sideNav ul:active,
+  .sideNav a :active {
+    color: grey;
+  }
+}

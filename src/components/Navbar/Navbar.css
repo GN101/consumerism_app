@@ -23,73 +23,60 @@
   font-size: 1.5rem;
 }
 
-.burger {
+.burgerIcon {
   display: none;
 }
 
-.navbar_navigation-item a {
+.navbar_navigation-items {
+  margin-left: auto;
+}
+
+.navbar_navigation-items a {
   color: white;
   text-decoration: none;
 }
 
-.navbar_navigation-item a:hover,
-.navbar_navigation-item a:active {
+.navbar_navigation-items a:hover,
+.navbar_navigation-items a:active {
   color: grey;
 }
 
-.navbar_navigation-item ul {
+.navbar_navigation-items ul {
   list-style-type: none;
   display: flex;
 }
 
-.navbar_navigation-item li {
+.navbar_navigation-items li {
   padding: 1rem;
 }
 
-.spacing {
-  flex: auto;
-}
-
-@media (min-width: 801px) {
-  .sideNav {
-    display: none;
-  }
-}
 @media (max-width: 800px) {
   .navbar {
     height: 50px;
     width: 100%;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    position: fixed;
+    z-index: 1;
+    top: 0;
     left: 0;
-    background-color: #f5ad5c; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-  }
-
-  .navbar_navigation {
-    flex-direction: row;
-    /* align-items: center; */
-    /* padding: 0 0.5rem; */
+    background-color: #f5ad5c;
+    overflow-x: hidden;
   }
 
   .navbar_logo {
     /* thelo na pigenei sta deksia */
   }
 
-  .burger {
+  .burgerIcon {
     color: white;
     background-color: #f5ad5c;
     border: none;
     font-size: 1.5rem;
-    /* margin-top: 1px; */
     margin: 5px 5px;
     display: flex;
     order: -1;
-    /* flex-direction: column; */
   }
 
-  .navbar_navigation-item ul {
+  .navbar_navigation-items ul {
     display: none;
   }
 
@@ -100,26 +87,5 @@
     width: 50%;
     background-color: #74b30f;
     transition: top 0.35s;
-  }
-
-  .sideNav li {
-    color: white;
-    list-style-type: none;
-    text-decoration: none;
-    padding: 1.2rem;
-  }
-
-  .sideNav a {
-    color: white;
-    list-style-type: none;
-    text-decoration: none;
-    /* padding: 1rem; */
-    /* list-style-type: none; */
-    /* display: flex; */
-  }
-
-  .sideNav ul:active,
-  .sideNav a :active {
-    color: grey;
   }
 }
