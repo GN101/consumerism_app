@@ -1,0 +1,22 @@
+.Title {
+  width: auto;
+  color: whitesmoke;
+}
+
+.Categories {
+  color: yellow;
+  width: 80%;
+  padding: 5px 10px;
+}
+
+.CategoriesValues {
+  text-align: right;
+  color: white;
+}
+
+.Sum {
+  color: yellowgreen;
+}
+.Sumvalue {
+  text-align: right;
+}

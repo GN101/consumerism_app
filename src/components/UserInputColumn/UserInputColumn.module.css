@@ -1,4 +1,4 @@
-.Column {  
+.Column {
   width: auto;
   color: whitesmoke;
   min-height: 50px;
@@ -11,10 +11,4 @@
   width: 50%;
   min-width: 100px;
   max-width: 300px;
-}
-
-h2 {
-  padding: 0;
-  text-align: center;
-  width: 100%;
 }

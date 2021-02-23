@@ -1,10 +1,12 @@
 .navbar {
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: #F5AD5C;
-  height: 70px;
+  background-color: #f5ad5c;
+  height: 55px;
+  overflow-y: hidden;
+  border-bottom: 0.1875rem solid #74b30f;
 }
 
 .navbar_navigation {
@@ -14,30 +16,76 @@
   padding: 0 1rem;
 }
 
-.navbar_logo a {
+.navbar_logo {
+  display: inline-block;
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
 }
 
-.navbar_navigation-item a {
+.burgerIcon {
+  display: none;
+}
+
+.navbar_navigation-items {
+  margin-left: auto;
+}
+
+.navbar_navigation-items a {
   color: white;
   text-decoration: none;
 }
 
-.navbar_navigation-item a:hover, .navbar_navigation-item a:active {
+.navbar_navigation-items a:hover,
+.navbar_navigation-items a:active {
   color: grey;
 }
 
-.navbar_navigation-item ul {
+.navbar_navigation-items ul {
   list-style-type: none;
   display: flex;
 }
 
-.navbar_navigation-item li {
+.navbar_navigation-items li {
   padding: 1rem;
 }
 
-.spacing {
-  flex: 1;
+@media (max-width: 800px) {
+  .navbar {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f5ad5c;
+    overflow-x: hidden;
+  }
+
+  .navbar_logo {
+    /* thelo na pigenei sta deksia */
+  }
+
+  .burgerIcon {
+    color: white;
+    background-color: #f5ad5c;
+    border: none;
+    font-size: 1.5rem;
+    margin: 5px 5px;
+    display: flex;
+    order: -1;
+  }
+
+  .navbar_navigation-items ul {
+    display: none;
+  }
+
+  .sideNav {
+    top: -1000px;
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    background-color: #74b30f;
+    transition: top 0.35s;
+  }
 }
