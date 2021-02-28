@@ -34,7 +34,6 @@
     ]
   },
   "devDependencies": {
-    "@welldone-software/why-did-you-render": "github:welldone-software/why-did-you-render",
     "babel-preset-airbnb": "^3.2.0",
     "enzyme": "^3.4.3",
     "enzyme-adapter-react-16": "^1.2.0",

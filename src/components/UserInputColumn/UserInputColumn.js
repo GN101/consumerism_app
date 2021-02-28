@@ -59,7 +59,7 @@ class UserInputColumn extends Component {
           : null;
 
       if (formIsValid) {
-        console.log('SUBMIT SUCCESFUL - totalCost: ', totalC);
+        console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
         await this.setState({ totalCost: totalC });
         userData.totalCost = this.state.totalCost;
         const userInputArr = Object.values(userInput);
@@ -76,7 +76,7 @@ class UserInputColumn extends Component {
         console.log('SUBMIT FAILED - Form is invalid!');
       }
     } catch (e) {
-      console.log(`Error during User Input Form submittion: ${e}`);
+      console.log(`Error during User Input Form submission: ${e}`);
     }
   };
 
