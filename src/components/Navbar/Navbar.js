@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import SideNavbar from './SideNavbar/SideNavbar';
+import AlternateTheme from '../AlternateTheme/AlternateTheme';
 
 const Navbar = () => {
   const [openSideNav, setOpenSideNav] = useState(false);
@@ -38,6 +39,7 @@ const Navbar = () => {
               </Link>
             </ul>
           </div>
+          <AlternateTheme />
         </nav>
       </header>
       <SideNavbar />

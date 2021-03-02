@@ -12,12 +12,8 @@ const App = () => (
         <Route path="/" exact component={Home} />
         <Route path="/signUp" exact component={UserSignUp} />
       </Switch>
-
     </Router>
-
-
   </div>
-
 );
 
 export default App;
