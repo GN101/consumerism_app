@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import styles from './AlternateTheme.module.css';
-import AlternateThemeContext from '../././../Context/AlternateTheme-context';
+import AlternateThemeContext from '../../Context/AlternateTheme-context';
 
 const AlternateTheme = () => {
   const { theme, setTheme } = useContext(AlternateThemeContext);
-  // const [theme, setTheme] = useState(true);
 
-  const hola = () => {
+  const toggleTheme = () => {
     setTheme(!theme);
     if (theme) {
       document.body.style.backgroundColor = 'rgb(12,11,25)';
@@ -14,14 +13,13 @@ const AlternateTheme = () => {
       document.body.style.backgroundColor = '#607d8b';
     }
   };
-  console.log('1', theme);
 
   return (
     <div>
       <button
         type="button"
         className={theme ? styles.themeToggle : styles.themeToggle_dark}
-        onClick={hola}
+        onClick={toggleTheme}
       >
         <span role="img" aria-label="Dark mode">
           🌙 🔆

@@ -4,9 +4,11 @@
 
 .app {
   background-color: var(--backgroundColor);
+  transition: 0.5s;
 }
 
 .app_dark {
   /* background-color: var(--backgroundColor); */
   background-color: rgb(12, 11, 25);
+  transition: 0.5s;
 }

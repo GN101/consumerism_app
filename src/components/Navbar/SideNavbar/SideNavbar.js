@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AlternateThemeContext from '../../../Context/AlternateTheme-context';
 import './SideNavbar.css';
 
-const SideNavbar = () => (
-  <div>
-    <div id="sideNavId" className="sideNav">
-      <ul id="sideNavItem">
-        <li>
-          <a href="/">About</a>
-        </li>
-        <li>
-          <a href="/">Sign In</a>
-        </li>
-        <Link to="/signUp">
-          <li>join</li>
-        </Link>
-      </ul>
+const SideNavbar = () => {
+  const { theme, setTheme } = useContext(AlternateThemeContext);
+  return (
+    <div>
+      <div id="sideNavId" className={theme ? 'sideNav' : 'sideNav_dark'}>
+        <ul id="sideNavItem">
+          <li>
+            <a href="/">About</a>
+          </li>
+          <li>
+            <a href="/">Sign In</a>
+          </li>
+          <Link to="/signUp">
+            <li>join</li>
+          </Link>
+        </ul>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default SideNavbar;

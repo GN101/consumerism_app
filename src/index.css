@@ -2,8 +2,8 @@ body {
   background-color: var(--backgroundColor);
   transition: 0.5s;
   margin: auto;
-  margin-top: -8px;
-  margin-bottom: -600px;
+  /* margin-top: -8px; */
+  /* margin-bottom: -600px; */
   font-family: 'Roboto', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;

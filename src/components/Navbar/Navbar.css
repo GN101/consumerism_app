@@ -7,6 +7,19 @@
   height: 55px;
   overflow-y: hidden;
   border-bottom: 0.1875rem solid #74b30f;
+  transition: 0.5s;
+}
+
+.navbar_dark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #9b6e3a;
+  height: 55px;
+  overflow-y: hidden;
+  border-bottom: 0.1875rem solid #577b1e;
+  transition: 0.5s;
 }
 
 .navbar_navigation {
@@ -24,6 +37,10 @@
 }
 
 .burgerIcon {
+  display: none;
+}
+
+.burgerIcon_dark {
   display: none;
 }
 
@@ -62,6 +79,17 @@
     overflow-x: hidden;
   }
 
+  .navbar_dark {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #9b6e3a;
+    overflow-x: hidden;
+  }
+
   .burgerIcon {
     color: white;
     background-color: #f5ad5c;
@@ -71,18 +99,22 @@
     display: flex;
     outline-width: 0;
     order: -1;
+    transition: 0.5s;
+  }
+
+  .burgerIcon_dark {
+    color: white;
+    background-color: #9b6e3a;
+    border: none;
+    font-size: 1.5rem;
+    margin: 5px 5px;
+    display: flex;
+    outline-width: 0;
+    order: -1;
+    transition: 0.5s;
   }
 
   .navbar_navigation-items ul {
     display: none;
-  }
-
-  .sideNav {
-    top: -1000px;
-    position: fixed;
-    height: 100%;
-    width: 50%;
-    background-color: #74b30f;
-    transition: top 0.35s;
   }
 }

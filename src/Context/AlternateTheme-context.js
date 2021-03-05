@@ -1,8 +1,5 @@
 import React from 'react';
 
-const AlternateThemeContext = React.createContext({
-  theme: true,
-  setTheme: () => {},
-});
+const AlternateThemeContext = React.createContext();
 
 export default AlternateThemeContext;
