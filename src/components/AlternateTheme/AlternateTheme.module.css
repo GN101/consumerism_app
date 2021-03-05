@@ -1,20 +1,44 @@
-.ThemeToggle {
+.themeToggle {
   display: flex;
   position: relative;
   border-radius: 50px;
+  background-color: rgb(133, 247, 243);
   padding: 4px;
   outline-width: 0;
   align-items: center;
   justify-content: space-between;
+  transition: 0.5s;
+}
+
+.themeToggle_dark {
+  display: flex;
+  position: relative;
+  border-radius: 50px;
+  background-color: rgb(142, 11, 159);
+  padding: 4px;
+  outline-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.5s;
 }
 
 .ball {
-  background-color: rgb(214, 23, 23);
+  background-color: rgb(238, 63, 63);
   position: absolute;
   border-radius: 50%;
   left: 0px;
   width: 25px;
   height: 25px;
   transition: 0.5s;
-  /* transform: translate(23px); */
+}
+
+.ball_dark {
+  background-color: rgb(28, 16, 164);
+  position: absolute;
+  border-radius: 50%;
+  left: 0px;
+  width: 25px;
+  height: 25px;
+  transition: 0.5s;
+  transform: translate(23px);
 }

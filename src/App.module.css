@@ -1,0 +1,12 @@
+:root {
+  --backgroundColor: #607d8b;
+}
+
+.app {
+  background-color: var(--backgroundColor);
+}
+
+.app_dark {
+  /* background-color: var(--backgroundColor); */
+  background-color: rgb(12, 11, 25);
+}
