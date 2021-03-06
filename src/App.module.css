@@ -3,12 +3,27 @@
 }
 
 .app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
   background-color: var(--backgroundColor);
   transition: 0.5s;
+  box-sizing: border-box;
 }
 
 .app_dark {
-  /* background-color: var(--backgroundColor); */
-  background-color: rgb(12, 11, 25);
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  background-color: #041127;
   transition: 0.5s;
+}
+
+@media (min-height: 734px) {
+  @media (min-width: 1000px) {
+    .app,
+    .app_dark {
+      height: 100vh;
+    }
+  }
 }
