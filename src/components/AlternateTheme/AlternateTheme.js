@@ -7,11 +7,6 @@ const AlternateTheme = () => {
 
   const toggleTheme = () => {
     setTheme(!theme);
-    if (theme) {
-      document.body.style.backgroundColor = 'rgb(12,11,25)';
-    } else {
-      document.body.style.backgroundColor = '#607d8b';
-    }
   };
 
   return (

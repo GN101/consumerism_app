@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const toogleNav = () => {
     if (openSideNav) {
-      document.getElementById('sideNavId').style.top = '-1024px';
+      document.getElementById('sideNavId').style.top = '-1500px';
       setOpenSideNav(false);
     } else {
       document.getElementById('sideNavId').style.top = '50px';

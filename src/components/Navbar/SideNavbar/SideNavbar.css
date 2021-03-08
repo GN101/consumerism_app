@@ -9,7 +9,7 @@
 
 @media (max-width: 800px) {
   .sideNav {
-    top: -1000px;
+    top: -1500px;
     position: fixed;
     height: 100%;
     width: 50%;
@@ -18,7 +18,7 @@
   }
 
   .sideNav_dark {
-    top: -1000px;
+    top: -1500px;
     position: fixed;
     height: 100%;
     width: 50%;
