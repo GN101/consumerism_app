@@ -9,12 +9,14 @@ const Navbar = () => {
   const [openSideNav, setOpenSideNav] = useState(false);
   const { theme, setTheme } = useContext(AlternateThemeContext);
 
-  const toogleNav = () => {
+  const toggleNav = () => {
     if (openSideNav) {
       document.getElementById('sideNavId').style.top = '-1500px';
+      document.getElementById('overlay').style.display = 'none';
       setOpenSideNav(false);
     } else {
       document.getElementById('sideNavId').style.top = '50px';
+      document.getElementById('overlay').style.display = 'block';
       setOpenSideNav(true);
     }
   };
@@ -27,7 +29,7 @@ const Navbar = () => {
           </Link>
           <button
             type="button"
-            onClick={toogleNav}
+            onClick={toggleNav}
             className={theme ? 'burgerIcon' : 'burgerIcon_dark'}
           >
             &#9776;
@@ -48,7 +50,8 @@ const Navbar = () => {
           <AlternateTheme />
         </nav>
       </header>
-      <SideNavbar />
+      <div className="overlay" onClick={toggleNav} id="overlay"></div>
+      <SideNavbar toggleNav={toggleNav} />
     </>
   );
 };

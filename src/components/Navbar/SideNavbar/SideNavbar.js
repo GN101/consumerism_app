@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AlternateThemeContext from '../../../Context/AlternateTheme-context';
 import './SideNavbar.css';
 
-const SideNavbar = () => {
+const SideNavbar = ({ toggleNav }) => {
   const { theme, setTheme } = useContext(AlternateThemeContext);
   return (
     <div>
@@ -15,7 +15,7 @@ const SideNavbar = () => {
           <li>
             <a href="/">Sign In</a>
           </li>
-          <Link to="/signUp">
+          <Link onClick={toggleNav} to="/signUp">
             <li>join</li>
           </Link>
         </ul>
