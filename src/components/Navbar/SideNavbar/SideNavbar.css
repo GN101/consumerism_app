@@ -9,11 +9,7 @@
 
 @media (max-width: 800px) {
   .sideNav {
-<<<<<<< HEAD
     top: -1500px;
-=======
-    top: -2000px;
->>>>>>> 91bf9312e7f0f6658c128d925008a4e42ca7bedc
     position: fixed;
     height: 100%;
     width: 50%;
@@ -22,11 +18,7 @@
   }
 
   .sideNav_dark {
-<<<<<<< HEAD
     top: -1500px;
-=======
-    top: -2000px;
->>>>>>> 91bf9312e7f0f6658c128d925008a4e42ca7bedc
     position: fixed;
     height: 100%;
     width: 50%;

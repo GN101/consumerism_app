@@ -17,10 +17,7 @@
     grid-template-columns: 100%;
   }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 91bf9312e7f0f6658c128d925008a4e42ca7bedc
 @media (max-width: 320px) {
   .Field {
     margin: 60px 5px 16px;
