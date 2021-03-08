@@ -5,13 +5,22 @@
 .app {
   display: flex;
   flex-flow: column;
+<<<<<<< HEAD
+=======
+  height: 100%;
+>>>>>>> 91bf9312e7f0f6658c128d925008a4e42ca7bedc
   background-color: var(--backgroundColor);
   transition: 0.5s;
+  box-sizing: border-box;
 }
 
 .app_dark {
   display: flex;
   flex-flow: column;
+<<<<<<< HEAD
+=======
+  height: 100%;
+>>>>>>> 91bf9312e7f0f6658c128d925008a4e42ca7bedc
   background-color: #041127;
   transition: 0.5s;
 }
