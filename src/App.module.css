@@ -1,0 +1,27 @@
+:root {
+  --backgroundColor: #607d8b;
+}
+
+.app {
+  display: flex;
+  flex-flow: column;
+  background-color: var(--backgroundColor);
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.app_dark {
+  display: flex;
+  flex-flow: column;
+  background-color: #041127;
+  transition: 0.5s;
+}
+
+@media (min-height: 734px) {
+  @media (min-width: 1000px) {
+    .app,
+    .app_dark {
+      height: 100vh;
+    }
+  }
+}

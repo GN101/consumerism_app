@@ -2,16 +2,28 @@
   .sideNav {
     display: none;
   }
+  .sideNav_dark {
+    display: none;
+  }
 }
 
 @media (max-width: 800px) {
   .sideNav {
-    top: -1000px;
+    top: -1500px;
     position: fixed;
     height: 100%;
     width: 50%;
     background-color: #74b30f;
-    transition: top 0.35s;
+    transition: top 0.35s, background-color 0.5s;
+  }
+
+  .sideNav_dark {
+    top: -1500px;
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    background-color: #577b1e;
+    transition: top 0.35s, background-color 0.5s;
   }
 
   .sideNav li {
@@ -29,6 +41,24 @@
 
   .sideNav ul:active,
   .sideNav a :active {
+    color: grey;
+  }
+
+  .sideNav_dark li {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 1.2rem;
+  }
+
+  .sideNav_dark a {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+  }
+
+  .sideNav_dark ul:active,
+  .sideNav_dark a :active {
     color: grey;
   }
 }
