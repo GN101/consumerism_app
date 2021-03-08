@@ -51,10 +51,9 @@ const Navbar = () => {
         </nav>
       </header>
       <div className="overlay" onClick={toggleNav} id="overlay"></div>
-      <SideNavbar />
+      <SideNavbar toggleNav={toggleNav} />
     </>
   );
 };
 
-export { toggleNav };
 export default Navbar;

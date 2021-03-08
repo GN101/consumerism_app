@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlternateThemeContext from '../../../Context/AlternateTheme-context';
 import './SideNavbar.css';
-import toggleNav from './../Navbar';
 
-const SideNavbar = () => {
+const SideNavbar = ({ toggleNav }) => {
   const { theme, setTheme } = useContext(AlternateThemeContext);
   return (
     <div>
