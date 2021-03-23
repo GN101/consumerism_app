@@ -1,7 +1,7 @@
 {
   "userSignUpForm": [
     {
-      "name": "username",
+      "name": "nickname",
       "value": "",
       "categories": [],
       "isSuspicious": false,
@@ -53,7 +53,7 @@
       "touched": false
     },
     {
-      "name": "email",
+      "name": "e-mail",
       "value": "",
       "categories": [],
       "isSuspicious": false,
