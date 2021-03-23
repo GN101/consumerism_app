@@ -93,7 +93,7 @@ class UserInputColumn extends Component {
     }
 
     if (obj.validation.type === 'number') {
-      const pattern = /^\d+$/;
+      const pattern = /^\d+$/; // allaksa thn gramh 110 opote to type metaferete sto InputField , etsi to inpute dexete mono arithmous
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
     return [isValid, isSuspicious];
@@ -107,7 +107,7 @@ class UserInputColumn extends Component {
       <InputField
         key={listItem.name}
         label={listItem.name}
-        type="number"
+        type={listItem.validation.type}
         placeholder={listItem.placeholder}
         value={listItem.value}
         valid={listItem.valid}
