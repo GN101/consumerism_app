@@ -93,8 +93,8 @@ class UserInputColumn extends Component {
     }
 
     if (obj.validation.type === 'number') {
-      //const pattern = /^\d+$/; // allaksa thn gramh 110 opote to type metaferete sto InputField , etsi to inpute dexete mono arithmous Olo to Is Valid den xreiazete pia, to svino ok?
-      // isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
+      const pattern = /^\d+$/;
+      isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
     return [isValid, isSuspicious];
   }
