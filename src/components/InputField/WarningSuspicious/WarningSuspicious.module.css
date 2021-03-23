@@ -11,7 +11,7 @@
   width: 80%;
   min-width: 200px;
   max-width: 600px;
-  margin: 10px 0 10px 0;
+  margin: 10px auto 10px auto;
 }
 
 .Suspicious p {

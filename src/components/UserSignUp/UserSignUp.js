@@ -51,10 +51,11 @@ class UserSignUp extends Component {
       return true;
     }
     if (obj.validation.type === 'date') {
-      isSuspicious = obj.value < 1900 || obj.value > 2020;
+      console.log(obj.value);
+      isSuspicious = obj.value < '1921-01-01' || obj.value > '2021-01-01';
     }
 
-    if (obj.validation.type === 'string') {
+    if (obj.validation.type === 'text') {
       const pattern = new RegExp(obj.validation.pattern);
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
@@ -78,6 +79,7 @@ class UserSignUp extends Component {
         valid={items.valid}
         valRequired={items.validation.required}
         touched={items.touched}
+        type={items.validation.type}
         changed={(event) => {
           this.formChangeHandler(event, index);
         }}

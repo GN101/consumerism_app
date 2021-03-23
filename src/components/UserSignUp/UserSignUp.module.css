@@ -1,9 +1,8 @@
 .Form {
   display: block;
   text-align: left;
-  padding: 100px 0;
+  padding: 50px 0;
   margin: 10px auto;
-
 }
 
 .Header {
@@ -12,7 +11,6 @@
 }
 
 .Label {
-  
   margin: 0 auto;
   text-align: center;
   display: block;

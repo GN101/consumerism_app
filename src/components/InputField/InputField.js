@@ -5,6 +5,7 @@ import WarningSuspicious from './WarningSuspicious/WarningSuspicious';
 const InputField = (props) => {
   const {
     label,
+    type,
     placeholder,
     category,
     classname,
@@ -36,7 +37,7 @@ const InputField = (props) => {
         {isSuspicious && showWarningMsg && <WarningSuspicious />}
         <input
           className={inputClasses.join(' ')}
-          type="text"
+          type={type}
           id={label}
           name={label}
           placeholder={placeholder}

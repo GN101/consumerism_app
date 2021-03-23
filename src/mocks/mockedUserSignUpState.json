@@ -8,7 +8,7 @@
       "validation": {
         "required": true,
         "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
-        "type": "string"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -21,7 +21,7 @@
       "validation": {
         "required": true,
         "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{8,30}$",
-        "type": "string"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -33,8 +33,8 @@
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
-        "type": "string"
+        "pattern": "^[A-Za-z ]+$",
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -46,8 +46,8 @@
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
-        "type": "string"
+        "pattern": "^[A-Za-z ]+$",
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -59,21 +59,21 @@
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
-        "type": "string"
+        "pattern": "^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$",
+        "type": "text"
       },
       "valid": false,
       "touched": false
     },
     {
-      "name": "location",
+      "name": "Country",
       "value": "",
       "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
-        "type": "string"
+        "pattern": "^[a-zA-Z ]+$",
+        "type": "text"
       },
       "valid": false,
       "touched": false
