@@ -29,12 +29,10 @@ class UserInputColumn extends Component {
       ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
-
     updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
-
     let formIsValid = true;
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;

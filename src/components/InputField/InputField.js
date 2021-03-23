@@ -17,7 +17,6 @@ const InputField = (props) => {
   } = props;
   const inputClasses = [classname || styles.Input];
   const [showWarningMsg, setShowWarningMsg] = useState(false);
-
   if (!valid && valRequired && touched) {
     inputClasses.push(styles.Invalid);
   }
