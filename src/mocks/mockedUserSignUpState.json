@@ -3,11 +3,9 @@
     {
       "name": "Nickname",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
         "type": "text"
       },
       "valid": false,
@@ -16,11 +14,9 @@
     {
       "name": "Password",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{8,30}$",
         "type": "text"
       },
       "valid": false,
@@ -29,11 +25,9 @@
     {
       "name": "First Name",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^[A-Za-z ]+$",
         "type": "text"
       },
       "valid": false,
@@ -42,11 +36,9 @@
     {
       "name": "Last Name",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^[A-Za-z ]+$",
         "type": "text"
       },
       "valid": false,
@@ -55,11 +47,9 @@
     {
       "name": "E-mail",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$",
         "type": "text"
       },
       "valid": false,
@@ -68,11 +58,9 @@
     {
       "name": "Country",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^[a-zA-Z ]+$",
         "type": "text"
       },
       "valid": false,
@@ -81,11 +69,9 @@
     {
       "name": "Date Of Birth",
       "value": "",
-      "categories": [],
       "isSuspicious": false,
       "validation": {
         "required": true,
-        "pattern": "^(?=.{4,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)?[a-zA-Z0-9])*$",
         "type": "date"
       },
       "valid": false,

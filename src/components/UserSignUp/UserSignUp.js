@@ -56,6 +56,60 @@ class UserSignUp extends Component {
     }
 
     if (obj.validation.type === 'text') {
+      switch (obj.name) {
+        case 'Nickname':
+          obj.validation = {
+            required: true,
+            pattern:
+              '^(?=.{3,20}$)[a-zA-Z0-9]+((~|@|#|_|-|!|/.)[a-zA-Z0-9]*)*$',
+            title: 'more than 3 letters , cant include spaces',
+            type: 'text',
+          };
+          break;
+        case 'Password':
+          obj.validation = {
+            required: true,
+            pattern:
+              '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{4,30}$',
+            title:
+              'at least 1 number,1 symbol,1 upercase letter, 1 downcase letter ',
+            type: 'text',
+          };
+          break;
+        case 'First Name':
+          obj.validation = {
+            required: true,
+            pattern: '^[A-Za-z]([a-z]+[ ][A-Za-z])*[a-z]*$',
+            title: 'word space word without numbers',
+            type: 'text',
+          };
+          break;
+        case 'Last Name':
+          obj.validation = {
+            required: true,
+            pattern: '^[A-Za-z]([a-z]+[ ][A-Za-z])*[a-z]*$',
+            title: 'word space word without numbers',
+            type: 'text',
+          };
+          break;
+        case 'E-mail':
+          obj.validation = {
+            required: true,
+            pattern:
+              '^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$',
+            title: 'text@email.domain',
+            type: 'text',
+          };
+          break;
+        case 'Country':
+          obj.validation = {
+            required: true,
+            pattern: '^[A-Za-z]([a-z]+[ ][A-Za-z])*[a-z]*$',
+            title: 'word space word without numbers',
+            type: 'text',
+          };
+          break;
+      }
       const pattern = new RegExp(obj.validation.pattern);
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
@@ -68,18 +122,20 @@ class UserSignUp extends Component {
 
     console.log('FINAL USERINPUT', userInput);
 
-    const signUpForm = listOfUserInfo.map((items, index) => (
+    const signUpForm = listOfUserInfo.map((item, index) => (
       <InputField
-        key={items.name}
+        key={item.name}
         classname={styles.Input}
-        label={items.name}
-        placeholder={`Please write ${items.name} here`}
-        category={items.name}
-        isSuspicious={items.isSuspicious}
-        valid={items.valid}
-        valRequired={items.validation.required}
-        touched={items.touched}
-        type={items.validation.type}
+        label={item.name}
+        placeholder={`Please write ${item.name} here`}
+        category={item.name}
+        isSuspicious={item.isSuspicious}
+        valid={item.valid}
+        valRequired={item.validation.required}
+        touched={item.touched}
+        type={item.validation.type}
+        pattern={item.validation.pattern}
+        title={item.validation.title}
         changed={(event) => {
           this.formChangeHandler(event, index);
         }}
