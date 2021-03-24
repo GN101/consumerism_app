@@ -98,7 +98,7 @@ class UserSignUp extends Component {
             pattern:
               '^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$',
             title: 'text@email.domain',
-            type: 'text',
+            type: 'email', // we need a proper validation for email
           };
           break;
         case 'Country':
@@ -136,6 +136,7 @@ class UserSignUp extends Component {
         type={item.validation.type}
         pattern={item.validation.pattern}
         title={item.validation.title}
+        // clicked={item.validation.title}
         changed={(event) => {
           this.formChangeHandler(event, index);
         }}
