@@ -16,7 +16,6 @@ const InputField = (props) => {
     isSuspicious,
     touched,
     changed,
-    // clicked,
   } = props;
   const [showWarningMsg, setShowWarningMsg] = useState(false);
   const [invalidStyle, setInvalidStyle] = useState(false);
@@ -53,7 +52,6 @@ const InputField = (props) => {
           name={label}
           placeholder={placeholder}
           onChange={changed}
-          // onClick={clicked}
           onBlur={focusOutHandler}
         />
       </label>
