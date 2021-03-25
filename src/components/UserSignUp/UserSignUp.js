@@ -98,7 +98,7 @@ class UserSignUp extends Component {
             pattern:
               '^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$',
             title: 'text@email.domain',
-            type: 'email', // we need a proper validation for email
+            type: 'text', // we need a proper validation for email
           };
           break;
         case 'Country':
@@ -194,25 +194,3 @@ class UserSignUp extends Component {
   }
 }
 export default UserSignUp;
-
-  
-
-//   render() {
-//     const { userInput } = this.state;
-//     const list = Object.values(userInput);
-
-//     return (
-//       <div className={styles.Container}>
-//         <form className={styles.Column} onSubmit={this.submitFormHandler}>
-//           <h3>Please fill the form below!</h3>
-//           {inputForm}
-//           <button className={styles.Button} type="submit">
-//             SUBMIT
-//           </button>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-
-// export default UserInputColumn;
