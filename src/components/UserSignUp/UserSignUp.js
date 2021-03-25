@@ -115,7 +115,7 @@ class UserSignUp extends Component {
 
   submitFormHandler = async (event) => {
     const NicknameList = [];
-    let taken;
+    let NicknameTaken;
 
     try {
       const { userInput, formIsValid } = this.state;
@@ -123,16 +123,16 @@ class UserSignUp extends Component {
       event.preventDefault();
       if (formIsValid) {
         try {
-          const users = await axios.get('userAcounts/.json');
-          const data = users.data;
+          const userAcounts = await axios.get('userAcounts/.json');
+          const data = userAcounts.data;
           for (const key in data) {
             NicknameList.push(data[key].personalInfo.Nickname);
           }
-          taken = NicknameList.indexOf(userInput[0]['value']);
+          NicknameTaken = NicknameList.indexOf(userInput[0]['value']);
         } catch (e) {
           console.log(`Failure getting Nickname List- Error: ${e}`);
         }
-        if (taken === -1) {
+        if (NicknameTaken === -1) {
           console.log('test', NicknameList.indexOf(userInput[0]['value']));
           const userInputArr = Object.values(userInput);
           userInputArr.map((userInfo) => {
