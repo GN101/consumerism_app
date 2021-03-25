@@ -5,6 +5,9 @@ import WarningSuspicious from './WarningSuspicious/WarningSuspicious';
 const InputField = (props) => {
   const {
     label,
+    type,
+    pattern,
+    title,
     placeholder,
     category,
     classname,
@@ -13,19 +16,24 @@ const InputField = (props) => {
     isSuspicious,
     touched,
     changed,
-    clicked,
   } = props;
-  const inputClasses = [classname || styles.Input];
   const [showWarningMsg, setShowWarningMsg] = useState(false);
-
+  const [invalidStyle, setInvalidStyle] = useState(false);
+  const inputClasses = [classname || styles.Input];
   if (!valid && valRequired && touched) {
-    inputClasses.push(styles.Invalid);
+    if (invalidStyle) {
+      inputClasses.push(styles.Invalid);
+    }
   }
 
   const focusOutHandler = () => {
     return isSuspicious
       ? setTimeout(() => {
           setShowWarningMsg(true);
+        }, 500)
+      : !valid && valRequired && touched
+      ? setTimeout(() => {
+          setInvalidStyle(true);
         }, 500)
       : null;
   };
@@ -37,12 +45,13 @@ const InputField = (props) => {
         {isSuspicious && showWarningMsg && <WarningSuspicious />}
         <input
           className={inputClasses.join(' ')}
-          type="text"
+          type={type}
+          pattern={pattern}
+          title={title}
           id={label}
           name={label}
           placeholder={placeholder}
           onChange={changed}
-          onClick={clicked}
           onBlur={focusOutHandler}
         />
       </label>

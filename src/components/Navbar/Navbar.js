@@ -43,7 +43,7 @@ const Navbar = () => {
                 <a href="/">Sign In</a>
               </li>
               <Link to="/signUp">
-                <li>join</li>
+                <li>Join</li>
               </Link>
             </ul>
           </div>

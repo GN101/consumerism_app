@@ -16,7 +16,7 @@ const SideNavbar = ({ toggleNav }) => {
             <a href="/">Sign In</a>
           </li>
           <Link onClick={toggleNav} to="/signUp">
-            <li>join</li>
+            <li>Join</li>
           </Link>
         </ul>
       </div>
