@@ -20,7 +20,6 @@ class UserSignUp extends Component {
 
   formChangeHandler = (event, index) => {
     const { userInput } = this.state;
-    console.log('userInput', userInput);
     const updatedForm = {
       ...userInput,
     };
@@ -38,12 +37,10 @@ class UserSignUp extends Component {
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-    // console.log('updatedFormEl', updatedFormEl, formIsValid);
     this.setState({ userInput: updatedForm, formIsValid });
   };
 
   checkValidity(obj) {
-    // console.log('run check validity', obj);
     let isValid = true;
     let isSuspicious = false;
 
@@ -51,8 +48,8 @@ class UserSignUp extends Component {
       return true;
     }
     if (obj.validation.type === 'date') {
-      console.log(obj.value);
-      isSuspicious = obj.value < '1921-01-01' || obj.value > '2021-01-01';
+      isSuspicious = obj.value < '1931-01-01';
+      isValid = obj.value < '2021-01-01' && isValid;
     }
 
     if (obj.validation.type === 'text') {
@@ -98,7 +95,7 @@ class UserSignUp extends Component {
             pattern:
               '^((?!\\.)[\\w-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$',
             title: 'text@email.domain',
-            type: 'email', // we need a proper validation for email
+            type: 'text',
           };
           break;
         case 'Country':
@@ -116,48 +113,35 @@ class UserSignUp extends Component {
     return [isValid, isSuspicious];
   }
 
-  // submitFormHandler = async (event) => {
-  //   try {
-  //     const { userInput, formIsValid } = this.state;
-  //     const userData = { categories: {} };
-  //     event.preventDefault();
-  //     const valuesSum = Object.values(userInput)
-  //       .map((listItem) => listItem.value)
-  //       .filter((value) => value !== '');
-  //     // const totalC =
-  //     //   valuesSum.length !== 0
-  //     //     ? valuesSum.reduce(
-  //     //         (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-  //     //       )
-  //     //     : null;
+  submitFormHandler = async (event) => {
+    try {
+      const { userInput, formIsValid } = this.state;
+      const userAcountInfo = { personalInfo: {} };
+      event.preventDefault();
 
-  //     if (formIsValid) {
-  //       // console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-  //       await this.setState({ totalCost: totalC });
-  //       userData.totalCost = this.state.totalCost;
-  //       const userInputArr = Object.values(userInput);
-  //       userInputArr.map((userInfo) => {
-  //         userData.categories[userInfo.name] = userInfo.value;
-  //       });
+      if (formIsValid) {
+        const userInputArr = Object.values(userInput);
+        userInputArr.map((userInfo) => {
+          userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
+        });
 
-  //       axios
-  //         .post('/userData.json', userData)
-  //         .then((res) => console.log(res))
-  //         .catch((e) => console.log(e));
-  //     } else {
-  //       // TODO: we need to render a proper error message for such cases
-  //       console.log('SUBMIT FAILED - Form is invalid!');
-  //     }
-  //   } catch (e) {
-  //     console.log(`Error during User Input Form submission: ${e}`);
-  //   }
-  // };
+        axios
+          .post('/userAcounts.json', userAcountInfo)
+          .then((res) => console.log(res))
+          .catch((e) => console.log(e));
+      } else {
+        // TODO: we need to render a proper error message for such cases
+        console.log('SUBMIT FAILED - Form is invalid!');
+        alert('SUBMIT FAILED - Form is invalid or misses data');
+      }
+    } catch (e) {
+      console.log(`Error during User Input Form submission: ${e}`);
+    }
+  };
 
   render() {
     const { userInput } = this.state;
     const listOfUserInfo = Object.values(userInput);
-
-    console.log('FINAL USERINPUT', userInput);
 
     const signUpForm = listOfUserInfo.map((item, index) => (
       <InputField
@@ -173,7 +157,6 @@ class UserSignUp extends Component {
         type={item.validation.type}
         pattern={item.validation.pattern}
         title={item.validation.title}
-        // clicked={item.validation.title}
         changed={(event) => {
           this.formChangeHandler(event, index);
         }}
@@ -194,25 +177,3 @@ class UserSignUp extends Component {
   }
 }
 export default UserSignUp;
-
-  
-
-//   render() {
-//     const { userInput } = this.state;
-//     const list = Object.values(userInput);
-
-//     return (
-//       <div className={styles.Container}>
-//         <form className={styles.Column} onSubmit={this.submitFormHandler}>
-//           <h3>Please fill the form below!</h3>
-//           {inputForm}
-//           <button className={styles.Button} type="submit">
-//             SUBMIT
-//           </button>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-
-// export default UserInputColumn;
