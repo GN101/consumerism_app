@@ -114,21 +114,38 @@ class UserSignUp extends Component {
   }
 
   submitFormHandler = async (event) => {
+    const NicknameList = [];
+    let taken;
+
     try {
       const { userInput, formIsValid } = this.state;
       const userAcountInfo = { personalInfo: {} };
       event.preventDefault();
-
       if (formIsValid) {
-        const userInputArr = Object.values(userInput);
-        userInputArr.map((userInfo) => {
-          userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
-        });
+        try {
+          const users = await axios.get('userAcounts/.json');
+          const data = users.data;
+          for (const key in data) {
+            NicknameList.push(data[key].personalInfo.Nickname);
+          }
+          taken = NicknameList.indexOf(userInput[0]['value']);
+        } catch (e) {
+          console.log(`Failure getting Nickname List- Error: ${e}`);
+        }
+        if (taken === -1) {
+          console.log('test', NicknameList.indexOf(userInput[0]['value']));
+          const userInputArr = Object.values(userInput);
+          userInputArr.map((userInfo) => {
+            userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
+          });
 
-        axios
-          .post('/userAcounts.json', userAcountInfo)
-          .then((res) => console.log(res))
-          .catch((e) => console.log(e));
+          axios
+            .post('/userAcounts.json', userAcountInfo)
+            .then((res) => console.log('res', res))
+            .catch((e) => console.log('error', e));
+        } else {
+          alert('Nickname taken try another one.');
+        }
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
