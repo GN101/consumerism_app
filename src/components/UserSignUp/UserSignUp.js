@@ -115,7 +115,6 @@ class UserSignUp extends Component {
 
   submitFormHandler = async (event) => {
     const NicknameList = [];
-    let NicknameTaken;
 
     try {
       const { userInput, formIsValid } = this.state;
@@ -128,11 +127,10 @@ class UserSignUp extends Component {
           for (const key in data) {
             NicknameList.push(data[key].personalInfo.Nickname);
           }
-          NicknameTaken = NicknameList.indexOf(userInput[0]['value']);
         } catch (e) {
           console.log(`Failure getting Nickname List- Error: ${e}`);
         }
-        if (NicknameTaken === -1) {
+        if (!NicknameList.includes(userInput[0]['value'])) {
           const userInputArr = Object.values(userInput);
           userInputArr.map((userInfo) => {
             userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
