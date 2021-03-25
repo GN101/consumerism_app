@@ -133,7 +133,6 @@ class UserSignUp extends Component {
           console.log(`Failure getting Nickname List- Error: ${e}`);
         }
         if (NicknameTaken === -1) {
-          console.log('test', NicknameList.indexOf(userInput[0]['value']));
           const userInputArr = Object.values(userInput);
           userInputArr.map((userInfo) => {
             userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
