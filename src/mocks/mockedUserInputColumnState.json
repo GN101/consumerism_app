@@ -9,7 +9,7 @@
       "validation": {
         "required": true,
         "range": [100, 400],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -23,7 +23,7 @@
       "validation": {
         "required": true,
         "range": [0, 100],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -37,7 +37,7 @@
       "validation": {
         "required": true,
         "range": [0, 200],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -51,7 +51,7 @@
       "validation": {
         "required": true,
         "range": [0, 150],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -65,7 +65,7 @@
       "validation": {
         "required": true,
         "range": [0, 2000],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -79,7 +79,7 @@
       "validation": {
         "required": true,
         "range": [0, 100],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false
@@ -93,7 +93,7 @@
       "validation": {
         "required": true,
         "range": [0, 100],
-        "type": "number"
+        "type": "text"
       },
       "valid": false,
       "touched": false

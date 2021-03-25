@@ -115,6 +115,7 @@ class UserInputColumn extends Component {
         touched={listItem.touched}
         valRequired={listItem.validation.required}
         changed={(event) => {
+          event.target.value = event.target.value.replace(/[\D]/, '');
           this.formChangeHandler(event, index);
         }}
       />

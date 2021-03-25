@@ -116,6 +116,43 @@ class UserSignUp extends Component {
     return [isValid, isSuspicious];
   }
 
+  // submitFormHandler = async (event) => {
+  //   try {
+  //     const { userInput, formIsValid } = this.state;
+  //     const userData = { categories: {} };
+  //     event.preventDefault();
+  //     const valuesSum = Object.values(userInput)
+  //       .map((listItem) => listItem.value)
+  //       .filter((value) => value !== '');
+  //     // const totalC =
+  //     //   valuesSum.length !== 0
+  //     //     ? valuesSum.reduce(
+  //     //         (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
+  //     //       )
+  //     //     : null;
+
+  //     if (formIsValid) {
+  //       // console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
+  //       await this.setState({ totalCost: totalC });
+  //       userData.totalCost = this.state.totalCost;
+  //       const userInputArr = Object.values(userInput);
+  //       userInputArr.map((userInfo) => {
+  //         userData.categories[userInfo.name] = userInfo.value;
+  //       });
+
+  //       axios
+  //         .post('/userData.json', userData)
+  //         .then((res) => console.log(res))
+  //         .catch((e) => console.log(e));
+  //     } else {
+  //       // TODO: we need to render a proper error message for such cases
+  //       console.log('SUBMIT FAILED - Form is invalid!');
+  //     }
+  //   } catch (e) {
+  //     console.log(`Error during User Input Form submission: ${e}`);
+  //   }
+  // };
+
   render() {
     const { userInput } = this.state;
     const listOfUserInfo = Object.values(userInput);
@@ -144,9 +181,7 @@ class UserSignUp extends Component {
     ));
 
     return (
-      <form
-        className={styles.Form} //onSubmit={this.submitFormHandler}
-      >
+      <form className={styles.Form} onSubmit={this.submitFormHandler}>
         <div className={styles.Label}>
           <h2 className={styles.Header}>{"Let's Get Started!"}</h2>
           {signUpForm}
@@ -160,42 +195,7 @@ class UserSignUp extends Component {
 }
 export default UserSignUp;
 
-//   submitFormHandler = async (event) => {
-//     try {
-//       const { userInput, formIsValid } = this.state;
-//       const userData = { categories: {} };
-//       event.preventDefault();
-//       const valuesSum = Object.values(userInput)
-//         .map((listItem) => listItem.value)
-//         .filter((value) => value !== '');
-//       const totalC =
-//         valuesSum.length !== 0
-//           ? valuesSum.reduce(
-//               (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-//             )
-//           : null;
-
-//       if (formIsValid) {
-//         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-//         await this.setState({ totalCost: totalC });
-//         userData.totalCost = this.state.totalCost;
-//         const userInputArr = Object.values(userInput);
-//         userInputArr.map((userInfo) => {
-//           userData.categories[userInfo.name] = userInfo.value;
-//         });
-
-//         axios
-//           .post('/userData.json', userData)
-//           .then((res) => console.log(res))
-//           .catch((e) => console.log(e));
-//       } else {
-//         // TODO: we need to render a proper error message for such cases
-//         console.log('SUBMIT FAILED - Form is invalid!');
-//       }
-//     } catch (e) {
-//       console.log(`Error during User Input Form submission: ${e}`);
-//     }
-//   };
+  
 
 //   render() {
 //     const { userInput } = this.state;
