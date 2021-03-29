@@ -20,7 +20,6 @@ class UserSignUp extends Component {
 
   formChangeHandler = (event, index) => {
     const { userInput } = this.state;
-    console.log('userInput', userInput);
     const updatedForm = {
       ...userInput,
     };
@@ -49,8 +48,8 @@ class UserSignUp extends Component {
       return true;
     }
     if (obj.validation.type === 'date') {
-      console.log(obj.value);
-      isSuspicious = obj.value < '1921-01-01' || obj.value > '2021-01-01';
+      isSuspicious = obj.value < '1931-01-01';
+      isValid = obj.value < '2021-01-01' && isValid;
     }
 
     if (obj.validation.type === 'text') {
@@ -113,48 +112,50 @@ class UserSignUp extends Component {
     }
     return [isValid, isSuspicious];
   }
-  // submitFormHandler = async (event) => {
-  //   try {
-  //     const { userInput, formIsValid } = this.state;
-  //     const userData = { categories: {} };
-  //     event.preventDefault();
-  //     const valuesSum = Object.values(userInput)
-  //       .map((listItem) => listItem.value)
-  //       .filter((value) => value !== '');
-  //     // const totalC =
-  //     //   valuesSum.length !== 0
-  //     //     ? valuesSum.reduce(
-  //     //         (total, curVal) => parseInt(total, 10) + parseInt(curVal, 10)
-  //     //       )
-  //     //     : null;
 
-  //     if (formIsValid) {
-  //       // console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-  //       await this.setState({ totalCost: totalC });
-  //       userData.totalCost = this.state.totalCost;
-  //       const userInputArr = Object.values(userInput);
-  //       userInputArr.map((userInfo) => {
-  //         userData.categories[userInfo.name] = userInfo.value;
-  //       });
+  submitFormHandler = async (event) => {
+    const NicknameList = [];
 
-  //       axios
-  //         .post('/userData.json', userData)
-  //         .then((res) => console.log(res))
-  //         .catch((e) => console.log(e));
-  //     } else {
-  //       // TODO: we need to render a proper error message for such cases
-  //       console.log('SUBMIT FAILED - Form is invalid!');
-  //     }
-  //   } catch (e) {
-  //     console.log(`Error during User Input Form submission: ${e}`);
-  //   }
-  // };
+    try {
+      const { userInput, formIsValid } = this.state;
+      const userAcountInfo = { personalInfo: {} };
+      event.preventDefault();
+      if (formIsValid) {
+        try {
+          const userAcounts = await axios.get('userAcounts/.json');
+          const data = userAcounts.data;
+          for (const key in data) {
+            NicknameList.push(data[key].personalInfo.Nickname);
+          }
+        } catch (e) {
+          console.log(`Failure getting Nickname List- Error: ${e}`);
+        }
+        if (!NicknameList.includes(userInput[0]['value'])) {
+          const userInputArr = Object.values(userInput);
+          userInputArr.map((userInfo) => {
+            userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
+          });
+
+          axios
+            .post('/userAcounts.json', userAcountInfo)
+            .then((res) => console.log('res', res))
+            .catch((e) => console.log('error', e));
+        } else {
+          alert('Nickname taken try another one.');
+        }
+      } else {
+        // TODO: we need to render a proper error message for such cases
+        console.log('SUBMIT FAILED - Form is invalid!');
+        alert('SUBMIT FAILED - Form is invalid or misses data');
+      }
+    } catch (e) {
+      console.log(`Error during User Input Form submission: ${e}`);
+    }
+  };
 
   render() {
     const { userInput } = this.state;
     const listOfUserInfo = Object.values(userInput);
-
-    console.log('FINAL USERINPUT', userInput);
 
     const signUpForm = listOfUserInfo.map((item, index) => (
       <InputField
