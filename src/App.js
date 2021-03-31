@@ -6,6 +6,7 @@ import UserLogin from './components/UserLogin/UserLogin';
 import Home from './routes/home/Home';
 import styles from './App.module.css';
 import AlternateThemeContext from './Context/AlternateTheme-context';
+// import { firebase } from './/firebase/firebase';
 
 const App = () => {
   const [theme, setTheme] = useState(true);
@@ -26,5 +27,13 @@ const App = () => {
     </AlternateThemeContext.Provider>
   );
 };
+
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log('log in');
+//   } else {
+//     console.log('log out');
+//   }
+// });
 
 export default App;

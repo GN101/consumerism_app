@@ -1,0 +1,36 @@
+.Container {
+  display: block;
+  text-align: left;
+  padding: 50px 0;
+  margin: 10px auto;
+}
+
+.Header {
+  color: white;
+  text-align: center;
+}
+
+.Label {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  color: #ffeb3b;
+  padding: 20px 0;
+}
+
+.Input {
+  margin: auto;
+  width: 80%;
+  min-width: 200px;
+  max-width: 400px;
+  display: flex;
+}
+
+.Button {
+  background-color: yellowgreen;
+  margin: 10px 50px;
+  padding: 8px;
+  width: 50%;
+  min-width: 150px;
+  max-width: 200px;
+}
