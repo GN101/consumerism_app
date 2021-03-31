@@ -37,14 +37,14 @@ const Navbar = () => {
           <div className="navbar_navigation-items">
             <ul id="navNavItem">
               <li>
-                <a href="/">About</a>
+                <Link to="/">About</Link>
               </li>
               <li>
-                <a href="/">Sign In</a>
+                <Link to="/login">Sign In</Link>
               </li>
-              <Link to="/signUp">
-                <li>Join</li>
-              </Link>
+              <li>
+                <Link to="/signUp">Join</Link>
+              </li>
             </ul>
           </div>
           <AlternateTheme />

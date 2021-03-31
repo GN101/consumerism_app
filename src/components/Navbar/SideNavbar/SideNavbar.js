@@ -10,14 +10,20 @@ const SideNavbar = ({ toggleNav }) => {
       <div id="sideNavId" className={theme ? 'sideNav' : 'sideNav_dark'}>
         <ul id="sideNavItem">
           <li>
-            <a href="/">About</a>
+            <Link onClick={toggleNav} to="/">
+              About
+            </Link>
           </li>
           <li>
-            <a href="/">Sign In</a>
+            <Link onClick={toggleNav} to="/login">
+              Sign In
+            </Link>
           </li>
-          <Link onClick={toggleNav} to="/signUp">
-            <li>Join</li>
-          </Link>
+          <li>
+            <Link onClick={toggleNav} to="/signUp">
+              Join
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
