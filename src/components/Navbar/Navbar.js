@@ -40,10 +40,10 @@ const Navbar = () => {
                 <Link to="/">About</Link>
               </li>
               <li>
-                <Link to="/login">Sign In</Link>
+                <Link to="/login">Log In</Link>
               </li>
               <li>
-                <Link to="/signUp">Join</Link>
+                <Link to="/signUp">Sign Up</Link>
               </li>
             </ul>
           </div>

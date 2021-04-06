@@ -16,12 +16,12 @@ const SideNavbar = ({ toggleNav }) => {
           </li>
           <li>
             <Link onClick={toggleNav} to="/login">
-              Sign In
+              Log In
             </Link>
           </li>
           <li>
             <Link onClick={toggleNav} to="/signUp">
-              Join
+              Sign Up
             </Link>
           </li>
         </ul>

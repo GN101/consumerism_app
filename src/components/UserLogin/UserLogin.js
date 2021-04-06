@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './UserLogin.module.css';
 import { Link } from 'react-router-dom';
-// import firebase from 'firebase';
+import { signInWithGoogle } from '../../firebase/firebase';
+import firebase from 'firebase';
 
 const UserLogin = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +24,7 @@ const UserLogin = () => {
 
   return (
     <div className={styles.Container}>
-      <h1 className={styles.Header}>Sign In</h1>
+      <h1 className={styles.Header}>User Login</h1>
       <div>
         {error !== null && <div>{error}</div>}
         <form>
@@ -33,7 +34,7 @@ const UserLogin = () => {
             type="email"
             name="userEmail"
             value={email}
-            placeholder="E.g: faruq123@gmail.com"
+            placeholder="E.g: michaelG3@gmail.com"
             id="userEmail"
             onChange={(event) => onChangeHandler(event)}
           />
@@ -56,9 +57,11 @@ const UserLogin = () => {
             Sign in
           </button>
         </form>
-        <p>or</p>
-        <button>Sign in with Google</button>
-        <p>
+        <br />
+        <button className={styles.GooogleButton} onClick={signInWithGoogle}>
+          Sign in with Google
+        </button>
+        <p className={styles.Text}>
           Don't have an account? <Link to="signUp">Sign up here</Link>
           <br />
           <Link to="passwordReset">Forgot Password?</Link>

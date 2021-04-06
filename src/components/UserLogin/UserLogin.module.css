@@ -34,3 +34,17 @@
   min-width: 150px;
   max-width: 200px;
 }
+
+.GooogleButton {
+  cursor: pointer;
+  background: white;
+  color: #444;
+  width: 60%;
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.Text {
+  color: white;
+}
