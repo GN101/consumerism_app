@@ -28,7 +28,9 @@ const UserLogin = () => {
       <div>
         {error !== null && <div>{error}</div>}
         <form>
-          <label className={styles.Label}>Email:</label>
+          <label htmlFor="userEmail" className={styles.Label}>
+            Email:
+          </label>
           <input
             className={styles.Input}
             type="email"
@@ -38,7 +40,9 @@ const UserLogin = () => {
             id="userEmail"
             onChange={(event) => onChangeHandler(event)}
           />
-          <label className={styles.Label}>Password:</label>
+          <label htmlFor="userPassword" className={styles.Label}>
+            Password:
+          </label>
           <input
             className={styles.Input}
             type="password"
