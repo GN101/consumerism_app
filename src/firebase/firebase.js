@@ -24,6 +24,10 @@ export const signInWithGoogle = () => {
   auth.signInWithPopup(googleAuthProvider);
 };
 
+export const signOut = () => {
+  auth.signOut();
+};
+
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log('log in', user);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InputField from '../InputField/InputField';
 import styles from './UserSignUp.module.css';
 import axios from '../../axios-orders';
+import firebase from 'firebase/app';
 
 class UserSignUp extends Component {
   state = {
@@ -135,6 +136,18 @@ class UserSignUp extends Component {
           userInputArr.map((userInfo) => {
             userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
           });
+
+          const email = userAcountInfo.personalInfo['E-mail'];
+          const password = userAcountInfo.personalInfo['Password'];
+          console.log('email', email, 'pass', password);
+
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .catch(function (error) {
+              console.log(error.code);
+              console.log(error.message);
+            });
 
           axios
             .post('/userAcounts.json', userAcountInfo)

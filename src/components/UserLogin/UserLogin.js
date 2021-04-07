@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './UserLogin.module.css';
 import { Link } from 'react-router-dom';
-import { signInWithGoogle } from '../../firebase/firebase';
+import { signInWithGoogle, signOut } from '../../firebase/firebase';
+import 'firebase/auth';
 import firebase from 'firebase';
 
 const UserLogin = () => {
@@ -9,6 +10,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
+    console.log('email pass', email, password);
     event.preventDefault();
   };
 
@@ -59,6 +61,9 @@ const UserLogin = () => {
             }}
           >
             Sign in
+          </button>
+          <button className={styles.Button} onClick={signOut}>
+            Log out
           </button>
         </form>
         <br />

@@ -27,11 +27,13 @@
 }
 
 .Button {
+  display: flex;
   background-color: yellowgreen;
-  margin: 20px 50px;
+  justify-content: center;
+  margin: 20px auto;
   padding: 8px;
   width: 50%;
-  min-width: 150px;
+  min-width: 50px;
   max-width: 200px;
 }
 
