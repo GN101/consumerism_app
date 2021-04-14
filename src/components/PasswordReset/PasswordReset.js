@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './PasswordReset.module.css';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebase';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,17 @@ const PasswordReset = () => {
   };
   const sendResetEmail = (event) => {
     event.preventDefault();
+    auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        setEmailHasBeenSent(true);
+        setTimeout(() => {
+          setEmailHasBeenSent(false);
+        }, 3000);
+      })
+      .catch(() => {
+        setError('Error resetting password');
+      });
   };
   return (
     <div className={styles.Container}>
@@ -34,7 +46,9 @@ const PasswordReset = () => {
             onChange={onChangeHandler}
             className={styles.Input}
           />
-          <button className={styles.Button}>Send me a reset link</button>
+          <button className={styles.Button} onClick={sendResetEmail}>
+            Send me a reset link
+          </button>
         </form>
         <Link to="/login" className={styles.Text}>
           &larr; back to log in page

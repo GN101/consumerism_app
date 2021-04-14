@@ -61,9 +61,9 @@ class UserInputColumn extends Component {
         await this.setState({ totalCost: totalC });
         userData.totalCost = this.state.totalCost;
         const userInputArr = Object.values(userInput);
-        userInputArr.map((userInfo) => {
-          userData.categories[userInfo.name] = userInfo.value;
-        });
+        userInputArr.map(
+          (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
+        );
 
         axios
           .post('/userData.json', userData)

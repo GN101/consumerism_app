@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import UserSignUp from './components/UserSignUp/UserSignUp';
@@ -7,12 +7,28 @@ import PasswordReset from './components/PasswordReset/PasswordReset';
 import Home from './routes/home/Home';
 import styles from './App.module.css';
 import AlternateThemeContext from './Context/AlternateTheme-context';
+import { UserContext } from './Context/UserProvider';
+// import { auth } from './firebase/firebase';
 
 const App = () => {
   const [theme, setTheme] = useState(true);
   const value = { theme, setTheme };
+  const user = useContext(UserContext);
 
-  return (
+  return user ? (
+    <AlternateThemeContext.Provider value={value}>
+      <div className={theme ? styles.app : styles.app_dark}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={UserLogin} />
+            <Route path="/signUp" component={UserSignUp} />
+          </Switch>
+        </Router>
+      </div>
+    </AlternateThemeContext.Provider>
+  ) : (
     <AlternateThemeContext.Provider value={value}>
       <div className={theme ? styles.app : styles.app_dark}>
         <Router>

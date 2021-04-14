@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 import SideNavbar from './SideNavbar/SideNavbar';
 import AlternateTheme from '../AlternateTheme/AlternateTheme';
 import AlternateThemeContext from '../../Context/AlternateTheme-context';
+import { signOut } from '../../firebase/firebase';
+import { UserContext } from '../../Context/UserProvider';
 
 const Navbar = () => {
   const [openSideNav, setOpenSideNav] = useState(false);
-  const { theme, setTheme } = useContext(AlternateThemeContext);
+  const { theme } = useContext(AlternateThemeContext);
+  const user = useContext(UserContext);
 
   const toggleNav = () => {
     if (openSideNav) {
@@ -35,17 +38,30 @@ const Navbar = () => {
             &#9776;
           </button>
           <div className="navbar_navigation-items">
-            <ul id="navNavItem">
-              <li>
-                <Link to="/">About</Link>
-              </li>
-              <li>
-                <Link to="/login">Log In</Link>
-              </li>
-              <li>
-                <Link to="/signUp">Sign Up</Link>
-              </li>
-            </ul>
+            {user ? (
+              <ul id="navNavItem">
+                <li>
+                  <Link to="/">About</Link>
+                </li>
+                <li>
+                  <Link to="/login" onClick={signOut}>
+                    Log out
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              <ul id="navNavItem">
+                <li>
+                  <Link to="/">About</Link>
+                </li>
+                <li>
+                  <Link to="/login">Log In</Link>
+                </li>
+                <li>
+                  <Link to="/signUp">Sign Up</Link>
+                </li>
+              </ul>
+            )}
           </div>
           <AlternateTheme />
         </nav>
