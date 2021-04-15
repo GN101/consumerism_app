@@ -42,7 +42,7 @@ const UserSignUp = () => {
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-    setUserInput({ userInput: updatedForm });
+    setUserInput(updatedForm);
     setFormIsValid(formIsValid);
   };
 
