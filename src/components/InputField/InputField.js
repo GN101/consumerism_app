@@ -14,6 +14,7 @@ const InputField = (props) => {
     valid,
     valRequired,
     isSuspicious,
+    isTooHigh,
     touched,
     changed,
   } = props;
@@ -31,7 +32,11 @@ const InputField = (props) => {
       ? setTimeout(() => {
           setShowWarningMsg(true);
         }, 500)
-      : !valid && valRequired && touched
+      : isTooHigh
+      ? setTimeout(() => {
+          setShowWarningMsg(true);
+        }, 500)
+      : !valid && valRequired && touched //legacy code not sure where is used ( maybe on signUp)
       ? setTimeout(() => {
           setInvalidStyle(true);
         }, 500)
@@ -43,6 +48,7 @@ const InputField = (props) => {
       <label className={styles.Label} htmlFor={category}>
         {label}
         {isSuspicious && showWarningMsg && <WarningSuspicious />}
+        {isTooHigh && showWarningMsg && <WarningSuspicious />}
         <input
           className={inputClasses.join(' ')}
           type={type}

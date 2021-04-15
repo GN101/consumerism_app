@@ -32,13 +32,13 @@ class UserInputColumn extends Component {
     updatedFormEl.value = event.target.value;
     updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
+    updatedFormEl.isTooHigh = this.checkValidity(updatedFormEl)[2];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
     let formIsValid = true;
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-
     this.setState({ userInput: updatedForm, formIsValid });
   };
 
@@ -82,22 +82,22 @@ class UserInputColumn extends Component {
   checkValidity(obj) {
     let isValid = true;
     let isSuspicious = false;
+    let isTooHigh = false;
 
     if (!obj.validation) {
       return true;
     }
 
     if (obj.validation.range) {
-      isSuspicious =
-        obj.value < obj.validation.range[0] ||
-        obj.value > obj.validation.range[1];
+      isSuspicious = obj.value < obj.validation.range[0];
+      isTooHigh = obj.value > obj.validation.range[1];
     }
 
     if (obj.validation.type === 'number') {
       const pattern = /^\d+$/;
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
-    return [isValid, isSuspicious];
+    return [isValid, isSuspicious, isTooHigh];
   }
 
   render() {
@@ -113,6 +113,7 @@ class UserInputColumn extends Component {
         value={listItem.value}
         valid={listItem.valid}
         isSuspicious={listItem.isSuspicious}
+        isTooHigh={listItem.isTooHigh}
         touched={listItem.touched}
         valRequired={listItem.validation.required}
         changed={(event) => {
