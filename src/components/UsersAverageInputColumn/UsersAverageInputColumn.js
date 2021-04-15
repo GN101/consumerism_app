@@ -5,17 +5,18 @@ import styles from './UserAverageInputColumn.module.css';
 const UsersAverageInputColumn = () => {
   const [usersData, setUsersData] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/userData.json');
+      setUsersData(response.data);
+    } catch (e) {
+      console.log(`Failure getting user input form - Error: ${e}`);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/userData.json');
-        setUsersData(response.data);
-      } catch (e) {
-        console.log(`Failure getting user input form - Error: ${e}`);
-      }
-    };
     fetchData();
-  }, []);
+  }, [usersData]);
 
   const usersDataArr = Object.values(usersData);
 
