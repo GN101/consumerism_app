@@ -45,7 +45,7 @@ class UserInputColumn extends Component {
   submitFormHandler = async (event) => {
     try {
       const { userInput, formIsValid } = this.state;
-      const userData = { categories: {}, suspiciousInfo: {} };
+      const userData = { categories: {}, suspiciousInput: {} };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
@@ -68,12 +68,12 @@ class UserInputColumn extends Component {
         Object.values(userInput);
         const suspiciousInputArr = Object.values(userInput);
         suspiciousInputArr.map(
-          (suspiciousInfo) =>
-            (userData.suspiciousInfo[
-              suspiciousInfo.name
-            ] = suspiciousInfo.isSuspicious
+          (suspiciousInput) =>
+            (userData.suspiciousInput[
+              suspiciousInput.name
+            ] = suspiciousInput.isSuspicious
               ? 'Low'
-              : suspiciousInfo.isTooHigh
+              : suspiciousInput.isTooHigh
               ? 'High'
               : false)
         );
