@@ -22,6 +22,7 @@ const InputField = (props) => {
   const [showWarningMsg, setShowWarningMsg] = useState(false);
   const [invalidStyle, setInvalidStyle] = useState(false);
   const [warning, setWarning] = useState();
+  const [touche2d2, setTouche2d2] = useState(false);
   const inputClasses = [classname || styles.Input];
   const [touche2d2, setTouche2d2] = useState(false);
 
