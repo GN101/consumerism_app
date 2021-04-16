@@ -31,10 +31,10 @@ const InputField = (props) => {
   useEffect(() => {
     if (isSuspicious) {
       setWarning('low');
-    } else if (isTooHigh && touched) {
+    } else if (isTooHigh) {
       setWarning('high');
     }
-  }, [changed]);
+  }, [isSuspicious, isTooHigh]);
 
   const focusOutHandler = () => {
     return isSuspicious || isTooHigh
