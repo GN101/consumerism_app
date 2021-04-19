@@ -8,7 +8,6 @@ import Home from './routes/home/Home';
 import styles from './App.module.css';
 import AlternateThemeContext from './Context/AlternateTheme-context';
 import { UserContext } from './Context/UserProvider';
-// import { auth } from './firebase/firebase';
 
 const App = () => {
   const [theme, setTheme] = useState(true);

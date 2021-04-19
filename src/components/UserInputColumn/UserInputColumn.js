@@ -1,15 +1,16 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable guard-for-in */
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
+import { UpdateUserData } from '../../Context/UpdateUserData';
 
 class UserInputColumn extends Component {
+  static contextType = UpdateUserData;
   state = {
     userInput: [],
     formIsValid: false,
     totalCost: '',
+    updatedData: 5,
   };
 
   async componentDidMount() {
@@ -45,6 +46,7 @@ class UserInputColumn extends Component {
   submitFormHandler = async (event) => {
     try {
       const { userInput, formIsValid } = this.state;
+      const context = this.context;
       const userData = { categories: {} };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
@@ -65,7 +67,13 @@ class UserInputColumn extends Component {
         userInputArr.map(
           (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
         );
-
+        debugger;
+        context.setUpdatedData(userData);
+        debugger;
+        this.setState({ updatedData: context.updatedData });
+        debugger;
+        console.log('collumn', this.state.updatedData);
+        debugger;
         axios
           .post('/userData.json', userData)
           .then((res) => console.log(res))

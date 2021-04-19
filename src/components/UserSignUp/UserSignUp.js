@@ -42,7 +42,7 @@ const UserSignUp = () => {
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-    setUserInput({ userInput: updatedForm });
+    setUserInput(updatedForm);
     setFormIsValid(formIsValid);
   };
 
@@ -121,7 +121,7 @@ const UserSignUp = () => {
     return [isValid, isSuspicious];
   };
 
-  const submitFormHandler = () => async (event) => {
+  const submitFormHandler = async (event) => {
     const NicknameList = [];
     const EmailList = [];
 
