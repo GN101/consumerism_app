@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import InputField from '../InputField/InputField';
 import styles from './UserSignUp.module.css';
 import axios from '../../axios-orders';
+import firebase from 'firebase/app';
+import { UserContext } from '../../Context/UserProvider';
 
-class UserSignUp extends Component {
-  state = {
-    userInput: {},
-    formIsValid: false,
-  };
+const UserSignUp = () => {
+  const [userInput, setUserInput] = useState({});
+  const [formIsValid, setFormIsValid] = useState(false);
+  const user = useContext(UserContext);
 
-  async componentDidMount() {
+  const fetchUserForm = async () => {
     try {
       const res = await axios.get('/userSignUpState.json');
-      this.setState({ userInput: res.data.userSignUpForm });
+      setUserInput(res.data.userSignUpForm);
     } catch (e) {
       console.log(`Failure getting user input form - Error: ${e}`);
     }
-  }
+  };
 
-  formChangeHandler = (event, index) => {
-    const { userInput } = this.state;
+  useEffect(() => {
+    fetchUserForm();
+  }, []);
+
+  const formChangeHandler = (event, index) => {
     const updatedForm = {
       ...userInput,
     };
@@ -28,8 +33,8 @@ class UserSignUp extends Component {
     };
     updatedFormEl.value = event.target.value;
 
-    updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
-    updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
+    updatedFormEl.valid = checkValidity(updatedFormEl)[0];
+    updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
 
@@ -37,10 +42,11 @@ class UserSignUp extends Component {
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-    this.setState({ userInput: updatedForm, formIsValid });
+    setUserInput(updatedForm);
+    setFormIsValid(formIsValid);
   };
 
-  checkValidity(obj) {
+  const checkValidity = (obj) => {
     let isValid = true;
     let isSuspicious = false;
 
@@ -67,9 +73,9 @@ class UserSignUp extends Component {
           obj.validation = {
             required: true,
             pattern:
-              '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{4,30}$',
+              '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{6,30}$',
             title:
-              'at least 1 number,1 symbol,1 upercase letter, 1 downcase letter ',
+              'at least 6 characters long including 1 number,1 symbol,1 upercase letter, 1 downcase letter ',
             type: 'text',
           };
           break;
@@ -106,18 +112,20 @@ class UserSignUp extends Component {
             type: 'text',
           };
           break;
+        default:
+          console.log('error with object.validation.type');
       }
       const pattern = new RegExp(obj.validation.pattern);
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
     return [isValid, isSuspicious];
-  }
+  };
 
-  submitFormHandler = async (event) => {
+  const submitFormHandler = async (event) => {
     const NicknameList = [];
+    const EmailList = [];
 
     try {
-      const { userInput, formIsValid } = this.state;
       const userAcountInfo = { personalInfo: {} };
       event.preventDefault();
       if (formIsValid) {
@@ -126,20 +134,50 @@ class UserSignUp extends Component {
           const data = userAcounts.data;
           for (const key in data) {
             NicknameList.push(data[key].personalInfo.Nickname);
+            EmailList.push(data[key].personalInfo['E-mail']);
           }
         } catch (e) {
           console.log(`Failure getting Nickname List- Error: ${e}`);
         }
         if (!NicknameList.includes(userInput[0]['value'])) {
-          const userInputArr = Object.values(userInput);
-          userInputArr.map((userInfo) => {
-            userAcountInfo.personalInfo[userInfo.name] = userInfo.value;
-          });
+          if (!EmailList.includes(userInput[4]['value'])) {
+            const userInputArr = Object.values(userInput);
+            userInputArr.map(
+              (userInfo) =>
+                (userAcountInfo.personalInfo[userInfo.name] = userInfo.value)
+            );
 
-          axios
-            .post('/userAcounts.json', userAcountInfo)
-            .then((res) => console.log('res', res))
-            .catch((e) => console.log('error', e));
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(
+                userAcountInfo.personalInfo['E-mail'],
+                userAcountInfo.personalInfo['Password']
+              )
+              .then(function () {
+                firebase
+                  .auth()
+                  .currentUser.updateProfile({
+                    displayName: userAcountInfo.personalInfo['Nickname'],
+                  })
+                  .then(function () {
+                    console.log('Name Update successful.');
+                  })
+                  .catch(function (error) {
+                    console.log('An error happened.');
+                  });
+              })
+              .catch(function (error) {
+                console.log(error.code);
+                console.log(error.message);
+              });
+
+            axios
+              .post('/userAcounts.json', userAcountInfo)
+              .then((res) => console.log('res', res))
+              .catch((e) => console.log('error', e));
+          } else {
+            alert('E-mail in use by another acount');
+          }
         } else {
           alert('Nickname taken try another one.');
         }
@@ -153,41 +191,50 @@ class UserSignUp extends Component {
     }
   };
 
-  render() {
-    const { userInput } = this.state;
-    const listOfUserInfo = Object.values(userInput);
+  const listOfUserInfo = Object.values(userInput);
 
-    const signUpForm = listOfUserInfo.map((item, index) => (
-      <InputField
-        key={item.name}
-        classname={styles.Input}
-        label={item.name}
-        placeholder={`Please write ${item.name} here`}
-        category={item.name}
-        isSuspicious={item.isSuspicious}
-        valid={item.valid}
-        valRequired={item.validation.required}
-        touched={item.touched}
-        type={item.validation.type}
-        pattern={item.validation.pattern}
-        title={item.validation.title}
-        changed={(event) => {
-          this.formChangeHandler(event, index);
-        }}
-      />
-    ));
+  const signUpForm = listOfUserInfo.map((item, index) => (
+    <InputField
+      key={item.name}
+      classname={styles.Input}
+      label={item.name}
+      placeholder={`Please write ${item.name} here`}
+      category={item.name}
+      isSuspicious={item.isSuspicious}
+      valid={item.valid}
+      valRequired={item.validation.required}
+      touched={item.touched}
+      type={item.validation.type}
+      pattern={item.validation.pattern}
+      title={item.validation.title}
+      changed={(event) => {
+        formChangeHandler(event, index);
+      }}
+    />
+  ));
 
-    return (
-      <form className={styles.Form} onSubmit={this.submitFormHandler}>
-        <div className={styles.Label}>
-          <h2 className={styles.Header}>{"Let's Get Started!"}</h2>
-          {signUpForm}
-          <button className={styles.Button} type="submit">
-            SIGN UP
+  return (
+    <div className={styles.Form}>
+      {user ? (
+        <div>
+          <p className={styles.Header}>You are succesfuly loged in as :</p>
+          <p className={styles.Label}>{user.displayName}</p>
+          <button className={styles.Button}>
+            <Link to="/">Go to Stats</Link>
           </button>
         </div>
-      </form>
-    );
-  }
-}
+      ) : (
+        <form onSubmit={submitFormHandler}>
+          <div className={styles.Label}>
+            <h2 className={styles.Header}>{"Let's Get Started!"}</h2>
+            {signUpForm}
+            <button className={styles.Button} type="submit">
+              SIGN UP
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
+  );
+};
 export default UserSignUp;

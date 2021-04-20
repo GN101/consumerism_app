@@ -7,6 +7,7 @@
   flex-flow: column;
   background-color: var(--backgroundColor);
   transition: 0.5s;
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
@@ -14,14 +15,6 @@
   display: flex;
   flex-flow: column;
   background-color: #041127;
+  min-height: 100vh;
   transition: 0.5s;
-}
-
-@media (min-height: 734px) {
-  @media (min-width: 1000px) {
-    .app,
-    .app_dark {
-      height: 100vh;
-    }
-  }
 }

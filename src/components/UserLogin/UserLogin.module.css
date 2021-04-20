@@ -1,0 +1,52 @@
+.Container {
+  display: block;
+  text-align: left;
+  padding: 50px 0;
+  margin: 10px auto;
+}
+
+.Header {
+  color: white;
+  text-align: center;
+}
+
+.Label {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  color: #ffeb3b;
+  padding: 20px 0 10px 0;
+}
+
+.Input {
+  margin: auto;
+  width: 80%;
+  min-width: 200px;
+  max-width: 400px;
+  display: flex;
+}
+
+.Button {
+  display: flex;
+  background-color: yellowgreen;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 8px;
+  width: 50%;
+  min-width: 50px;
+  max-width: 200px;
+}
+
+.GooogleButton {
+  cursor: pointer;
+  background: white;
+  color: #444;
+  width: 60%;
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.Text {
+  color: white;
+}

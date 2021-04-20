@@ -1,7 +1,5 @@
 html,
 body {
-  background-color: var(--backgroundColor);
-  transition: 0.5s;
   margin: 0;
   font-family: 'Roboto', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
