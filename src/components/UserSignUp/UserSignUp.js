@@ -120,11 +120,9 @@ const UserSignUp = () => {
     }
     return [isValid, isSuspicious];
   };
-
-  const submitFormHandler = () => async (event) => {
+  const submitFormHandler = async (event) => {
     const NicknameList = [];
     const EmailList = [];
-
     try {
       const userAcountInfo = { personalInfo: {} };
       event.preventDefault();

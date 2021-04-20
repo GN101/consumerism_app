@@ -1,15 +1,16 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable guard-for-in */
 import React, { Component } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
+import { UpdateUserData } from '../../Context/UpdateUserData';
 
 class UserInputColumn extends Component {
+  static contextType = UpdateUserData;
   state = {
     userInput: [],
     formIsValid: false,
     totalCost: '',
+    updatedData: 5,
   };
 
   async componentDidMount() {
