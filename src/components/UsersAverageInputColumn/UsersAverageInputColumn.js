@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from '../../axios-orders';
 import styles from './UserAverageInputColumn.module.css';
 import { UpdateUserData } from '../../Context/UpdateUserData';
 
 const UsersAverageInputColumn = () => {
   const [usersData, setUsersData] = useState([]);
-  const [updatedData] = useState(UpdateUserData._currentValue);
+  const updatedData = useContext(UpdateUserData);
 
-  console.log('average component', updatedData);
   const fetchData = async () => {
     try {
       const response = await axios.get('/userData.json');
@@ -18,7 +17,6 @@ const UsersAverageInputColumn = () => {
   };
 
   useEffect(() => {
-    console.log('effect trigered');
     fetchData();
   }, [updatedData]);
 

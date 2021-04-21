@@ -1,29 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
 import { UpdateUserData } from '../../Context/UpdateUserData';
 
-class UserInputColumn extends Component {
-  static contextType = UpdateUserData;
-  state = {
-    userInput: [],
-    formIsValid: false,
-    totalCost: '',
-    updatedData: 5,
+const UserInputColumn = () => {
+  const [userInput, setUserInput] = useState([]);
+  const [formIsValid, setFormIsValid] = useState(false);
+  const [totalCost, setTotalCost] = useState('');
+  const { updatedData, setUpdatedData } = useContext(UpdateUserData);
+
+  const update = () => {
+    setTimeout(() => {
+      setUpdatedData(updatedData + 1);
+    }, 500);
   };
 
-  async componentDidMount() {
+  const fetchUserForm = async () => {
     try {
       const res = await axios.get('/userInputState.json');
-      this.setState({ userInput: res.data.userInputForm });
+      setUserInput(res.data.userInputForm);
     } catch (e) {
       console.log(`Failure getting user input form - Error: ${e}`);
     }
-  }
+  };
 
-  formChangeHandler = (event, index) => {
-    const { userInput } = this.state;
+  useEffect(() => {
+    fetchUserForm();
+  }, []);
+
+  const formChangeHandler = (event, index) => {
     const updatedForm = {
       ...userInput,
     };
@@ -31,23 +37,21 @@ class UserInputColumn extends Component {
       ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
-    updatedFormEl.valid = this.checkValidity(updatedFormEl)[0];
-    updatedFormEl.isSuspicious = this.checkValidity(updatedFormEl)[1];
+    updatedFormEl.valid = checkValidity(updatedFormEl)[0];
+    updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
     let formIsValid = true;
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
-
-    this.setState({ userInput: updatedForm, formIsValid });
+    setUserInput(updatedForm);
+    setFormIsValid(formIsValid);
   };
 
-  submitFormHandler = async (event) => {
+  const submitFormHandler = async (event) => {
     try {
-      const { userInput, formIsValid } = this.state;
-      const context = this.context;
-      const userData = { categories: {} };
+      const userData = { categories: {}, totalCost };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
@@ -61,23 +65,17 @@ class UserInputColumn extends Component {
 
       if (formIsValid) {
         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-        await this.setState({ totalCost: totalC });
-        userData.totalCost = this.state.totalCost;
+        await setTotalCost(totalC); // doesnt update totalCost value
+        userData.totalCost = totalC;
         const userInputArr = Object.values(userInput);
         userInputArr.map(
           (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
         );
-        debugger;
-        context.setUpdatedData(userData);
-        debugger;
-        this.setState({ updatedData: context.updatedData });
-        debugger;
-        console.log('collumn', this.state.updatedData);
-        debugger;
         axios
           .post('/userData.json', userData)
           .then((res) => console.log(res))
-          .catch((e) => console.log(e));
+          .catch((e) => console.log(e))
+          .then(update());
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
@@ -87,7 +85,7 @@ class UserInputColumn extends Component {
     }
   };
 
-  checkValidity(obj) {
+  const checkValidity = (obj) => {
     let isValid = true;
     let isSuspicious = false;
 
@@ -106,42 +104,38 @@ class UserInputColumn extends Component {
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
     return [isValid, isSuspicious];
-  }
+  };
 
-  render() {
-    const { userInput } = this.state;
-    const list = Object.values(userInput);
+  const list = Object.values(userInput);
+  const inputForm = list.map((listItem, index) => (
+    <InputField
+      key={listItem.name}
+      label={listItem.name}
+      type={listItem.validation.type}
+      placeholder={listItem.placeholder}
+      value={listItem.value}
+      valid={listItem.valid}
+      isSuspicious={listItem.isSuspicious}
+      touched={listItem.touched}
+      valRequired={listItem.validation.required}
+      changed={(event) => {
+        event.target.value = event.target.value.replace(/[\D]/, '');
+        formChangeHandler(event, index);
+      }}
+    />
+  ));
 
-    const inputForm = list.map((listItem, index) => (
-      <InputField
-        key={listItem.name}
-        label={listItem.name}
-        type={listItem.validation.type}
-        placeholder={listItem.placeholder}
-        value={listItem.value}
-        valid={listItem.valid}
-        isSuspicious={listItem.isSuspicious}
-        touched={listItem.touched}
-        valRequired={listItem.validation.required}
-        changed={(event) => {
-          event.target.value = event.target.value.replace(/[\D]/, '');
-          this.formChangeHandler(event, index);
-        }}
-      />
-    ));
-
-    return (
-      <div className={styles.Container}>
-        <form className={styles.Column} onSubmit={this.submitFormHandler}>
-          <h3>Please fill the form below!</h3>
-          {inputForm}
-          <button className={styles.Button} type="submit">
-            SUBMIT
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.Container}>
+      <form className={styles.Column} onSubmit={submitFormHandler}>
+        <h3>Please fill the form below!</h3>
+        {inputForm}
+        <button className={styles.Button} type="submit">
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default UserInputColumn;
