@@ -71,6 +71,19 @@ const UserInputColumn = () => {
         userInputArr.map(
           (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
         );
+        Object.values(userInput);
+        const suspiciousInputArr = Object.values(userInput);
+        suspiciousInputArr.map(
+          (suspiciousInput) =>
+            (userData.suspiciousInput[
+              suspiciousInput.name
+            ] = suspiciousInput.isSuspicious
+              ? 'Low'
+              : suspiciousInput.isTooHigh
+              ? 'High'
+              : false)
+        );
+
         axios
           .post('/userData.json', userData)
           .then((res) => console.log(res))
@@ -88,15 +101,15 @@ const UserInputColumn = () => {
   const checkValidity = (obj) => {
     let isValid = true;
     let isSuspicious = false;
+    let isTooHigh = false;
 
     if (!obj.validation) {
       return true;
     }
 
     if (obj.validation.range) {
-      isSuspicious =
-        obj.value < obj.validation.range[0] ||
-        obj.value > obj.validation.range[1];
+      isSuspicious = obj.value < obj.validation.range[0];
+      isTooHigh = obj.value > obj.validation.range[1];
     }
 
     if (obj.validation.type === 'number') {
