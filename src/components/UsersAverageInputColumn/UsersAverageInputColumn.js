@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from '../../axios-orders';
 import styles from './UserAverageInputColumn.module.css';
+import { UpdateUserData } from '../../Context/UpdateUserData';
 
 const UsersAverageInputColumn = () => {
   const [usersData, setUsersData] = useState([]);
+  const updatedData = useContext(UpdateUserData);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/userData.json');
+      setUsersData(response.data);
+    } catch (e) {
+      console.log(`Failure getting user input form - Error: ${e}`);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/userData.json');
-        setUsersData(response.data);
-      } catch (e) {
-        console.log(`Failure getting user input form - Error: ${e}`);
-      }
-    };
     fetchData();
-  }, []);
+  }, [updatedData]);
 
   const usersDataArr = Object.values(usersData);
 

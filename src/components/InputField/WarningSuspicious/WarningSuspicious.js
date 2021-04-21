@@ -14,7 +14,13 @@ const WarningSuspicious = () => {
   return (
     <div className={warnDivClasses.join(' ')}>
       <p>{suspicionMsg}</p>
-      <button className={styles.Button} type="button" onClick={() => setClose(true)}>Yes</button>
+      <button
+        className={styles.Button}
+        type="button"
+        onClick={() => setClose(true)}
+      >
+        Yes
+      </button>
     </div>
   );
 };

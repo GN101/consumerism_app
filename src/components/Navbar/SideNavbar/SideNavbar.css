@@ -39,9 +39,8 @@
     text-decoration: none;
   }
 
-  .sideNav ul:active,
-  .sideNav a :active {
-    color: grey;
+  .sideNav a:active {
+    color: gray;
   }
 
   .sideNav_dark li {
