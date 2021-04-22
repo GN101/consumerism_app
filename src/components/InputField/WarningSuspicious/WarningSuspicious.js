@@ -11,6 +11,8 @@ const WarningSuspicious = (warning) => {
     warnDivClasses.push(styles.Closed);
   }
 
+  console.log(warning, warning.type);
+
   return (
     <div className={warnDivClasses.join(' ')}>
       {warning.type === 'low' ? (

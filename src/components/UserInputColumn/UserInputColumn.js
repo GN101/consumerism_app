@@ -39,6 +39,7 @@ const UserInputColumn = () => {
     updatedFormEl.value = event.target.value;
     updatedFormEl.valid = checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
+    updatedFormEl.isTooHigh = checkValidity(updatedFormEl)[2];
     updatedFormEl.touched = true;
     updatedForm[index] = updatedFormEl;
     let formIsValid = true;
@@ -51,7 +52,7 @@ const UserInputColumn = () => {
 
   const submitFormHandler = async (event) => {
     try {
-      const userData = { categories: {}, totalCost };
+      const userData = { categories: {}, totalCost, suspiciousInput: {} };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
@@ -65,7 +66,7 @@ const UserInputColumn = () => {
 
       if (formIsValid) {
         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-        await setTotalCost(totalC); // doesnt update totalCost value
+        setTotalCost(totalC); // doesnt update totalCost value
         userData.totalCost = totalC;
         const userInputArr = Object.values(userInput);
         userInputArr.map(
@@ -108,7 +109,7 @@ const UserInputColumn = () => {
     }
 
     if (obj.validation.range) {
-      isSuspicious = obj.value < obj.validation.range[0];
+      isSuspicious = obj.value < obj.validation.range[0] && obj.value > 0;
       isTooHigh = obj.value > obj.validation.range[1];
     }
 
@@ -116,20 +117,22 @@ const UserInputColumn = () => {
       const pattern = /^\d+$/;
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
     }
-    return [isValid, isSuspicious];
+    return [isValid, isSuspicious, isTooHigh];
   };
 
   const list = Object.values(userInput);
   const inputForm = list.map((listItem, index) => (
     <InputField
       key={listItem.name}
-      label={listItem.name}
       type={listItem.validation.type}
+      label={listItem.name}
       placeholder={listItem.placeholder}
       value={listItem.value}
       valid={listItem.valid}
       isSuspicious={listItem.isSuspicious}
+      isTooHigh={listItem.isTooHigh}
       touched={listItem.touched}
+      timeCategorisation={true}
       valRequired={listItem.validation.required}
       changed={(event) => {
         event.target.value = event.target.value.replace(/[\D]/, '');
@@ -140,8 +143,8 @@ const UserInputColumn = () => {
 
   return (
     <div className={styles.Container}>
+      <h3>Please fill the form below!</h3>
       <form className={styles.Column} onSubmit={submitFormHandler}>
-        <h3>Please fill the form below!</h3>
         {inputForm}
         <button className={styles.Button} type="submit">
           SUBMIT
