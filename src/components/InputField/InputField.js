@@ -25,6 +25,8 @@ const InputField = (props) => {
   const [touche2d2, setTouche2d2] = useState(false);
   const inputClasses = [classname || styles.Input];
 
+  //updated
+
   if (!valid && valRequired && touched) {
     if (invalidStyle) {
       inputClasses.push(styles.Invalid);
