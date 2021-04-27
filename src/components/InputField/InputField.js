@@ -15,23 +15,23 @@ const InputField = (props) => {
     valRequired,
     isSuspicious,
     isTooHigh,
-    touched,
+    hasValue,
     timeCategorisation,
     changed,
   } = props;
   const [showWarningMsg, setShowWarningMsg] = useState(false);
   const [invalidStyle, setInvalidStyle] = useState(false);
   const [warning, setWarning] = useState();
-  const [touche2d2, setTouche2d2] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [timeframe, setTimeframe] = useState('per Month');
   const inputClasses = [classname || styles.Input];
 
-  //updated
-
-  if (!valid && valRequired && touched) {
+  if (!valid && valRequired && hasValue) {
     if (invalidStyle) {
       inputClasses.push(styles.Invalid);
     }
   }
+
   useEffect(() => {
     if (isSuspicious) {
       setWarning('low');
@@ -40,8 +40,16 @@ const InputField = (props) => {
     }
   }, [isSuspicious, isTooHigh]);
 
+  useEffect(() => {
+    console.log(touched);
+  }, [touched]);
+
   const active = () => {
-    setTouche2d2(true);
+    setTouched(true);
+  };
+
+  const setTimeperiod = (e) => {
+    setTimeframe(e.target.value);
   };
 
   const focusOutHandler = () => {
@@ -49,7 +57,7 @@ const InputField = (props) => {
       ? setTimeout(() => {
           setShowWarningMsg(true);
         }, 500)
-      : !valid && valRequired && touched
+      : !valid && valRequired && hasValue
       ? setTimeout(() => {
           setInvalidStyle(true);
         }, 500)
@@ -62,11 +70,11 @@ const InputField = (props) => {
         {label}
         {isSuspicious && showWarningMsg && <WarningSuspicious type={warning} />}
         {isTooHigh && showWarningMsg && <WarningSuspicious type={warning} />}
-        {timeCategorisation && touched ? (
-          <form name="form1" id="form1" action="/action_page.php">
+        {timeCategorisation && (touched || hasValue) ? (
+          <form>
             Cost:{' '}
-            <select name="Time Period" id="subject" defaultValue="per Month">
-              <option value="per Week">per Week</option>
+            <select onChange={setTimeperiod} defaultValue={timeframe}>
+              <option value="per Week">per Week </option>
               <option value="per Month">per Month</option>
               <option value="per Year">per Year</option>
             </select>
@@ -83,6 +91,7 @@ const InputField = (props) => {
           onChange={changed}
           onClick={active}
           onBlur={focusOutHandler}
+          timeperiod={timeframe}
         />
       </label>
     </div>

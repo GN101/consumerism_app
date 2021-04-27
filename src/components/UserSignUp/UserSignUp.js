@@ -35,7 +35,7 @@ const UserSignUp = () => {
 
     updatedFormEl.valid = checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
-    updatedFormEl.touched = true;
+    updatedFormEl.hasValue = true;
     updatedForm[index] = updatedFormEl;
 
     let formIsValid = true;
@@ -201,7 +201,7 @@ const UserSignUp = () => {
       isSuspicious={item.isSuspicious}
       valid={item.valid}
       valRequired={item.validation.required}
-      touched={item.touched}
+      hasValue={item.hasValue}
       type={item.validation.type}
       pattern={item.validation.pattern}
       title={item.validation.title}

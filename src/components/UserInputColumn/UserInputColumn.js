@@ -7,7 +7,6 @@ import { UpdateUserData } from '../../Context/UpdateUserData';
 const UserInputColumn = () => {
   const [userInput, setUserInput] = useState([]);
   const [formIsValid, setFormIsValid] = useState(false);
-  const [totalCost, setTotalCost] = useState('');
   const { updatedData, setUpdatedData } = useContext(UpdateUserData);
 
   const update = () => {
@@ -37,26 +36,31 @@ const UserInputColumn = () => {
       ...updatedForm[index],
     };
     updatedFormEl.value = event.target.value;
+    updatedFormEl.timeperiod = event.target.attributes[5].nodeValue;
     updatedFormEl.valid = checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
     updatedFormEl.isTooHigh = checkValidity(updatedFormEl)[2];
-    updatedFormEl.touched = true;
+    updatedFormEl.hasValue = true;
+
     updatedForm[index] = updatedFormEl;
+
     let formIsValid = true;
     for (const i in updatedForm) {
       formIsValid = updatedForm[i].valid && formIsValid;
     }
     setUserInput(updatedForm);
     setFormIsValid(formIsValid);
+    debugger;
   };
 
   const submitFormHandler = async (event) => {
     try {
-      const userData = { categories: {}, totalCost, suspiciousInput: {} };
+      const userData = { categories: {}, totalCost: '', suspiciousInput: {} };
       event.preventDefault();
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
         .filter((value) => value !== '');
+      debugger;
       const totalC =
         valuesSum.length !== 0
           ? valuesSum.reduce(
@@ -66,7 +70,6 @@ const UserInputColumn = () => {
 
       if (formIsValid) {
         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
-        setTotalCost(totalC); // doesnt update totalCost value
         userData.totalCost = totalC;
         const userInputArr = Object.values(userInput);
         userInputArr.map(
@@ -109,8 +112,27 @@ const UserInputColumn = () => {
     }
 
     if (obj.validation.range) {
-      isSuspicious = obj.value < obj.validation.range[0] && obj.value > 0;
-      isTooHigh = obj.value > obj.validation.range[1];
+      let lowRange;
+      let highRange;
+      switch (obj.timeperiod) {
+        case 'per Week':
+          lowRange = obj.validation.range[0] * (7 / (365 / 12));
+          highRange = obj.validation.range[1] * (7 / (365 / 12));
+          break;
+        case 'per Month':
+          lowRange = obj.validation.range[0];
+          highRange = obj.validation.range[1];
+          break;
+        case 'per Year':
+          lowRange = obj.validation.range[0] * 12;
+          highRange = obj.validation.range[1] * 12;
+          break;
+        default:
+          console.log('error with object.validation.range');
+      }
+      debugger;
+      isSuspicious = obj.value < lowRange && obj.value > 0;
+      isTooHigh = obj.value > highRange;
     }
 
     if (obj.validation.type === 'number') {
@@ -131,7 +153,7 @@ const UserInputColumn = () => {
       valid={listItem.valid}
       isSuspicious={listItem.isSuspicious}
       isTooHigh={listItem.isTooHigh}
-      touched={listItem.touched}
+      hasValue={listItem.hasValue}
       timeCategorisation={true}
       valRequired={listItem.validation.required}
       changed={(event) => {
