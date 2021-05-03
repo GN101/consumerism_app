@@ -5,9 +5,9 @@ import axios from '../../axios-orders';
 import { UpdateUserData } from '../../Context/UpdateUserData';
 
 const UserInputColumn = () => {
+  const { updatedData, setUpdatedData } = useContext(UpdateUserData);
   const [userInput, setUserInput] = useState([]);
   const [formIsValid, setFormIsValid] = useState(false);
-  const { updatedData, setUpdatedData } = useContext(UpdateUserData);
 
   const update = () => {
     setTimeout(() => {
@@ -28,15 +28,15 @@ const UserInputColumn = () => {
     fetchUserForm();
   }, []);
 
-  const formChangeHandler = (event, index) => {
+  const formChangeHandler = (value, index, time) => {
     const updatedForm = {
       ...userInput,
     };
     const updatedFormEl = {
       ...updatedForm[index],
     };
-    updatedFormEl.value = event.target.value;
-    updatedFormEl.timeperiod = event.target.attributes[5].nodeValue;
+    updatedFormEl.input = value;
+    updatedFormEl.value = timeFramedValue(value, time);
     updatedFormEl.valid = checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
     updatedFormEl.isTooHigh = checkValidity(updatedFormEl)[2];
@@ -50,17 +50,29 @@ const UserInputColumn = () => {
     }
     setUserInput(updatedForm);
     setFormIsValid(formIsValid);
-    debugger;
+  };
+
+  const timeFramedValue = (value, time) => {
+    switch (time) {
+      case 'per Week':
+        return (value / 7) * (365 / 12);
+      case 'per Month':
+        return value;
+      case 'per Year':
+        return value / 12;
+      default:
+        console.log('error with object.time');
+    }
   };
 
   const submitFormHandler = async (event) => {
     try {
-      const userData = { categories: {}, totalCost: '', suspiciousInput: {} };
       event.preventDefault();
+      const userData = { categories: {}, totalCost: '', suspiciousInput: {} };
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
         .filter((value) => value !== '');
-      debugger;
+
       const totalC =
         valuesSum.length !== 0
           ? valuesSum.reduce(
@@ -112,25 +124,9 @@ const UserInputColumn = () => {
     }
 
     if (obj.validation.range) {
-      let lowRange;
-      let highRange;
-      switch (obj.timeperiod) {
-        case 'per Week':
-          lowRange = obj.validation.range[0] * (7 / (365 / 12));
-          highRange = obj.validation.range[1] * (7 / (365 / 12));
-          break;
-        case 'per Month':
-          lowRange = obj.validation.range[0];
-          highRange = obj.validation.range[1];
-          break;
-        case 'per Year':
-          lowRange = obj.validation.range[0] * 12;
-          highRange = obj.validation.range[1] * 12;
-          break;
-        default:
-          console.log('error with object.validation.range');
-      }
-      debugger;
+      const lowRange = obj.validation.range[0];
+      const highRange = obj.validation.range[1];
+
       isSuspicious = obj.value < lowRange && obj.value > 0;
       isTooHigh = obj.value > highRange;
     }
@@ -156,9 +152,18 @@ const UserInputColumn = () => {
       hasValue={listItem.hasValue}
       timeCategorisation={true}
       valRequired={listItem.validation.required}
+      time={(event) => {
+        if (userInput[index].input > 0) {
+          formChangeHandler(userInput[index].input, index, event.target.value);
+        }
+      }}
       changed={(event) => {
         event.target.value = event.target.value.replace(/[\D]/, '');
-        formChangeHandler(event, index);
+        formChangeHandler(
+          event.target.value,
+          index,
+          event.target.attributes.time.value
+        );
       }}
     />
   ));

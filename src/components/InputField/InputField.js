@@ -17,6 +17,7 @@ const InputField = (props) => {
     isTooHigh,
     hasValue,
     timeCategorisation,
+    time,
     changed,
   } = props;
   const [showWarningMsg, setShowWarningMsg] = useState(false);
@@ -39,10 +40,6 @@ const InputField = (props) => {
       setWarning('high');
     }
   }, [isSuspicious, isTooHigh]);
-
-  useEffect(() => {
-    console.log(touched);
-  }, [touched]);
 
   const active = () => {
     setTouched(true);
@@ -73,7 +70,11 @@ const InputField = (props) => {
         {timeCategorisation && (touched || hasValue) ? (
           <form>
             Cost:{' '}
-            <select onChange={setTimeperiod} defaultValue={timeframe}>
+            <select
+              onChange={setTimeperiod}
+              onInput={time}
+              defaultValue={timeframe}
+            >
               <option value="per Week">per Week </option>
               <option value="per Month">per Month</option>
               <option value="per Year">per Year</option>
@@ -91,6 +92,7 @@ const InputField = (props) => {
           onChange={changed}
           onClick={active}
           onBlur={focusOutHandler}
+          time={timeframe}
           timeperiod={timeframe}
         />
       </label>

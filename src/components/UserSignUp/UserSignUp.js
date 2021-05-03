@@ -113,7 +113,7 @@ const UserSignUp = () => {
           };
           break;
         default:
-          console.log('error with object.validation.type');
+          console.log('error with object.name');
       }
       const pattern = new RegExp(obj.validation.pattern);
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
