@@ -35,7 +35,7 @@ const UserSignUp = () => {
 
     updatedFormEl.valid = checkValidity(updatedFormEl)[0];
     updatedFormEl.isSuspicious = checkValidity(updatedFormEl)[1];
-    updatedFormEl.touched = true;
+    updatedFormEl.hasValue = true;
     updatedForm[index] = updatedFormEl;
 
     let formIsValid = true;
@@ -113,7 +113,7 @@ const UserSignUp = () => {
           };
           break;
         default:
-          console.log('error with object.validation.type');
+          console.log('error with object.name');
       }
       const pattern = new RegExp(obj.validation.pattern);
       isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
@@ -201,7 +201,7 @@ const UserSignUp = () => {
       isSuspicious={item.isSuspicious}
       valid={item.valid}
       valRequired={item.validation.required}
-      touched={item.touched}
+      hasValue={item.hasValue}
       type={item.validation.type}
       pattern={item.validation.pattern}
       title={item.validation.title}

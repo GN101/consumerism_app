@@ -12,7 +12,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "transportation",
@@ -26,7 +26,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "entertainment - hobbies",
@@ -40,7 +40,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "fitness - sports",
@@ -54,7 +54,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "vacations - trips",
@@ -68,7 +68,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "clothes - shoes",
@@ -82,7 +82,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     },
     {
       "name": "miscellaneous",
@@ -96,7 +96,7 @@
         "type": "text"
       },
       "valid": false,
-      "touched": false
+      "hasValue": false
     }
   ]
 }

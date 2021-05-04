@@ -11,7 +11,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'transportation',
@@ -25,7 +25,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'entertainment - hobbies',
@@ -40,7 +40,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'fitness - sports',
@@ -54,7 +54,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'vacations - trips',
@@ -68,7 +68,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'clothes - shoes',
@@ -82,7 +82,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'miscellaneous',
@@ -96,7 +96,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
   {
     name: 'hardware - software accessories',
@@ -110,7 +110,7 @@ const mockedUserInputState = [
       type: 'number',
     },
     valid: false,
-    touched: false,
+    hasValue: false,
   },
 ];
 
