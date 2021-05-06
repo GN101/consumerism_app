@@ -3,11 +3,14 @@ import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
 import { UpdateUserData } from '../../Context/UpdateUserData';
+import HideWarnings from '../../Context/HideWarnings';
 
 const UserInputColumn = () => {
   const { updatedData, setUpdatedData } = useContext(UpdateUserData);
   const [userInput, setUserInput] = useState([]);
   const [formIsValid, setFormIsValid] = useState(false);
+  const [hide, setHide] = useState(false);
+  const hideWarning = { hide, setHide };
 
   const update = () => {
     setTimeout(() => {
@@ -140,32 +143,38 @@ const UserInputColumn = () => {
 
   const list = Object.values(userInput);
   const inputForm = list.map((listItem, index) => (
-    <InputField
-      key={listItem.name}
-      type={listItem.validation.type}
-      label={listItem.name}
-      placeholder={listItem.placeholder}
-      value={listItem.value}
-      valid={listItem.valid}
-      isSuspicious={listItem.isSuspicious}
-      isTooHigh={listItem.isTooHigh}
-      hasValue={listItem.hasValue}
-      timeCategorisation={true}
-      valRequired={listItem.validation.required}
-      time={(event) => {
-        if (userInput[index].input > 0) {
-          formChangeHandler(userInput[index].input, index, event.target.value);
-        }
-      }}
-      changed={(event) => {
-        event.target.value = event.target.value.replace(/[\D]/, '');
-        formChangeHandler(
-          event.target.value,
-          index,
-          event.target.attributes.time.value
-        );
-      }}
-    />
+    <HideWarnings.Provider value={hideWarning} key={listItem.name}>
+      <InputField
+        key={listItem.name}
+        type={listItem.validation.type}
+        label={listItem.name}
+        placeholder={listItem.placeholder}
+        value={listItem.value}
+        valid={listItem.valid}
+        isSuspicious={listItem.isSuspicious}
+        isTooHigh={listItem.isTooHigh}
+        hasValue={listItem.hasValue}
+        timeCategorisation={true}
+        valRequired={listItem.validation.required}
+        time={(event) => {
+          if (userInput[index].input > 0) {
+            formChangeHandler(
+              userInput[index].input,
+              index,
+              event.target.value
+            );
+          }
+        }}
+        changed={(event) => {
+          event.target.value = event.target.value.replace(/[\D]/, '');
+          formChangeHandler(
+            event.target.value,
+            index,
+            event.target.attributes.time.value
+          );
+        }}
+      />
+    </HideWarnings.Provider>
   ));
 
   return (
