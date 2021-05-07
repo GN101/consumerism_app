@@ -41,7 +41,7 @@ const Navbar = () => {
             {user ? (
               <ul id="navNavItem">
                 <li>
-                  <Link to="/">About</Link>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
                   <Link to="/login" onClick={signOut}>
@@ -52,7 +52,7 @@ const Navbar = () => {
             ) : (
               <ul id="navNavItem">
                 <li>
-                  <Link to="/">About</Link>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
                   <Link to="/login">Log In</Link>

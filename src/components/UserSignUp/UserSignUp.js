@@ -218,7 +218,7 @@ const UserSignUp = () => {
           <p className={styles.Header}>You are succesfuly loged in as :</p>
           <p className={styles.Label}>{user.displayName}</p>
           <button className={styles.Button}>
-            <Link to="/">Go to Stats</Link>
+            <Link to="/about">Go to Stats</Link>
           </button>
         </div>
       ) : (

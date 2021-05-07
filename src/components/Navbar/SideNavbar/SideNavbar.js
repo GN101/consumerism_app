@@ -15,7 +15,7 @@ const SideNavbar = ({ toggleNav }) => {
         {user ? (
           <ul id="sideNavItem">
             <li>
-              <Link onClick={toggleNav} to="/">
+              <Link onClick={toggleNav} to="/about">
                 About
               </Link>
             </li>
@@ -28,7 +28,7 @@ const SideNavbar = ({ toggleNav }) => {
         ) : (
           <ul id="sideNavItem">
             <li>
-              <Link onClick={toggleNav} to="/">
+              <Link onClick={toggleNav} to="/about">
                 About
               </Link>
             </li>

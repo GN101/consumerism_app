@@ -5,6 +5,7 @@ import UserSignUp from './components/UserSignUp/UserSignUp';
 import UserLogin from './components/UserLogin/UserLogin';
 import PasswordReset from './components/PasswordReset/PasswordReset';
 import Home from './routes/home/Home';
+import UserPanel from './components/UserPanel/UserPanel';
 import styles from './App.module.css';
 import AlternateThemeContext from './Context/AlternateTheme-context';
 import { UserContext } from './Context/UserProvider';
@@ -20,7 +21,8 @@ const App = () => {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={UserPanel} />
+            <Route path="/about" component={Home} />
             <Route path="/login" component={UserLogin} />
             <Route path="/signUp" component={UserSignUp} />
           </Switch>
@@ -33,7 +35,8 @@ const App = () => {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={UserPanel} />
+            <Route path="/about" component={Home} />
             <Route path="/login" component={UserLogin} />
             <Route path="/signUp" component={UserSignUp} />
             <Route path="/passwordreset" component={PasswordReset} />
