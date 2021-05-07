@@ -21,7 +21,7 @@ const SideNavbar = ({ toggleNav }) => {
             </li>
             <li>
               <Link to="/login" onClick={signOut}>
-                Log out
+                Log out <br></br>({user.displayName})
               </Link>
             </li>
           </ul>
