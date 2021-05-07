@@ -57,11 +57,12 @@ const InputField = (props) => {
     <div className={styles.Form}>
       <label className={styles.Label} htmlFor={category}>
         {label}
+        <br></br>
         {isSuspicious && showWarningMsg && <WarningSuspicious type={warning} />}
         {isTooHigh && showWarningMsg && <WarningSuspicious type={warning} />}
         {timeCategorisation && (touched || hasValue) ? (
           <div className={styles.TimePeriod}>
-            <p> Cost: </p>
+            <span> Cost: </span>
             <select
               onChange={(e) => setTimeframe(e.target.value)}
               onInput={time}
