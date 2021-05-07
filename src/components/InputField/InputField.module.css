@@ -4,6 +4,10 @@
   width: auto;
 }
 
+.TimePeriod {
+  display: inline;
+}
+
 .Input {
   display: block;
   width: 70%;

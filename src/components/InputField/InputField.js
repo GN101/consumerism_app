@@ -41,14 +41,6 @@ const InputField = (props) => {
     }
   }, [isSuspicious, isTooHigh]);
 
-  const active = () => {
-    setTouched(true);
-  };
-
-  const setTimeperiod = (e) => {
-    setTimeframe(e.target.value);
-  };
-
   const focusOutHandler = () => {
     return isSuspicious || isTooHigh
       ? setTimeout(() => {
@@ -65,13 +57,14 @@ const InputField = (props) => {
     <div className={styles.Form}>
       <label className={styles.Label} htmlFor={category}>
         {label}
+        <br></br>
         {isSuspicious && showWarningMsg && <WarningSuspicious type={warning} />}
         {isTooHigh && showWarningMsg && <WarningSuspicious type={warning} />}
         {timeCategorisation && (touched || hasValue) ? (
-          <form>
-            Cost:{' '}
+          <div className={styles.TimePeriod}>
+            <span> Cost: </span>
             <select
-              onChange={setTimeperiod}
+              onChange={(e) => setTimeframe(e.target.value)}
               onInput={time}
               defaultValue={timeframe}
             >
@@ -79,7 +72,7 @@ const InputField = (props) => {
               <option value="per Month">per Month</option>
               <option value="per Year">per Year</option>
             </select>
-          </form>
+          </div>
         ) : null}
         <input
           className={inputClasses.join(' ')}
@@ -90,7 +83,7 @@ const InputField = (props) => {
           name={label}
           placeholder={placeholder}
           onChange={changed}
-          onClick={active}
+          onClick={() => setTouched(true)}
           onBlur={focusOutHandler}
           time={timeframe}
           timeperiod={timeframe}
