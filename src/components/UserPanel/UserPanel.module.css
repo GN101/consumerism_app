@@ -4,3 +4,39 @@
   padding: 60px 0;
   margin: 10px auto;
 }
+
+.Header {
+  color: white;
+  text-align: center;
+}
+
+.Text {
+  color: rgb(238, 237, 189);
+}
+
+.TimePeriod {
+  text-align: center;
+}
+
+.Label {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  color: #ffee56;
+  padding: 20px 0 10px 0;
+}
+
+.Input {
+  display: flex;
+  margin: 5px auto 0 auto;
+  width: 35%;
+}
+
+.Button {
+  display: flex;
+  background-color: yellowgreen;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 6px;
+  width: 30%;
+}
