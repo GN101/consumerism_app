@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PortalInputField from '../PortalInputField/PortalInputField';
 import styles from './UserPanel.module.css';
 
 const UserPanel = () => {
-  const [timeframe, setTimeframe] = useState('per Month');
+  const [timeframe] = useState('per Month');
 
   return (
     <div className={styles.Container}>
@@ -43,6 +44,7 @@ const UserPanel = () => {
         </div>
         <button className={styles.Button}> Lets go </button>
       </form>
+      <PortalInputField></PortalInputField>
     </div>
   );
 };

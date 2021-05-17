@@ -1,13 +1,12 @@
 .Container {
   display: block;
-  text-align: left;
+  text-align: center;
   padding: 60px 0;
   margin: 10px auto;
 }
 
 .Header {
   color: white;
-  text-align: center;
 }
 
 .Text {
@@ -20,7 +19,6 @@
 
 .Label {
   margin: 0 auto;
-  text-align: center;
   display: block;
   color: #ffee56;
   padding: 20px 0 10px 0;
