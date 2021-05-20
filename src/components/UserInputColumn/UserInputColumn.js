@@ -18,6 +18,18 @@ const UserInputColumn = () => {
     }, 500);
   };
 
+  const CreateCoockie = (userData) => {
+    const userExpenses = JSON.stringify(userData.categories);
+    const userTotalExpenses = JSON.stringify(userData.totalCost);
+    const daysToExpire = 31;
+    const d = new Date();
+    d.setTime(d.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
+    const expires = 'expires=' + d.toUTCString();
+
+    document.cookie = 'userExpenses=' + userExpenses + ';' + expires;
+    document.cookie = 'userTotalExpenses=' + userTotalExpenses + ';' + expires;
+  };
+
   const fetchUserForm = async () => {
     try {
       const res = await axios.get('/userInputState.json');
@@ -108,6 +120,8 @@ const UserInputColumn = () => {
           .then((res) => console.log(res))
           .catch((e) => console.log(e))
           .then(update());
+
+        CreateCoockie(userData);
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
@@ -179,7 +193,7 @@ const UserInputColumn = () => {
 
   return (
     <div className={styles.Container}>
-      <h3>Please fill the form below!</h3>
+      <h3>Please fill your expenses below!</h3>
       <form className={styles.Column} onSubmit={submitFormHandler}>
         {inputForm}
         <button className={styles.Button} type="submit">
