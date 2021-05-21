@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PortalInputColumn from '../PortalInputColumn/PortalInputColumn';
 import styles from './UserPanel.module.css';
 import { useHistory } from 'react-router-dom';
+import UserInputColumn from '../UserInputColumn/UserInputColumn';
 
 const UserPanel = () => {
   const [timeframeSavingGoal, setTimeframeSavingGoal] = useState(1);
@@ -9,6 +10,7 @@ const UserPanel = () => {
   const [savingGoal, setSavingGoal] = useState();
   const [income, setIncome] = useState();
   const [userData, setUserData] = useState();
+  const [showPortal, setShowPortal] = useState(false);
   const history = useHistory();
 
   const handleClick = () => {
@@ -16,12 +18,12 @@ const UserPanel = () => {
     CreateCoockie();
   };
 
+  const tooglePortal = () => {
+    setShowPortal(!showPortal);
+  };
+
   const getUserData = () => {
-    const name = [
-      'userExpenses' + '=',
-      'userTotalExpenses' + '=',
-      'userGoal' + '=',
-    ];
+    const name = ['userExpenses=', 'userTotalExpenses=', 'userGoal='];
     const userdataArray = {
       userExpenses: '',
       userTotalExpenses: '',
@@ -102,7 +104,14 @@ const UserPanel = () => {
       <button className={styles.Button} onClick={getUserData}>
         getUserData
       </button>
-      {/* <PortalInputColumn></PortalInputColumn> */}
+      <button className={styles.Button} onClick={tooglePortal}>
+        OpenPortal
+      </button>
+      {showPortal ? (
+        <PortalInputColumn onClose={tooglePortal}>
+          <UserInputColumn></UserInputColumn>
+        </PortalInputColumn>
+      ) : null}
     </div>
   );
 };

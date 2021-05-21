@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const UpdateUserData = React.createContext();
+export const UpdateUserData = React.createContext(1);

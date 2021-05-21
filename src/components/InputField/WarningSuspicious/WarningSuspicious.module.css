@@ -9,14 +9,12 @@
   border-radius: 15px;
   background-color: coral;
   width: 80%;
-  min-width: 200px;
   max-width: 600px;
-  margin: 10px auto 10px auto;
+  margin: 10px 0;
 }
 
 .Suspicious p {
   display: inline;
-  padding: 0 10px;
 }
 
 .Button {
