@@ -13,9 +13,10 @@ const UserPanel = () => {
   const [showPortal, setShowPortal] = useState(false);
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push('/about');
+  const goalSubmit = (event) => {
+    event.preventDefault();
     CreateCoockie();
+    tooglePortal();
   };
 
   const tooglePortal = () => {
@@ -54,7 +55,7 @@ const UserPanel = () => {
     <div className={styles.Container}>
       <h2 className={styles.Header}>Wellcome our fellow Consumer</h2>
       <p className={styles.Text}>it's time to take care of your Expenses!</p>
-      <form onSubmit={handleClick}>
+      <form onSubmit={goalSubmit}>
         <div className={styles.TimePeriod}>
           <label className={styles.Label} htmlFor="input1">
             How much do you wana save?
@@ -102,10 +103,10 @@ const UserPanel = () => {
         </button>
       </form>
       <button className={styles.Button} onClick={getUserData}>
-        getUserData
+        GetUserData
       </button>
       <button className={styles.Button} onClick={tooglePortal}>
-        OpenPortal
+        Edit Expenses
       </button>
       {showPortal ? (
         <PortalInputColumn onClose={tooglePortal}>
