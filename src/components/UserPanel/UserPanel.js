@@ -8,7 +8,7 @@ const UserPanel = () => {
   const [timeframeIncome, setTimeframeIncome] = useState(1);
   const [savingGoal, setSavingGoal] = useState();
   const [income, setIncome] = useState();
-  const [userData, setUserData] = useState();
+  // const [userData, setUserData] = useState();
   const [showPortal, setShowPortal] = useState(false);
 
   const goalSubmit = (event) => {
@@ -21,21 +21,21 @@ const UserPanel = () => {
     setShowPortal(!showPortal);
   };
 
-  const getUserData = () => {
-    const name = ['userExpenses=', 'userTotalExpenses=', 'userGoal='];
-    const userdataArray = {
-      userExpenses: '',
-      userTotalExpenses: '',
-      userGoal: '',
-    };
-    const coockieArray = document.cookie.split('; ');
-    for (let i = 0; i < coockieArray.length; i++) {
-      let cA = coockieArray[i];
-      const string = cA.substring(name[i].length, cA.length);
-      userdataArray[Object.keys(userdataArray)[i]] = JSON.parse(string);
-    }
-    setUserData(userdataArray);
-  };
+  // const getUserData = () => {
+  //   const name = ['userExpenses=', 'userTotalExpenses=', 'userGoal='];
+  //   const userdataArray = {
+  //     userExpenses: '',
+  //     userTotalExpenses: '',
+  //     userGoal: '',
+  //   };
+  //   const coockieArray = document.cookie.split('; ');
+  //   for (let i = 0; i < coockieArray.length; i++) {
+  //     let cA = coockieArray[i];
+  //     const string = cA.substring(name[i].length, cA.length);
+  //     userdataArray[Object.keys(userdataArray)[i]] = JSON.parse(string);
+  //   }
+  //   setUserData(userdataArray);
+  // };
 
   const CreateCoockie = () => {
     const userGoal = {
@@ -100,9 +100,9 @@ const UserPanel = () => {
           Lets go
         </button>
       </form>
-      <button className={styles.Button} onClick={getUserData}>
+      {/* <button className={styles.Button} onClick={getUserData}>
         GetUserData
-      </button>
+      </button> */}
       <button className={styles.Button} onClick={tooglePortal}>
         Edit Expenses
       </button>

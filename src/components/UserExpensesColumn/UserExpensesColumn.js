@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from '../../axios-orders';
 import styles from './UserExpensesColumn.module.css';
 import UpdateUserData from '../../Context/UpdateUserData';
 
@@ -25,7 +24,7 @@ const UsersAverageInputColumn = () => {
 
   useEffect(() => {
     getUserData();
-  }, [, updatedData]);
+  }, [updatedData]);
 
   if (userData !== undefined) {
     const inputCategories = Object.keys(userData.userExpenses);
@@ -42,14 +41,16 @@ const UsersAverageInputColumn = () => {
             {inputCategories.map((category, index) => (
               <tr key={index}>
                 <td className={styles.Categories}>{category}</td>
-                <td className={styles.CategoriesValues}>{dataValues[index]}</td>
+                <td className={styles.CategoriesValues}>
+                  {parseFloat(dataValues[index]).toFixed()}
+                </td>
               </tr>
             ))}
           </tbody>
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Expenses</td>
-              <td className={styles.Sumvalue}>{totalAveCost}</td>
+              <td className={styles.Sumvalue}>{totalAveCost.toFixed()}</td>
             </tr>
           </tfoot>
         </table>

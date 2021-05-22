@@ -4,6 +4,7 @@ import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
 import UpdateUserData from '../../Context/UpdateUserData';
 import HideWarnings from '../../Context/HideWarnings';
+import { useHistory } from 'react-router-dom';
 
 const UserInputColumn = () => {
   const { updatedData, setUpdatedData } = useContext(UpdateUserData);
@@ -11,6 +12,7 @@ const UserInputColumn = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [hide, setHide] = useState(false);
   const hideWarning = { hide, setHide };
+  const history = useHistory();
 
   const update = () => {
     setTimeout(() => {
@@ -120,10 +122,9 @@ const UserInputColumn = () => {
           .post('/userData.json', userData)
           .then((res) => console.log(res))
           .catch((e) => console.log(e))
-          .then(update());
-        console.log(userData); // to be removed
-
-        CreateCoockie(userData);
+          .then(update())
+          .then(CreateCoockie(userData))
+          .then(history.push('/about'));
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
