@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PortalInputColumn from '../PortalInputColumn/PortalInputColumn';
 import styles from './UserPanel.module.css';
-import { useHistory } from 'react-router-dom';
 import UserInputColumn from '../UserInputColumn/UserInputColumn';
 
 const UserPanel = () => {
@@ -11,7 +10,6 @@ const UserPanel = () => {
   const [income, setIncome] = useState();
   const [userData, setUserData] = useState();
   const [showPortal, setShowPortal] = useState(false);
-  const history = useHistory();
 
   const goalSubmit = (event) => {
     event.preventDefault();

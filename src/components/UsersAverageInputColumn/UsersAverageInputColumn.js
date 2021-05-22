@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from '../../axios-orders';
 import styles from './UserAverageInputColumn.module.css';
-import { UpdateUserData } from '../../Context/UpdateUserData';
+import UpdateUserData from '../../Context/UpdateUserData';
 
 const UsersAverageInputColumn = () => {
   const [usersData, setUsersData] = useState([]);

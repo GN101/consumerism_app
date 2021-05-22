@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
-import { UpdateUserData } from '../../Context/UpdateUserData';
+import UpdateUserData from '../../Context/UpdateUserData';
 import HideWarnings from '../../Context/HideWarnings';
 
 const UserInputColumn = () => {
@@ -19,6 +19,7 @@ const UserInputColumn = () => {
   };
 
   const CreateCoockie = (userData) => {
+    //to CreateCoockie isos prepei na to valo se context ( pros to paron xrisimopoihte kai sto UserPanel)
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
     const daysToExpire = 31;
@@ -120,6 +121,7 @@ const UserInputColumn = () => {
           .then((res) => console.log(res))
           .catch((e) => console.log(e))
           .then(update());
+        console.log(userData); // to be removed
 
         CreateCoockie(userData);
       } else {
