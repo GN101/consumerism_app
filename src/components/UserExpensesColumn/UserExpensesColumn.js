@@ -8,18 +8,18 @@ const UsersAverageInputColumn = () => {
 
   const getUserData = () => {
     const name = ['userGoal=', 'userExpenses=', 'userTotalExpenses='];
-    const userdataArray = {
+    const userDataArray = {
       userGoal: '',
       userExpenses: '',
       userTotalExpenses: '',
     };
-    const coockieArray = document.cookie.split('; ');
-    for (let i = 0; i < coockieArray.length; i++) {
-      let cA = coockieArray[i];
+    const cookieArray = document.cookie.split('; ');
+    for (let i = 0; i < cookieArray.length; i++) {
+      let cA = cookieArray[i];
       const string = cA.substring(name[i].length, cA.length);
-      userdataArray[Object.keys(userdataArray)[i]] = JSON.parse(string);
+      userDataArray[Object.keys(userDataArray)[i]] = JSON.parse(string);
     }
-    setUserData(userdataArray);
+    setUserData(userDataArray);
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const UsersAverageInputColumn = () => {
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Expenses</td>
-              <td className={styles.Sumvalue}>{totalAveCost.toFixed()}</td>
+              <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
             </tr>
           </tfoot>
         </table>

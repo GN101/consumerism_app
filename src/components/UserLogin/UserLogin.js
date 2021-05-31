@@ -33,7 +33,7 @@ const UserLogin = () => {
     <div className={styles.Container}>
       {user ? (
         <div>
-          <p className={styles.Header}>You are succesfuly loged in as :</p>
+          <p className={styles.Header}>You are successfully logged in as :</p>
           <p className={styles.Label}>{user.displayName}</p>
           <button className={styles.Button}>
             <Link to="/about">Go to Stats</Link>
@@ -81,7 +81,7 @@ const UserLogin = () => {
             </button>
           </form>
           <br />
-          <button className={styles.GooogleButton} onClick={signInWithGoogle}>
+          <button className={styles.GoogleButton} onClick={signInWithGoogle}>
             Sign in with Google
           </button>
           <p className={styles.Text}>

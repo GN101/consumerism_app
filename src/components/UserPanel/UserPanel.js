@@ -4,8 +4,8 @@ import styles from './UserPanel.module.css';
 import UserInputColumn from '../UserInputColumn/UserInputColumn';
 
 const UserPanel = () => {
-  const [timeframeSavingGoal, setTimeframeSavingGoal] = useState(1);
-  const [timeframeIncome, setTimeframeIncome] = useState(1);
+  const [timeFrameSavingGoal, setTimeFrameSavingGoal] = useState(1);
+  const [timeFrameIncome, setTimeFrameIncome] = useState(1);
   const [savingGoal, setSavingGoal] = useState();
   const [income, setIncome] = useState();
   // const [userData, setUserData] = useState();
@@ -13,34 +13,34 @@ const UserPanel = () => {
 
   const goalSubmit = (event) => {
     event.preventDefault();
-    CreateCoockie();
-    tooglePortal();
+    CreateCookie();
+    togglePortal();
   };
 
-  const tooglePortal = () => {
+  const togglePortal = () => {
     setShowPortal(!showPortal);
   };
 
   // const getUserData = () => {
   //   const name = ['userExpenses=', 'userTotalExpenses=', 'userGoal='];
-  //   const userdataArray = {
+  //   const userDataArray = {
   //     userExpenses: '',
   //     userTotalExpenses: '',
   //     userGoal: '',
   //   };
-  //   const coockieArray = document.cookie.split('; ');
-  //   for (let i = 0; i < coockieArray.length; i++) {
-  //     let cA = coockieArray[i];
+  //   const cookieArray = document.cookie.split('; ');
+  //   for (let i = 0; i < cookieArray.length; i++) {
+  //     let cA = cookieArray[i];
   //     const string = cA.substring(name[i].length, cA.length);
-  //     userdataArray[Object.keys(userdataArray)[i]] = JSON.parse(string);
+  //     userDataArray[Object.keys(userDataArray)[i]] = JSON.parse(string);
   //   }
-  //   setUserData(userdataArray);
+  //   setUserData(userDataArray);
   // };
 
-  const CreateCoockie = () => {
+  const CreateCookie = () => {
     const userGoal = {
-      savingGoal: savingGoal * timeframeSavingGoal,
-      income: income * timeframeIncome,
+      savingGoal: savingGoal * timeFrameSavingGoal,
+      income: income * timeFrameIncome,
     };
     const daysToExpire = 31;
     const d = new Date();
@@ -51,16 +51,16 @@ const UserPanel = () => {
 
   return (
     <div className={styles.Container}>
-      <h2 className={styles.Header}>Wellcome our fellow Consumer</h2>
+      <h2 className={styles.Header}>Welcome our fellow Consumer</h2>
       <p className={styles.Text}>it's time to take care of your Expenses!</p>
       <form onSubmit={goalSubmit}>
         <div className={styles.TimePeriod}>
           <label className={styles.Label} htmlFor="input1">
-            How much do you wana save?
+            How much do you wanna save?
           </label>
           <select
-            defaultValue={timeframeSavingGoal}
-            onChange={(e) => setTimeframeSavingGoal(e.target.value)}
+            defaultValue={timeFrameSavingGoal}
+            onChange={(e) => setTimeFrameSavingGoal(e.target.value)}
           >
             <option value={(1 / 7) * (365 / 12)}>per Week </option>
             <option value={1}>per Month</option>
@@ -79,8 +79,8 @@ const UserPanel = () => {
             What's your income?
           </label>
           <select
-            defaultValue={timeframeIncome}
-            onChange={(e) => setTimeframeIncome(e.target.value)}
+            defaultValue={timeFrameIncome}
+            onChange={(e) => setTimeFrameIncome(e.target.value)}
           >
             <option value={(1 / 7) * (365 / 12)}>per Week </option>
             <option value={1}>per Month</option>
@@ -103,11 +103,11 @@ const UserPanel = () => {
       {/* <button className={styles.Button} onClick={getUserData}>
         GetUserData
       </button> */}
-      <button className={styles.Button} onClick={tooglePortal}>
+      <button className={styles.Button} onClick={togglePortal}>
         Edit Expenses
       </button>
       {showPortal ? (
-        <PortalInputColumn onClose={tooglePortal}>
+        <PortalInputColumn onClose={togglePortal}>
           <UserInputColumn></UserInputColumn>
         </PortalInputColumn>
       ) : null}

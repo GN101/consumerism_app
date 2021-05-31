@@ -20,8 +20,8 @@ const UserInputColumn = () => {
     }, 500);
   };
 
-  const CreateCoockie = (userData) => {
-    //to CreateCoockie isos prepei na to valo se context ( pros to paron xrisimopoihte kai sto UserPanel)
+  const CreateCookie = (userData) => {
+    //to CreateCookie isos prepei na to valo se context ( pros to paron xrisimopoihte kai sto UserPanel)
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
     const daysToExpire = 31;
@@ -123,7 +123,7 @@ const UserInputColumn = () => {
           .then((res) => console.log(res))
           .catch((e) => console.log(e))
           .then(update())
-          .then(CreateCoockie(userData))
+          .then(CreateCookie(userData))
           .then(history.push('/about'));
       } else {
         // TODO: we need to render a proper error message for such cases
@@ -171,7 +171,7 @@ const UserInputColumn = () => {
         isSuspicious={listItem.isSuspicious}
         isTooHigh={listItem.isTooHigh}
         hasValue={listItem.hasValue}
-        timeCategorisation={true}
+        timeCategorization={true}
         valRequired={listItem.validation.required}
         time={(event) => {
           if (userInput[index].input > 0) {

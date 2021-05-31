@@ -46,7 +46,7 @@ const App = () => {
               <Route path="/about" component={Home} />
               <Route path="/login" component={UserLogin} />
               <Route path="/signUp" component={UserSignUp} />
-              <Route path="/passwordreset" component={PasswordReset} />
+              <Route path="/passwordReset" component={PasswordReset} />
             </Switch>
           </Router>
         </div>
