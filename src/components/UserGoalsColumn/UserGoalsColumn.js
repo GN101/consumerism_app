@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './UserExpensesColumn.module.css';
+import styles from './UserGoalsColumn.module.css';
 import UpdateUserData from '../../Context/UpdateUserData';
 
 const UsersAverageInputColumn = () => {
   const [userData, setUserData] = useState();
+  const [goalTime, setGoalTime] = useState();
   const updatedData = useContext(UpdateUserData);
 
   const getUserData = () => {
@@ -41,12 +42,20 @@ const UsersAverageInputColumn = () => {
 
     return (
       <div>
-        <h3 className={styles.Title}>Your Expenses!</h3>
+        <h3 className={styles.Title}>Your Goal!</h3>
+        <tr>
+          <th className={styles.Title}>Your Expenses</th>
+          <th className={styles.Title}>Others Expenses</th>
+          <th className={styles.Title}>Your Goal</th>
+        </tr>
         <table>
           <tbody>
             {inputCategories.map((category, index) => (
               <tr key={index}>
                 <td className={styles.Categories}>{category}</td>
+                <td className={styles.CategoriesValues}>
+                  {parseFloat(dataValues[index]).toFixed()}
+                </td>
                 <td className={styles.CategoriesValues}>
                   {parseFloat(dataValues[index]).toFixed()}
                 </td>
@@ -56,6 +65,7 @@ const UsersAverageInputColumn = () => {
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Expenses</td>
+              <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
               <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
             </tr>
           </tfoot>

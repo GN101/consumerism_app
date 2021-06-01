@@ -1,11 +1,11 @@
-const dataInputs = {
-  clothes: '51',
-  entertainment: '70',
-  fitness: '20',
-  groceries: '200',
-  miscellaneous: '100',
-  transportation: '50',
-  vacations: '50',
-};
+const mockedWorldData = [
+  { name: 'groceries', value: '200' },
+  { name: 'transportation', value: '50' },
+  { name: 'entertainment - hobbies', value: '70' },
+  { name: 'fitness - sports', value: '30' },
+  { name: 'vacations - trips', value: '100' },
+  { name: 'clothes - shoes', value: '50' },
+  { name: 'miscellaneous', value: '65' },
+];
 
-export default dataInputs;
+export default mockedWorldData;

@@ -61,7 +61,7 @@ const InputField = (props) => {
         {isSuspicious && showWarningMsg && <WarningSuspicious type={warning} />}
         {isTooHigh && showWarningMsg && <WarningSuspicious type={warning} />}
         {timeCategorization && (touched || hasValue) ? (
-          <div className={styles.TimePeriod}>
+          <div className={styles.Timeperiod}>
             <span> Cost: </span>
             <select
               onChange={(e) => setTimeFrame(e.target.value)}
@@ -86,7 +86,7 @@ const InputField = (props) => {
           onClick={() => setTouched(true)}
           onBlur={focusOutHandler}
           time={timeFrame}
-          timePeriod={timeFrame}
+          timeperiod={timeFrame}
         />
       </label>
     </div>

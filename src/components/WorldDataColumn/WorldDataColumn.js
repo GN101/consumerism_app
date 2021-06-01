@@ -10,8 +10,8 @@ const WorldDataColumn = () => {
     setShow(!show);
   };
 
-  const categories = Object.keys(mockedWorldData);
-  const values = Object.values(mockedWorldData);
+  const categories = mockedWorldData.map((x) => (x = x.name));
+  const values = mockedWorldData.map((x) => (x = x.value));
   const totalCost = values.reduce((a, b) => parseFloat(a) + parseFloat(b));
   const hideFields = show ? styles.Column : styles.Hide;
 
@@ -34,7 +34,7 @@ const WorldDataColumn = () => {
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Cost</td>
-              <td className={styles.Sumvalue}>{totalCost.toFixed()}</td>
+              <td className={styles.SumValue}>{totalCost.toFixed()}</td>
             </tr>
           </tfoot>
         </table>

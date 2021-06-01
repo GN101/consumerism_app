@@ -21,7 +21,7 @@ const UserInputColumn = () => {
   };
 
   const CreateCookie = (userData) => {
-    //to CreateCookie isos prepei na to valo se context ( pros to paron xrisimopoihte kai sto UserPanel)
+    //to CreateCookie isos prepei na to valo se ksexoristo functional component ( pros to paron xrisimopoihte kai sto UserPanel)
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
     const daysToExpire = 31;
@@ -47,9 +47,7 @@ const UserInputColumn = () => {
   }, []);
 
   const formChangeHandler = (value, index, time) => {
-    const updatedForm = {
-      ...userInput,
-    };
+    const updatedForm = [...userInput];
     const updatedFormEl = {
       ...updatedForm[index],
     };
@@ -83,10 +81,20 @@ const UserInputColumn = () => {
     }
   };
 
+  if (userInput.length > 0) {
+    userInput.sort(function (a, b) {
+      return a.customIndex - b.customIndex;
+    });
+  }
   const submitFormHandler = async (event) => {
     try {
       event.preventDefault();
-      const userData = { categories: {}, totalCost: '', suspiciousInput: {} };
+      const categories = [];
+      userInput.forEach((x) => {
+        categories.push({ name: x.name, value: '' });
+      });
+      debugger;
+      const userData = { categories, totalCost: '', suspiciousInput: {} };
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
         .filter((value) => value !== '');
@@ -102,10 +110,12 @@ const UserInputColumn = () => {
         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
         userData.totalCost = totalC;
         const userInputArr = Object.values(userInput);
-        userInputArr.map(
-          (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
+        userInputArr.map((userInfo) =>
+          userData.categories.forEach((x) =>
+            x.name === userInfo.name ? (x.value = userInfo.value) : null
+          )
         );
-        Object.values(userInput);
+        debugger;
         const suspiciousInputArr = Object.values(userInput);
         suspiciousInputArr.map(
           (suspiciousInput) =>

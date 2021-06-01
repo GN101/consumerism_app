@@ -21,27 +21,25 @@ const UsersAverageInputColumn = () => {
   }, [updatedData]);
 
   const usersDataArr = Object.values(usersData);
-
   if (usersDataArr.length > 0) {
     const usersInputs = [];
+    usersDataArr[0].categories.forEach((x) => {
+      usersInputs.push({ name: x.name, value: [] });
+    });
     for (let i = 0; i < usersDataArr.length; i++) {
-      usersInputs.push(usersDataArr[i].categories);
-    }
-
-    const average = usersInputs.reduce((a, b) => {
-      for (const [key, value] of Object.entries(b)) {
-        if (!a[key]) {
-          a[key] = 0;
-        }
-        a[key] += value / usersInputs.length;
+      for (let j = 0; j < usersDataArr[i].categories.length; j++) {
+        usersInputs[j].value.push(usersDataArr[i].categories[j].value);
       }
-      return a;
-    }, []);
-
-    const inputCategories = Object.keys(average);
-    const aveCost = Object.values(average);
+    }
+    const aveCost = usersInputs
+      .map((x) => x.value)
+      .map(
+        (x) =>
+          x.reduce((a, b) => parseFloat(a) + parseFloat(b)) /
+          usersInputs[0].value.length
+      );
     const totalAveCost = aveCost.reduce((a, b) => a + b);
-
+    const inputCategories = usersInputs.map((x) => x.name);
     return (
       <div>
         <h3 className={styles.Title}>Users average Costs!</h3>
@@ -59,7 +57,7 @@ const UsersAverageInputColumn = () => {
           <tfoot>
             <tr className={styles.Sum}>
               <td>Total Cost</td>
-              <td className={styles.Sumvalue}>{totalAveCost.toFixed()}</td>
+              <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
             </tr>
           </tfoot>
         </table>

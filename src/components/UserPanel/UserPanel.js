@@ -54,7 +54,7 @@ const UserPanel = () => {
       <h2 className={styles.Header}>Welcome our fellow Consumer</h2>
       <p className={styles.Text}>it's time to take care of your Expenses!</p>
       <form onSubmit={goalSubmit}>
-        <div className={styles.TimePeriod}>
+        <div className={styles.Timeperiod}>
           <label className={styles.Label} htmlFor="input1">
             How much do you wanna save?
           </label>
