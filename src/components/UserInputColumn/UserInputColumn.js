@@ -93,7 +93,6 @@ const UserInputColumn = () => {
       userInput.forEach((x) => {
         categories.push({ name: x.name, value: '' });
       });
-      debugger;
       const userData = { categories, totalCost: '', suspiciousInput: {} };
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
@@ -115,7 +114,6 @@ const UserInputColumn = () => {
             x.name === userInfo.name ? (x.value = userInfo.value) : null
           )
         );
-        debugger;
         const suspiciousInputArr = Object.values(userInput);
         suspiciousInputArr.map(
           (suspiciousInput) =>

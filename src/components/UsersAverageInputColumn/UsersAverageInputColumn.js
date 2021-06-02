@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from '../../axios-orders';
 import styles from './UserAverageInputColumn.module.css';
 import UpdateUserData from '../../Context/UpdateUserData';
+import AverageCost from '../../Context/ComparingData';
 
 const UsersAverageInputColumn = () => {
-  const [usersData, setUsersData] = useState([]);
+  const { setAverageCosts } = useContext(AverageCost);
   const updatedData = useContext(UpdateUserData);
+  const [usersData, setUsersData] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -38,6 +40,10 @@ const UsersAverageInputColumn = () => {
           x.reduce((a, b) => parseFloat(a) + parseFloat(b)) /
           usersInputs[0].value.length
       );
+
+    debugger;
+    setAverageCosts(aveCost);
+
     const totalAveCost = aveCost.reduce((a, b) => a + b);
     const inputCategories = usersInputs.map((x) => x.name);
     return (
