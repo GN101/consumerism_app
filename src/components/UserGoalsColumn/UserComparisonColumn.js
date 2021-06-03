@@ -9,10 +9,6 @@ const UsersComparisonColumn = () => {
   const { averageCosts, setAverageCosts } = useContext(AverageCost);
   console.log(averageCosts);
 
-  const averageExpenses = [5, 3, 4, 2, 3, 4, 1];
-  const yourExpenses = [2, 3, 5, 5, 6, 7, 8];
-  const comparison = yourExpenses.map((x, index) => x - averageExpenses[index]);
-
   const getUserData = () => {
     const name = ['userGoal=', 'userExpenses=', 'userTotalExpenses='];
     const userDataArray = {
@@ -35,36 +31,47 @@ const UsersComparisonColumn = () => {
 
   if (userData !== undefined) {
     const inputCategories = [];
-    const dataValues = [];
+    const yourExpenses = [];
+    const averageExpenses = averageCosts;
+
     userData.userExpenses.forEach((x) => {
       inputCategories.push(x.name);
     });
     userData.userExpenses.forEach((x) => {
-      dataValues.push(x.value);
+      yourExpenses.push(x.value);
     });
-    const totalUserCost = dataValues.reduce(
+    const totalUserCost = yourExpenses.reduce(
       (a, b) => parseFloat(a) + parseFloat(b)
+    );
+    const comparison = yourExpenses.map(
+      (x, index) => x - averageExpenses[index]
     );
     const totalComparisonCost = comparison.reduce(
       (a, b) => parseFloat(a) + parseFloat(b)
     );
+    const totalAverageCost = averageExpenses.reduce(
+      (a, b) => parseFloat(a) + parseFloat(b)
+    );
 
     return (
-      <div>
+      <div className={styles.Table}>
         <h3 className={styles.Title}>Results</h3>
         <table>
           <tbody>
             <tr>
-              {/* <th className={styles.Title}>Others Expenses</th> */}
-              <th> &nbsp;</th>
+              <th className={styles.Title}>Categories</th>
               <th className={styles.Title}>Your Expenses</th>
+              <th className={styles.Title}>Others Expenses</th>
               <th className={styles.Title}>Comparison</th>
             </tr>
             {inputCategories.map((category, index) => (
               <tr key={index}>
                 <td className={styles.Categories}>{category}</td>
                 <td className={styles.CategoriesValues}>
-                  {parseFloat(dataValues[index]).toFixed()}
+                  {parseFloat(yourExpenses[index]).toFixed()}
+                </td>
+                <td className={styles.CategoriesValues}>
+                  {parseFloat(averageExpenses[index]).toFixed()}
                 </td>
                 <td className={styles.CategoriesValues}>
                   {parseFloat(comparison[index]).toFixed()}
@@ -76,6 +83,7 @@ const UsersComparisonColumn = () => {
             <tr className={styles.Sum}>
               <td>Total difference</td>
               <td className={styles.SumValue}>{totalUserCost.toFixed()}</td>
+              <td className={styles.SumValue}>{totalAverageCost.toFixed()}</td>
               <td className={styles.SumValue}>
                 {totalComparisonCost.toFixed()}
               </td>

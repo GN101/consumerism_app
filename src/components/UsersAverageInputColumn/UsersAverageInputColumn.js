@@ -7,7 +7,10 @@ import AverageCost from '../../Context/ComparingData';
 const UsersAverageInputColumn = () => {
   const { setAverageCosts } = useContext(AverageCost);
   const updatedData = useContext(UpdateUserData);
-  const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState();
+  const [aveCost, setAveCost] = useState();
+  const [inputCategories, setInputCategories] = useState();
+  const [totalAveCost, setTotalAveCost] = useState();
 
   const fetchData = async () => {
     try {
@@ -18,69 +21,65 @@ const UsersAverageInputColumn = () => {
     }
   };
 
-  const handler = (aveCost) => {
-    const test = aveCost.map((x) => x);
-    console.log('test', test);
-    setTimeout(() => {
-      debugger;
-      setAverageCosts('yolo'); // infinite loop happens with array/object values , doesn't happened when single value is set.
-    }, 1000);
-  };
-
   useEffect(() => {
     fetchData();
   }, [updatedData]);
 
-  const usersDataArr = Object.values(usersData);
-  if (usersDataArr.length > 0) {
-    const usersInputs = [];
-    usersDataArr[0].categories.forEach((x) => {
-      usersInputs.push({ name: x.name, value: [] });
-    });
-    for (let i = 0; i < usersDataArr.length; i++) {
-      for (let j = 0; j < usersDataArr[i].categories.length; j++) {
-        usersInputs[j].value.push(usersDataArr[i].categories[j].value);
+  useEffect(() => {
+    if (usersData) {
+      const usersInputs = [];
+      const usersDataArr = Object.values(usersData);
+      usersDataArr[0].categories.forEach((x) => {
+        usersInputs.push({ name: x.name, value: [] });
+      });
+      for (let i = 0; i < usersDataArr.length; i++) {
+        for (let j = 0; j < usersDataArr[i].categories.length; j++) {
+          usersInputs[j].value.push(usersDataArr[i].categories[j].value);
+        }
       }
-    }
-    const aveCost = usersInputs
-      .map((x) => x.value)
-      .map(
-        (x) =>
-          x.reduce((a, b) => parseFloat(a) + parseFloat(b)) /
-          usersInputs[0].value.length
+      setAveCost(
+        usersInputs
+          .map((x) => x.value)
+          .map(
+            (x) =>
+              x.reduce((a, b) => parseFloat(a) + parseFloat(b)) /
+              usersInputs[0].value.length
+          )
       );
+      setInputCategories(usersInputs.map((x) => x.name));
+    }
+  }, [usersData]);
 
-    setTimeout(() => {
-      handler(aveCost);
-    }, 2000);
+  useEffect(() => {
+    if (aveCost) {
+      setAverageCosts(aveCost);
+      setTotalAveCost(aveCost.reduce((a, b) => a + b));
+    }
+  }, [aveCost]);
 
-    const totalAveCost = aveCost.reduce((a, b) => a + b);
-    const inputCategories = usersInputs.map((x) => x.name);
-    return (
-      <div>
-        <h3 className={styles.Title}>Users average Costs!</h3>
-        <table>
-          <tbody>
-            {inputCategories.map((category, index) => (
-              <tr key={index}>
-                <td className={styles.Categories}>{category}</td>
-                <td className={styles.CategoriesValues}>
-                  {aveCost[index].toFixed()}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr className={styles.Sum}>
-              <td>Total Cost</td>
-              <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
+  return totalAveCost ? (
+    <div>
+      <h3 className={styles.Title}>Users average Costs!</h3>
+      <table>
+        <tbody>
+          {inputCategories.map((category, index) => (
+            <tr key={index}>
+              <td className={styles.Categories}>{category}</td>
+              <td className={styles.CategoriesValues}>
+                {aveCost[index].toFixed()}
+              </td>
             </tr>
-          </tfoot>
-        </table>
-      </div>
-    );
-  }
-  return null;
+          ))}
+        </tbody>
+        <tfoot>
+          <tr className={styles.Sum}>
+            <td>Total Cost</td>
+            <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  ) : null;
 };
 
 export default UsersAverageInputColumn;

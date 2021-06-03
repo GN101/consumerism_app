@@ -8,7 +8,7 @@ import UserComparisonColumn from '../../components/UserGoalsColumn/UserCompariso
 import AverageCost from '../../Context/ComparingData';
 
 const Home = () => {
-  const [averageCosts, setAverageCosts] = useState();
+  const [averageCosts, setAverageCosts] = useState([0, 0, 0, 0, 0, 0, 0]);
   const defaultValue = { averageCosts, setAverageCosts };
   return (
     <AverageCost.Provider value={defaultValue}>
