@@ -9,9 +9,9 @@ import AverageCost from '../../Context/ComparingData';
 
 const Home = () => {
   const [averageCosts, setAverageCosts] = useState();
-  debugger;
+  const defaultValue = { averageCosts, setAverageCosts };
   return (
-    <AverageCost.Provider value={{ averageCosts, setAverageCosts }}>
+    <AverageCost.Provider value={defaultValue}>
       <div className={styles.Field}>
         <UserComparisonColumn />
         <UserExpensesColumn />

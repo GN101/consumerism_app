@@ -6,9 +6,8 @@ import AverageCost from '../../Context/ComparingData';
 const UsersComparisonColumn = () => {
   const [userData, setUserData] = useState();
   const updatedData = useContext(UpdateUserData);
-  const averageCosts = useContext(AverageCost);
+  const { averageCosts, setAverageCosts } = useContext(AverageCost);
   console.log(averageCosts);
-  debugger;
 
   const averageExpenses = [5, 3, 4, 2, 3, 4, 1];
   const yourExpenses = [2, 3, 5, 5, 6, 7, 8];

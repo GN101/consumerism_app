@@ -5,14 +5,14 @@ import styles from './WarningSuspicious.module.css';
 const WarningSuspicious = (warning) => {
   const { hide, setHide } = useContext(HideWarnings);
   const [close, setClose] = useState(false);
-  const [cheacked, setCheacked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const suspicionMsg = 'This is too Low. Are you sure about this?';
   const tooHighMsg = 'This is too High. Are you sure about this?';
   const warnDivClasses = [styles.Suspicious];
 
   if (!hide && close) {
     warnDivClasses.push(styles.Closed);
-    if (cheacked) {
+    if (checked) {
       setHide(true);
     }
   }
@@ -32,7 +32,7 @@ const WarningSuspicious = (warning) => {
       >
         Yes
       </button>
-      <input type="checkbox" onClick={() => setCheacked(!cheacked)} />
+      <input type="checkbox" onClick={() => setChecked(!checked)} />
       <label>Don't show again</label>
     </div>
   );

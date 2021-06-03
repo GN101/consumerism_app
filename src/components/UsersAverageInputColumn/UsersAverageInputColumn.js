@@ -18,6 +18,15 @@ const UsersAverageInputColumn = () => {
     }
   };
 
+  const handler = (aveCost) => {
+    const test = aveCost.map((x) => x);
+    console.log('test', test);
+    setTimeout(() => {
+      debugger;
+      setAverageCosts('yolo'); // infinite loop happens with array/object values , doesn't happened when single value is set.
+    }, 1000);
+  };
+
   useEffect(() => {
     fetchData();
   }, [updatedData]);
@@ -41,8 +50,9 @@ const UsersAverageInputColumn = () => {
           usersInputs[0].value.length
       );
 
-    debugger;
-    setAverageCosts(aveCost);
+    setTimeout(() => {
+      handler(aveCost);
+    }, 2000);
 
     const totalAveCost = aveCost.reduce((a, b) => a + b);
     const inputCategories = usersInputs.map((x) => x.name);

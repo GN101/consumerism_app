@@ -22,7 +22,6 @@ const UsersAverageInputColumn = () => {
     setUserData(userDataArray);
   };
 
-  debugger;
   useEffect(() => {
     getUserData();
   }, [updatedData]);
