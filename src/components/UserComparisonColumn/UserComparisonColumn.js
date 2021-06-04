@@ -2,26 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './UserComparisonColumn.module.css';
 import UpdateUserData from '../../Context/UpdateUserData';
 import AverageCost from '../../Context/ComparingData';
+import CookieUserData from '../../Context/CookieUserData';
 
 const UsersComparisonColumn = () => {
   const [userData, setUserData] = useState();
   const updatedData = useContext(UpdateUserData);
   const { averageCosts, setAverageCosts } = useContext(AverageCost);
+  const { cookieUserData, setCookieUserData } = useContext(CookieUserData);
 
   const getUserData = () => {
-    const name = ['userGoal=', 'userExpenses=', 'userTotalExpenses='];
-    const userDataArray = {
-      userGoal: '',
-      userExpenses: '',
-      userTotalExpenses: '',
-    };
+    const userDataArray = {};
     const cookieArray = document.cookie.split('; ');
+
     for (let i = 0; i < cookieArray.length; i++) {
       let cA = cookieArray[i];
-      const string = cA.substring(name[i].length, cA.length);
-      userDataArray[Object.keys(userDataArray)[i]] = JSON.parse(string);
+      const string = cA.substring(cA.indexOf('=') + 1);
+      userDataArray[cA.substring(0, cA.indexOf('='))] = JSON.parse(string);
     }
     setUserData(userDataArray);
+    setCookieUserData(userDataArray);
   };
 
   useEffect(() => {

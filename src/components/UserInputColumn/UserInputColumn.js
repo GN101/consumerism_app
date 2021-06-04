@@ -21,7 +21,6 @@ const UserInputColumn = () => {
   };
 
   const CreateCookie = (userData) => {
-    //to CreateCookie isos prepei na to valo se ksexoristo functional component ( pros to paron xrisimopoihte kai sto UserPanel)
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
     const daysToExpire = 31;

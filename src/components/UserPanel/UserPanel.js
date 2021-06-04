@@ -21,22 +21,6 @@ const UserPanel = () => {
     setShowPortal(!showPortal);
   };
 
-  // const getUserData = () => {
-  //   const name = ['userExpenses=', 'userTotalExpenses=', 'userGoal='];
-  //   const userDataArray = {
-  //     userExpenses: '',
-  //     userTotalExpenses: '',
-  //     userGoal: '',
-  //   };
-  //   const cookieArray = document.cookie.split('; ');
-  //   for (let i = 0; i < cookieArray.length; i++) {
-  //     let cA = cookieArray[i];
-  //     const string = cA.substring(name[i].length, cA.length);
-  //     userDataArray[Object.keys(userDataArray)[i]] = JSON.parse(string);
-  //   }
-  //   setUserData(userDataArray);
-  // };
-
   const CreateCookie = () => {
     const userGoal = {
       savingGoal: savingGoal * timeFrameSavingGoal,
@@ -100,9 +84,6 @@ const UserPanel = () => {
           Lets go
         </button>
       </form>
-      {/* <button className={styles.Button} onClick={getUserData}>
-        GetUserData
-      </button> */}
       <button className={styles.Button} onClick={togglePortal}>
         Edit Expenses
       </button>

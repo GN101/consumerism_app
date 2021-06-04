@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../Expectations/Expectations.module.css';
+import CookieUserData from '../../Context/CookieUserData';
 
 const Expectations = () => {
-  const income = 650;
-  const expenses = 600;
-  const savingGoal = 100;
-  const amount = 50;
+  const { cookieUserData, setCookieUserData } = useContext(CookieUserData);
+  const [income, setIncome] = useState(0);
+  const [savingGoal, setSavingGoal] = useState(0);
+  const [expenses, setExpenses] = useState(0);
+
+  useEffect(() => {
+    if (cookieUserData) {
+      console.log(cookieUserData);
+      setIncome(cookieUserData.userGoal.income);
+      setSavingGoal(cookieUserData.userGoal.savingGoal);
+      setExpenses(cookieUserData.userTotalExpenses);
+    }
+  }, [cookieUserData]);
+
+  const amount = expenses + savingGoal - income;
 
   return (
     <div>
@@ -28,12 +40,20 @@ const Expectations = () => {
           </tr>
         </tbody>
       </table>
-      <p className={styles.CategoriesValues}>
-        {' '}
-        you will need to reduce your expenses for about{' '}
-        <span className={styles.Categories}>{amount}</span> per month to reach
-        your goal
-      </p>
+      {amount > 0 ? (
+        <p className={styles.CategoriesValues}>
+          {' '}
+          you will need to reduce your expenses for about{' '}
+          <span className={styles.Categories}>{amount}</span> per month to reach
+          your goal
+        </p>
+      ) : (
+        <p className={styles.CategoriesValues}>
+          your expenses are so low that you already can save up to{' '}
+          <span className={styles.Categories}>{income - expenses}</span> per
+          Month!{' '}
+        </p>
+      )}
     </div>
   );
 };
