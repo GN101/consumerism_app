@@ -7,7 +7,6 @@ const UsersComparisonColumn = () => {
   const [userData, setUserData] = useState();
   const updatedData = useContext(UpdateUserData);
   const { averageCosts, setAverageCosts } = useContext(AverageCost);
-  console.log(averageCosts);
 
   const getUserData = () => {
     const name = ['userGoal=', 'userExpenses=', 'userTotalExpenses='];
@@ -55,7 +54,9 @@ const UsersComparisonColumn = () => {
 
     return (
       <div className={styles.Table}>
-        <h3 className={styles.Title}>Results</h3>
+        <h3 className={styles.Title}>
+          Results <span className={styles.Text}>(per month)</span>
+        </h3>
         <table>
           <tbody>
             <tr>

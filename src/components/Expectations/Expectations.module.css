@@ -6,6 +6,10 @@
   color: whitesmoke;
   text-align: left;
 }
+.Text {
+  color: whitesmoke;
+  font-size: 70%;
+}
 
 .Categories {
   color: yellow;

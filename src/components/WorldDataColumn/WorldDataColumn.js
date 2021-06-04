@@ -16,29 +16,31 @@ const WorldDataColumn = () => {
   const hideFields = show ? styles.Column : styles.Hide;
 
   return (
-    <div>
+    <div className={styles.Container}>
       <button type="button" className={styles.Button} onClick={toggleContent}>
         World Data
       </button>
-      <div className={hideFields}>
-        <h3 className={styles.Title}>World Data</h3>
-        <table>
-          <tbody>
-            {categories.map((categoryName, index) => (
-              <tr key={index}>
-                <td className={styles.Categories}>{categoryName}</td>
-                <td className={styles.Values}>{values[index]}</td>
+      {show ? (
+        <div className={hideFields}>
+          <h3 className={styles.Title}>World Average Expenses</h3>
+          <table>
+            <tbody>
+              {categories.map((categoryName, index) => (
+                <tr key={index}>
+                  <td className={styles.Categories}>{categoryName}</td>
+                  <td className={styles.Values}>{values[index]}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className={styles.Sum}>
+                <td>Total Cost</td>
+                <td className={styles.SumValue}>{totalCost.toFixed()}</td>
               </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr className={styles.Sum}>
-              <td>Total Cost</td>
-              <td className={styles.SumValue}>{totalCost.toFixed()}</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+            </tfoot>
+          </table>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -57,29 +57,30 @@ const UsersAverageInputColumn = () => {
     }
   }, [aveCost]);
 
-  return totalAveCost ? (
-    <div>
-      <h3 className={styles.Title}>Users average Costs!</h3>
-      <table>
-        <tbody>
-          {inputCategories.map((category, index) => (
-            <tr key={index}>
-              <td className={styles.Categories}>{category}</td>
-              <td className={styles.CategoriesValues}>
-                {aveCost[index].toFixed()}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr className={styles.Sum}>
-            <td>Total Cost</td>
-            <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  ) : null;
+  return null;
+  // return totalAveCost ? (
+  //   <div>
+  //     <h3 className={styles.Title}>Users average Costs!</h3>
+  //     <table>
+  //       <tbody>
+  //         {inputCategories.map((category, index) => (
+  //           <tr key={index}>
+  //             <td className={styles.Categories}>{category}</td>
+  //             <td className={styles.CategoriesValues}>
+  //               {aveCost[index].toFixed()}
+  //             </td>
+  //           </tr>
+  //         ))}
+  //       </tbody>
+  //       <tfoot>
+  //         <tr className={styles.Sum}>
+  //           <td>Total Cost</td>
+  //           <td className={styles.SumValue}>{totalAveCost.toFixed()}</td>
+  //         </tr>
+  //       </tfoot>
+  //     </table>
+  //   </div>
+  // ) : null;
 };
 
 export default UsersAverageInputColumn;
