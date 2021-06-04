@@ -1,17 +1,24 @@
+.Table {
+  overflow-x: auto;
+}
 .Title {
   width: auto;
   color: whitesmoke;
+  text-align: left;
+}
+.Text {
+  color: whitesmoke;
+  font-size: 70%;
 }
 
 .Categories {
   color: yellow;
-  width: 80%;
   text-transform: capitalize;
-  padding: 5px 10px;
+  padding: 5px 0px;
 }
 
 .CategoriesValues {
-  text-align: right;
+  text-align: center;
   color: white;
 }
 
@@ -19,5 +26,5 @@
   color: yellowgreen;
 }
 .SumValue {
-  text-align: right;
+  text-align: center;
 }

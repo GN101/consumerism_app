@@ -1,3 +1,7 @@
+.Container {
+  margin: auto;
+}
+
 .Column {
   visibility: visible;
   opacity: 1;
@@ -7,29 +11,30 @@
 .Hide {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 300ms, opacity 300ms;
+  transition: visibility 1s linear 300ms, opacity 300ms;
 }
 
-.Field {
-  padding-top: 10px;
+.Title {
+  width: auto;
+  color: whitesmoke;
 }
 
-.Form {
-  margin-top: 10px;
-  padding: 10px 6px;
-}
-
-.Input {
-  display: block;
-  width: 70%;
-  min-width: 200px;
-  max-width: 500px;
-}
-
-.Label {
+.Categories {
   color: #ffeb3b;
   text-transform: capitalize;
   padding: 4px 0;
+}
+
+.Values {
+  text-align: right;
+  color: white;
+}
+
+.Sum {
+  color: yellowgreen;
+}
+.SumValue {
+  text-align: right;
 }
 
 .Button {

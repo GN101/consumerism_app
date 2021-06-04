@@ -1,5 +1,6 @@
 .Container {
   color: whitesmoke;
+  margin-top: -20px;
 }
 .Column {
   width: auto;

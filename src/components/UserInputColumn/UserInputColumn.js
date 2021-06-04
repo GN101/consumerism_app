@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from './UserInputColumn.module.css';
 import InputField from '../InputField/InputField';
 import axios from '../../axios-orders';
-import { UpdateUserData } from '../../Context/UpdateUserData';
+import UpdateUserData from '../../Context/UpdateUserData';
 import HideWarnings from '../../Context/HideWarnings';
+import { useHistory } from 'react-router-dom';
 
 const UserInputColumn = () => {
   const { updatedData, setUpdatedData } = useContext(UpdateUserData);
@@ -11,11 +12,24 @@ const UserInputColumn = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [hide, setHide] = useState(false);
   const hideWarning = { hide, setHide };
+  const history = useHistory();
 
   const update = () => {
     setTimeout(() => {
       setUpdatedData(updatedData + 1);
     }, 500);
+  };
+
+  const CreateCookie = (userData) => {
+    const userExpenses = JSON.stringify(userData.categories);
+    const userTotalExpenses = JSON.stringify(userData.totalCost);
+    const daysToExpire = 31;
+    const d = new Date();
+    d.setTime(d.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
+    const expires = 'expires=' + d.toUTCString();
+
+    document.cookie = 'userExpenses=' + userExpenses + ';' + expires;
+    document.cookie = 'userTotalExpenses=' + userTotalExpenses + ';' + expires;
   };
 
   const fetchUserForm = async () => {
@@ -32,9 +46,7 @@ const UserInputColumn = () => {
   }, []);
 
   const formChangeHandler = (value, index, time) => {
-    const updatedForm = {
-      ...userInput,
-    };
+    const updatedForm = [...userInput];
     const updatedFormEl = {
       ...updatedForm[index],
     };
@@ -68,10 +80,19 @@ const UserInputColumn = () => {
     }
   };
 
+  if (userInput.length > 0) {
+    userInput.sort(function (a, b) {
+      return a.customIndex - b.customIndex;
+    });
+  }
   const submitFormHandler = async (event) => {
     try {
       event.preventDefault();
-      const userData = { categories: {}, totalCost: '', suspiciousInput: {} };
+      const categories = [];
+      userInput.forEach((x) => {
+        categories.push({ name: x.name, value: '' });
+      });
+      const userData = { categories, totalCost: '', suspiciousInput: {} };
       const valuesSum = Object.values(userInput)
         .map((listItem) => listItem.value)
         .filter((value) => value !== '');
@@ -87,10 +108,11 @@ const UserInputColumn = () => {
         console.log('SUBMIT SUCCESSFUL - totalCost: ', totalC);
         userData.totalCost = totalC;
         const userInputArr = Object.values(userInput);
-        userInputArr.map(
-          (userInfo) => (userData.categories[userInfo.name] = userInfo.value)
+        userInputArr.map((userInfo) =>
+          userData.categories.forEach((x) =>
+            x.name === userInfo.name ? (x.value = userInfo.value) : null
+          )
         );
-        Object.values(userInput);
         const suspiciousInputArr = Object.values(userInput);
         suspiciousInputArr.map(
           (suspiciousInput) =>
@@ -107,7 +129,9 @@ const UserInputColumn = () => {
           .post('/userData.json', userData)
           .then((res) => console.log(res))
           .catch((e) => console.log(e))
-          .then(update());
+          .then(update())
+          .then(CreateCookie(userData))
+          .then(history.push('/about'));
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');
@@ -154,7 +178,7 @@ const UserInputColumn = () => {
         isSuspicious={listItem.isSuspicious}
         isTooHigh={listItem.isTooHigh}
         hasValue={listItem.hasValue}
-        timeCategorisation={true}
+        timeCategorization={true}
         valRequired={listItem.validation.required}
         time={(event) => {
           if (userInput[index].input > 0) {
@@ -179,7 +203,7 @@ const UserInputColumn = () => {
 
   return (
     <div className={styles.Container}>
-      <h3>Please fill the form below!</h3>
+      <h3>Please fill your expenses below!</h3>
       <form className={styles.Column} onSubmit={submitFormHandler}>
         {inputForm}
         <button className={styles.Button} type="submit">

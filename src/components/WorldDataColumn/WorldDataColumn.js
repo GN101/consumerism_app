@@ -1,50 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styles from './WorldDataColumn.module.css';
-import WorldField from './WorldField';
-import mockedUserInputState from '../../mocks/mockedUserInputColumnState';
+import mockedWorldData from '../../mocks/mockedWorldData';
 
-class WorldDataColumn extends Component {
-  state = {
-    mockedUserInputState,
-    show: true,
-    totalCost: '',
-  };
+const WorldDataColumn = () => {
+  const [show, setShow] = useState(false);
 
-  toggleContent = (e) => {
+  const toggleContent = (e) => {
     e.preventDefault();
-    const { show } = this.state;
-    this.setState({ show: !show });
+    setShow(!show);
   };
 
-  render() {
-    const userInput = this.state.mockedUserInputState;
-    const { show } = this.state;
-    const hideFields = show ? styles.Column : styles.Hide;
+  const categories = mockedWorldData.map((x) => (x = x.name));
+  const values = mockedWorldData.map((x) => (x = x.value));
+  const totalCost = values.reduce((a, b) => parseFloat(a) + parseFloat(b));
+  const hideFields = show ? styles.Column : styles.Hide;
 
-    const worldInputForm = userInput.map((obj) => (
-      <WorldField
-        key={`${obj.name}world-data-id`}
-        label={obj.name}
-        placeholder={obj.placeholder}
-        value={obj.value}
-      />
-    ));
-
-    return (
-      <div>
-        <button
-          type="button"
-          className={styles.Button}
-          onClick={this.toggleContent}
-        >
-          World Data
-        </button>
+  return (
+    <div className={styles.Container}>
+      <button type="button" className={styles.Button} onClick={toggleContent}>
+        World Data
+      </button>
+      {show ? (
         <div className={hideFields}>
-          <div>{worldInputForm}</div>
+          <h3 className={styles.Title}>World Average Expenses</h3>
+          <table>
+            <tbody>
+              {categories.map((categoryName, index) => (
+                <tr key={index}>
+                  <td className={styles.Categories}>{categoryName}</td>
+                  <td className={styles.Values}>{values[index]}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className={styles.Sum}>
+                <td>Total Cost</td>
+                <td className={styles.SumValue}>{totalCost.toFixed()}</td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
-      </div>
-    );
-  }
-}
+      ) : null}
+    </div>
+  );
+};
 
 export default WorldDataColumn;

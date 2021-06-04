@@ -1,23 +1,30 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { useState } from 'react';
-import UserInputColumn from '../../components/UserInputColumn/UserInputColumn';
 import WorldDataColumn from '../../components/WorldDataColumn/WorldDataColumn';
 import styles from './Home.module.css';
 import UsersAverageInputColumn from '../../components/UsersAverageInputColumn/UsersAverageInputColumn';
-import { UpdateUserData } from '../../Context/UpdateUserData';
+// import UserExpensesColumn from '../../components/UserExpensesColumn/UserExpensesColumn';
+import UserComparisonColumn from '../../components/UserComparisonColumn/UserComparisonColumn';
+import Expectations from '../../components/Expectations/Expectations';
+import AverageCost from '../../Context/ComparingData';
+import CookieUserData from '../../Context/CookieUserData';
 
 const Home = () => {
-  const [updatedData, setUpdatedData] = useState(1);
-  const defaultValue = { updatedData, setUpdatedData };
-
+  const [averageCosts, setAverageCosts] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [cookieUserData, setCookieUserData] = useState();
+  const defaultValue = { averageCosts, setAverageCosts };
   return (
-    <div className={styles.Field}>
-      <UpdateUserData.Provider value={defaultValue}>
-        <UserInputColumn />
-        <UsersAverageInputColumn />
-        <WorldDataColumn />
-      </UpdateUserData.Provider>
-    </div>
+    <CookieUserData.Provider value={{ cookieUserData, setCookieUserData }}>
+      <AverageCost.Provider value={defaultValue}>
+        <div className={styles.Field}>
+          <UserComparisonColumn />
+          <Expectations />
+          {/* <UserExpensesColumn /> */}
+          <UsersAverageInputColumn />
+          <WorldDataColumn />
+        </div>
+      </AverageCost.Provider>
+    </CookieUserData.Provider>
   );
 };
 

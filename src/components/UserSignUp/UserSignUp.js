@@ -75,7 +75,7 @@ const UserSignUp = () => {
             pattern:
               '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&-+=()])(?=\\S+$).{6,30}$',
             title:
-              'at least 6 characters long including 1 number,1 symbol,1 upercase letter, 1 downcase letter ',
+              'at least 6 characters long including 1 number,1 symbol,1 uppercase letter, 1 lowercase letter ',
             type: 'text',
           };
           break;
@@ -124,12 +124,12 @@ const UserSignUp = () => {
     const NicknameList = [];
     const EmailList = [];
     try {
-      const userAcountInfo = { personalInfo: {} };
+      const userAccountInfo = { personalInfo: {} };
       event.preventDefault();
       if (formIsValid) {
         try {
-          const userAcounts = await axios.get('userAcounts/.json');
-          const data = userAcounts.data;
+          const userAccounts = await axios.get('userAccounts/.json');
+          const data = userAccounts.data;
           for (const key in data) {
             NicknameList.push(data[key].personalInfo.Nickname);
             EmailList.push(data[key].personalInfo['E-mail']);
@@ -142,20 +142,20 @@ const UserSignUp = () => {
             const userInputArr = Object.values(userInput);
             userInputArr.map(
               (userInfo) =>
-                (userAcountInfo.personalInfo[userInfo.name] = userInfo.value)
+                (userAccountInfo.personalInfo[userInfo.name] = userInfo.value)
             );
 
             firebase
               .auth()
               .createUserWithEmailAndPassword(
-                userAcountInfo.personalInfo['E-mail'],
-                userAcountInfo.personalInfo['Password']
+                userAccountInfo.personalInfo['E-mail'],
+                userAccountInfo.personalInfo['Password']
               )
               .then(function () {
                 firebase
                   .auth()
                   .currentUser.updateProfile({
-                    displayName: userAcountInfo.personalInfo['Nickname'],
+                    displayName: userAccountInfo.personalInfo['Nickname'],
                   })
                   .then(function () {
                     console.log('Name Update successful.');
@@ -170,11 +170,11 @@ const UserSignUp = () => {
               });
 
             axios
-              .post('/userAcounts.json', userAcountInfo)
+              .post('/userAccounts.json', userAccountInfo)
               .then((res) => console.log('res', res))
               .catch((e) => console.log('error', e));
           } else {
-            alert('E-mail in use by another acount');
+            alert('E-mail in use by another account');
           }
         } else {
           alert('Nickname taken try another one.');
@@ -194,7 +194,7 @@ const UserSignUp = () => {
   const signUpForm = listOfUserInfo.map((item, index) => (
     <InputField
       key={item.name}
-      classname={styles.Input}
+      className={styles.Input}
       label={item.name}
       placeholder={`Please write ${item.name} here`}
       category={item.name}
@@ -215,10 +215,10 @@ const UserSignUp = () => {
     <div className={styles.Form}>
       {user ? (
         <div>
-          <p className={styles.Header}>You are succesfuly loged in as :</p>
+          <p className={styles.Header}>You are successfully logged in as :</p>
           <p className={styles.Label}>{user.displayName}</p>
           <button className={styles.Button}>
-            <Link to="/">Go to Stats</Link>
+            <Link to="/about">Go to Stats</Link>
           </button>
         </div>
       ) : (

@@ -10,13 +10,13 @@ const InputField = (props) => {
     title,
     placeholder,
     category,
-    classname,
+    className,
     valid,
     valRequired,
     isSuspicious,
     isTooHigh,
     hasValue,
-    timeCategorisation,
+    timeCategorization,
     time,
     changed,
   } = props;
@@ -24,8 +24,8 @@ const InputField = (props) => {
   const [invalidStyle, setInvalidStyle] = useState(false);
   const [warning, setWarning] = useState();
   const [touched, setTouched] = useState(false);
-  const [timeframe, setTimeframe] = useState('per Month');
-  const inputClasses = [classname || styles.Input];
+  const [timeFrame, setTimeFrame] = useState('per Month');
+  const inputClasses = [className || styles.Input];
 
   if (!valid && valRequired && hasValue) {
     if (invalidStyle) {
@@ -60,13 +60,13 @@ const InputField = (props) => {
         <br></br>
         {isSuspicious && showWarningMsg && <WarningSuspicious type={warning} />}
         {isTooHigh && showWarningMsg && <WarningSuspicious type={warning} />}
-        {timeCategorisation && (touched || hasValue) ? (
-          <div className={styles.TimePeriod}>
+        {timeCategorization && (touched || hasValue) ? (
+          <div className={styles.Timeperiod}>
             <span> Cost: </span>
             <select
-              onChange={(e) => setTimeframe(e.target.value)}
+              onChange={(e) => setTimeFrame(e.target.value)}
               onInput={time}
-              defaultValue={timeframe}
+              defaultValue={timeFrame}
             >
               <option value="per Week">per Week </option>
               <option value="per Month">per Month</option>
@@ -85,8 +85,8 @@ const InputField = (props) => {
           onChange={changed}
           onClick={() => setTouched(true)}
           onBlur={focusOutHandler}
-          time={timeframe}
-          timeperiod={timeframe}
+          time={timeFrame}
+          timeperiod={timeFrame}
         />
       </label>
     </div>
