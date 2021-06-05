@@ -1,15 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './UserLogin.module.css';
 import { Link } from 'react-router-dom';
 import { signInWithGoogle, signOut, auth } from '../../firebase/firebase';
 import 'firebase/auth';
 import { UserContext } from '../../Context/UserProvider';
+import UpdateUserData from '../../Context/UpdateUserData';
 
 const UserLogin = () => {
   const user = useContext(UserContext);
+  const updatedData = useContext(UpdateUserData);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.length > 347) {
+      setReveal(true);
+    }
+  }, [updatedData]);
 
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
     event.preventDefault();
@@ -36,7 +45,11 @@ const UserLogin = () => {
           <p className={styles.Header}>You are successfully logged in as :</p>
           <p className={styles.Label}>{user.displayName}</p>
           <button className={styles.Button}>
-            <Link to="/about">Go to Stats</Link>
+            {reveal ? (
+              <Link to="/results">Go to Stats</Link>
+            ) : (
+              <Link to="/">Lets get Started</Link>
+            )}
           </button>
           <button className={styles.Button} onClick={signOut}>
             Log out

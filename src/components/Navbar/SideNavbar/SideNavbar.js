@@ -1,24 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlternateThemeContext from '../../../Context/AlternateTheme-context';
 import './SideNavbar.css';
 import { signOut } from '../../../firebase/firebase';
 import { UserContext } from '../../../Context/UserProvider';
+import UpdateUserData from '../../../Context/UpdateUserData';
 
 const SideNavbar = ({ toggleNav }) => {
   const { theme } = useContext(AlternateThemeContext);
+  const updatedData = useContext(UpdateUserData);
   const user = useContext(UserContext);
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.length > 347) {
+      setReveal(true);
+    }
+  }, [updatedData]);
 
   return (
     <div>
       <div id="sideNavId" className={theme ? 'sideNav' : 'sideNav_dark'}>
         {user ? (
           <ul id="sideNavItem">
-            <li>
-              <Link onClick={toggleNav} to="/about">
-                About
-              </Link>
-            </li>
+            {reveal ? (
+              <li>
+                <Link onClick={toggleNav} to="/results">
+                  Results
+                </Link>
+              </li>
+            ) : null}
             <li>
               <Link to="/login" onClick={signOut}>
                 Log out <br></br>({user.displayName})
@@ -27,11 +38,13 @@ const SideNavbar = ({ toggleNav }) => {
           </ul>
         ) : (
           <ul id="sideNavItem">
-            <li>
-              <Link onClick={toggleNav} to="/about">
-                About
-              </Link>
-            </li>
+            {reveal ? (
+              <li>
+                <Link onClick={toggleNav} to="/results">
+                  Results
+                </Link>
+              </li>
+            ) : null}
             <li>
               <Link onClick={toggleNav} to="/login">
                 Log In

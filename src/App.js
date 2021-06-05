@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import UserSignUp from './components/UserSignUp/UserSignUp';
@@ -15,9 +15,15 @@ const App = () => {
   const [theme, setTheme] = useState(true);
   const value = { theme, setTheme };
   const user = useContext(UserContext);
-
   const [updatedData, setUpdatedData] = useState(1);
   const defaultValue = { updatedData, setUpdatedData };
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.length > 347) {
+      setReveal(true);
+    }
+  }, [updatedData]);
 
   return user ? (
     <UpdateUserData.Provider value={defaultValue}>
@@ -27,7 +33,7 @@ const App = () => {
             <Navbar />
             <Switch>
               <Route path="/" exact component={UserPanel} />
-              <Route path="/about" component={Home} />
+              {reveal ? <Route path="/results" component={Home} /> : null}
               <Route path="/login" component={UserLogin} />
               <Route path="/signUp" component={UserSignUp} />
             </Switch>
@@ -43,7 +49,7 @@ const App = () => {
             <Navbar />
             <Switch>
               <Route path="/" exact component={UserPanel} />
-              <Route path="/about" component={Home} />
+              {reveal ? <Route path="/results" component={Home} /> : null}
               <Route path="/login" component={UserLogin} />
               <Route path="/signUp" component={UserSignUp} />
               <Route path="/passwordReset" component={PasswordReset} />

@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+// import React from 'react';
+// import styles from './UserAverageInputColumn.module.css';
+import { useContext, useEffect, useState } from 'react';
 import axios from '../../axios-orders';
-import styles from './UserAverageInputColumn.module.css';
 import UpdateUserData from '../../Context/UpdateUserData';
 import AverageCost from '../../Context/ComparingData';
 
@@ -9,8 +10,8 @@ const UsersAverageInputColumn = () => {
   const updatedData = useContext(UpdateUserData);
   const [usersData, setUsersData] = useState();
   const [aveCost, setAveCost] = useState();
-  const [inputCategories, setInputCategories] = useState();
-  const [totalAveCost, setTotalAveCost] = useState();
+  //const [inputCategories, setInputCategories] = useState(); //to be removed not in use
+  // const [totalAveCost, setTotalAveCost] = useState();  //to be removed not in use
 
   const fetchData = async () => {
     try {
@@ -46,14 +47,14 @@ const UsersAverageInputColumn = () => {
               usersInputs[0].value.length
           )
       );
-      setInputCategories(usersInputs.map((x) => x.name));
+      //setInputCategories(usersInputs.map((x) => x.name)); //to be removed not in use
     }
   }, [usersData]);
 
   useEffect(() => {
     if (aveCost) {
       setAverageCosts(aveCost);
-      setTotalAveCost(aveCost.reduce((a, b) => a + b));
+      // setTotalAveCost(aveCost.reduce((a, b) => a + b)); //to be removed not in use
     }
   }, [aveCost]);
 

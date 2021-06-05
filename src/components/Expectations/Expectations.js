@@ -3,7 +3,7 @@ import styles from '../Expectations/Expectations.module.css';
 import CookieUserData from '../../Context/CookieUserData';
 
 const Expectations = () => {
-  const { cookieUserData, setCookieUserData } = useContext(CookieUserData);
+  const { cookieUserData } = useContext(CookieUserData);
   const [income, setIncome] = useState(0);
   const [savingGoal, setSavingGoal] = useState(0);
   const [expenses, setExpenses] = useState(0);
@@ -49,7 +49,7 @@ const Expectations = () => {
         </p>
       ) : (
         <p className={styles.CategoriesValues}>
-          your expenses are so low that you already can save up to{' '}
+          your expenses are low enough that you already can save up to{' '}
           <span className={styles.Categories}>{income - expenses}</span> per
           Month!{' '}
         </p>
