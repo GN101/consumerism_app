@@ -13,7 +13,7 @@ const SideNavbar = ({ toggleNav }) => {
   const [reveal, setReveal] = useState(false);
 
   useEffect(() => {
-    if (document.cookie.length > 347) {
+    if (document.cookie.length > 333) {
       setReveal(true);
     }
   }, [updatedData]);
