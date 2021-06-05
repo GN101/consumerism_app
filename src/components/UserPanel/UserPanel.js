@@ -35,12 +35,12 @@ const UserPanel = () => {
 
   return (
     <div className={styles.Container}>
-      <h2 className={styles.Header}>Welcome our fellow Consumer</h2>
+      <h2 className={styles.Header}>Welcome, our fellow Consumer</h2>
       <p className={styles.Text}>it's time to take care of your Expenses!</p>
       <form onSubmit={goalSubmit}>
         <div className={styles.Timeperiod}>
           <label className={styles.Label} htmlFor="input1">
-            How much do you wanna save?
+            How much do you want to save?
           </label>
           <select
             defaultValue={timeFrameSavingGoal}
