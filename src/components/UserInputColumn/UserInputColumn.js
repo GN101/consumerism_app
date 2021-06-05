@@ -131,7 +131,7 @@ const UserInputColumn = () => {
           .catch((e) => console.log(e))
           .then(update())
           .then(CreateCookie(userData))
-          .then(history.push('/about'));
+          .then(history.push('/results'));
       } else {
         // TODO: we need to render a proper error message for such cases
         console.log('SUBMIT FAILED - Form is invalid!');

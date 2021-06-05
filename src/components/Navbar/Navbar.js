@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import SideNavbar from './SideNavbar/SideNavbar';
@@ -6,11 +6,20 @@ import AlternateTheme from '../AlternateTheme/AlternateTheme';
 import AlternateThemeContext from '../../Context/AlternateTheme-context';
 import { signOut } from '../../firebase/firebase';
 import { UserContext } from '../../Context/UserProvider';
+import UpdateUserData from '../../Context/UpdateUserData';
 
 const Navbar = () => {
-  const [openSideNav, setOpenSideNav] = useState(false);
   const { theme } = useContext(AlternateThemeContext);
   const user = useContext(UserContext);
+  const updatedData = useContext(UpdateUserData);
+  const [openSideNav, setOpenSideNav] = useState(false);
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.length > 347) {
+      setReveal(true);
+    }
+  }, [updatedData]);
 
   const toggleNav = () => {
     if (openSideNav) {
@@ -40,9 +49,11 @@ const Navbar = () => {
           <div className="navbar_navigation-items">
             {user ? (
               <ul id="navNavItem">
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
+                {reveal ? (
+                  <li>
+                    <Link to="/results">Results</Link>
+                  </li>
+                ) : null}
                 <li>
                   <Link to="/login" onClick={signOut}>
                     Log out ({user.displayName})
@@ -51,9 +62,11 @@ const Navbar = () => {
               </ul>
             ) : (
               <ul id="navNavItem">
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
+                {reveal ? (
+                  <li>
+                    <Link to="/results">Results</Link>
+                  </li>
+                ) : null}
                 <li>
                   <Link to="/login">Log In</Link>
                 </li>

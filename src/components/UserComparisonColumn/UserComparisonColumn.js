@@ -7,8 +7,8 @@ import CookieUserData from '../../Context/CookieUserData';
 const UsersComparisonColumn = () => {
   const [userData, setUserData] = useState();
   const updatedData = useContext(UpdateUserData);
-  const { averageCosts, setAverageCosts } = useContext(AverageCost);
-  const { cookieUserData, setCookieUserData } = useContext(CookieUserData);
+  const { averageCosts } = useContext(AverageCost);
+  const { setCookieUserData } = useContext(CookieUserData);
 
   const getUserData = () => {
     const userDataArray = {};

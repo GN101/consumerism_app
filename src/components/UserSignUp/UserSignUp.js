@@ -5,11 +5,20 @@ import styles from './UserSignUp.module.css';
 import axios from '../../axios-orders';
 import firebase from 'firebase/app';
 import { UserContext } from '../../Context/UserProvider';
+import UpdateUserData from '../../Context/UpdateUserData';
 
 const UserSignUp = () => {
   const [userInput, setUserInput] = useState({});
   const [formIsValid, setFormIsValid] = useState(false);
   const user = useContext(UserContext);
+  const updatedData = useContext(UpdateUserData);
+  const [reveal, setReveal] = useState(false);
+
+  useEffect(() => {
+    if (document.cookie.length > 347) {
+      setReveal(true);
+    }
+  }, [updatedData]);
 
   const fetchUserForm = async () => {
     try {
@@ -218,7 +227,11 @@ const UserSignUp = () => {
           <p className={styles.Header}>You are successfully logged in as :</p>
           <p className={styles.Label}>{user.displayName}</p>
           <button className={styles.Button}>
-            <Link to="/about">Go to Stats</Link>
+            {reveal ? (
+              <Link to="/results">Go to Stats</Link>
+            ) : (
+              <Link to="/">Lets get Started</Link>
+            )}
           </button>
         </div>
       ) : (
