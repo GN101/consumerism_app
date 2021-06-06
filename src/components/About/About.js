@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './About.module.css';
+import CV from '../../files/CV-Mixail-Malliotakis.pdf';
 
 const About = () => {
   return (
@@ -29,7 +30,7 @@ const About = () => {
         averages (mocked data, so far), which is yet not implemented (to be
         implemented in the near future).
       </p>
-      <a href="/CV-Mixail-Malliotakis.pdf" download>
+      <a target="_blank" href={CV}>
         <p className={styles.Text3}>Download CV</p>
       </a>
     </>
