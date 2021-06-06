@@ -23,7 +23,7 @@ const UserInputColumn = () => {
   const CreateCookie = (userData) => {
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
-    const daysToExpire = 31;
+    const daysToExpire = 3;
     const d = new Date();
     d.setTime(d.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
     const expires = 'expires=' + d.toUTCString();
@@ -145,23 +145,20 @@ const UserInputColumn = () => {
     let isValid = true;
     let isSuspicious = false;
     let isTooHigh = false;
-
-    if (!obj.validation) {
+    if (!obj.validation.required) {
       return true;
     }
-
     if (obj.validation.range) {
       const lowRange = obj.validation.range[0];
       const highRange = obj.validation.range[1];
-
       isSuspicious = obj.value < lowRange && obj.value > 0;
       isTooHigh = obj.value > highRange;
     }
-
-    if (obj.validation.type === 'number') {
-      const pattern = /^\d+$/;
-      isValid = (pattern.test(obj.value) || obj.value.trim() === '') && isValid;
-    }
+    const integerPattern = /^\d+$/;
+    const digitPattern = /^\d.+$/;
+    isValid =
+      (integerPattern.test(obj.value) || digitPattern.test(obj.value)) &&
+      isValid;
     return [isValid, isSuspicious, isTooHigh];
   };
 

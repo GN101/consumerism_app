@@ -1,0 +1,39 @@
+import React from 'react';
+import styles from './About.module.css';
+
+const About = () => {
+  return (
+    <>
+      <h2 className={styles.Header}> Hello, I am Michael Malliotakis</h2>
+      <p className={styles.Text}>This is my first portfolio app.</p>
+      <h3 className={styles.Text}>Noteworthy aspects of the app:</h3>
+      <ol className={styles.Label}>
+        <li>Firebase authentication</li>
+        <li>Cookies</li>
+        <li>
+          UseContext (colors theme, automatic users average data updating, etc)
+        </li>
+        <li>User input modal (createPortal())</li>
+        <li>Various user input invalidations</li>
+        <li>Responsive CSS (including side menu)</li>
+      </ol>
+      <h3 className={styles.Text}>A brief summary of the app:</h3>
+      <p className={styles.Text2}>
+        The idea behind this app is that a user (who can either log in or use it
+        as a guest and his data are saved in the database and temporarily in a
+        cookie) is requested to fill in his input (= personal expenses & his
+        desired savings goal & income), then he is provided with the results,
+        which compare his input to the averages of other users and is provided
+        with a summary (e.g. how much he needs to reduce his expenses in order
+        to achieve his goal). Ideally, we'll be comparing them to the national
+        averages (mocked data, so far), which is yet not implemented (to be
+        implemented in the near future).
+      </p>
+      <a href="/CV-Mixail-Malliotakis.pdf" download>
+        <p className={styles.Text3}>Download CV</p>
+      </a>
+    </>
+  );
+};
+
+export default About;

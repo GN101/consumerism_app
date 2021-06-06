@@ -10,7 +10,6 @@ const Expectations = () => {
 
   useEffect(() => {
     if (cookieUserData) {
-      console.log(cookieUserData);
       setIncome(cookieUserData.userGoal.income);
       setSavingGoal(cookieUserData.userGoal.savingGoal);
       setExpenses(cookieUserData.userTotalExpenses);
