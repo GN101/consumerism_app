@@ -23,7 +23,7 @@ const UserInputColumn = () => {
   const CreateCookie = (userData) => {
     const userExpenses = JSON.stringify(userData.categories);
     const userTotalExpenses = JSON.stringify(userData.totalCost);
-    const daysToExpire = 31;
+    const daysToExpire = 3;
     const d = new Date();
     d.setTime(d.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
     const expires = 'expires=' + d.toUTCString();

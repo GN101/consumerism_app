@@ -55,6 +55,9 @@ const Navbar = () => {
                   </li>
                 ) : null}
                 <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
                   <Link to="/login" onClick={signOut}>
                     Log out ({user.displayName})
                   </Link>
@@ -67,6 +70,9 @@ const Navbar = () => {
                     <Link to="/results">Results</Link>
                   </li>
                 ) : null}
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
                 <li>
                   <Link to="/login">Log In</Link>
                 </li>

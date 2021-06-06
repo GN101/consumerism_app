@@ -31,6 +31,11 @@ const SideNavbar = ({ toggleNav }) => {
               </li>
             ) : null}
             <li>
+              <Link onClick={toggleNav} to="/about">
+                About
+              </Link>
+            </li>
+            <li>
               <Link to="/login" onClick={signOut}>
                 Log out <br></br>({user.displayName})
               </Link>
@@ -45,6 +50,11 @@ const SideNavbar = ({ toggleNav }) => {
                 </Link>
               </li>
             ) : null}
+            <li>
+              <Link onClick={toggleNav} to="/about">
+                About
+              </Link>
+            </li>
             <li>
               <Link onClick={toggleNav} to="/login">
                 Log In

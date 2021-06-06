@@ -1,0 +1,29 @@
+.Header {
+  display: block;
+  padding: 55px 0 0 0;
+  margin: 8px auto;
+  color: aliceblue;
+}
+.Text {
+  margin: 8px auto;
+  text-align: left;
+  padding: 0 25px;
+  color: white;
+}
+.Text2 {
+  font-size: 15px;
+  margin: 8px auto;
+  text-align: left;
+  padding: 0 25px;
+  color: white;
+}
+.Text3 {
+  margin: 8px auto;
+  text-align: left;
+  padding: 0 25px;
+  color: #ffee56;
+}
+
+.Label {
+  color: #ffee56;
+}

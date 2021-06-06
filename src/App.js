@@ -10,6 +10,7 @@ import styles from './App.module.css';
 import AlternateThemeContext from './Context/AlternateTheme-context';
 import { UserContext } from './Context/UserProvider';
 import UpdateUserData from './Context/UpdateUserData';
+import About from './components/About/About';
 
 const App = () => {
   const [theme, setTheme] = useState(true);
@@ -34,6 +35,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={UserPanel} />
               {reveal ? <Route path="/results" component={Home} /> : null}
+              <Route path="/about" component={About} />
               <Route path="/login" component={UserLogin} />
               <Route path="/signUp" component={UserSignUp} />
             </Switch>
@@ -50,6 +52,7 @@ const App = () => {
             <Switch>
               <Route path="/" exact component={UserPanel} />
               {reveal ? <Route path="/results" component={Home} /> : null}
+              <Route path="/about" component={About} />
               <Route path="/login" component={UserLogin} />
               <Route path="/signUp" component={UserSignUp} />
               <Route path="/passwordReset" component={PasswordReset} />
