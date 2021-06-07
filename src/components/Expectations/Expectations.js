@@ -19,7 +19,7 @@ const Expectations = () => {
   const amount = expenses + savingGoal - income;
 
   return (
-    <div>
+    <div className={styles.Container}>
       <h3 className={styles.Title}>
         Expectations <span className={styles.Text}>(per month)</span>
       </h3>
@@ -40,14 +40,14 @@ const Expectations = () => {
         </tbody>
       </table>
       {amount > 0 ? (
-        <p className={styles.CategoriesValues}>
+        <p className={styles.ConclusionText}>
           {' '}
           you will need to reduce your expenses for about{' '}
           <span className={styles.Categories}>{amount}</span> per month to reach
           your goal
         </p>
       ) : (
-        <p className={styles.CategoriesValues}>
+        <p className={styles.ConclusionText}>
           your expenses are low enough that you already can save up to{' '}
           <span className={styles.Categories}>{income - expenses}</span> per
           Month!{' '}
