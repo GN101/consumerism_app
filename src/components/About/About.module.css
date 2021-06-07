@@ -24,6 +24,11 @@
   color: #ffee56;
 }
 
+.Links {
+  display: flex;
+  justify-content: space-between;
+}
+
 .Label {
   color: #ffee56;
 }

@@ -30,9 +30,14 @@ const About = () => {
         averages (mocked data, so far), which is yet not implemented (to be
         implemented in the near future).
       </p>
-      <a target="_blank" href={CV}>
-        <p className={styles.Text3}>Download CV</p>
-      </a>
+      <div className={styles.Links}>
+        <a target="_blank" href={CV}>
+          <p className={styles.Text3}>Download CV</p>
+        </a>
+        <a target="_blank" href="https://github.com/miskas9/consumerism_app">
+          <p className={styles.Text3}>Github Repository</p>
+        </a>
+      </div>
     </>
   );
 };
