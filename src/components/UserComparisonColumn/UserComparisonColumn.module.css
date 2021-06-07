@@ -1,6 +1,14 @@
 .Table {
   overflow-x: auto;
+  font-size: 14.5px;
 }
+
+@media (max-width: 370px) {
+  .Table {
+    font-size: 13px;
+  }
+}
+
 .Title {
   width: auto;
   color: whitesmoke;
