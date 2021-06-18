@@ -56,7 +56,7 @@ const UsersAverageInputColumn = () => {
       setAverageCosts(aveCost);
       // setTotalAveCost(aveCost.reduce((a, b) => a + b)); //to be removed not in use
     }
-  }, [aveCost]);
+  }, [aveCost, setAverageCosts]); // there was a warning here for the setAverageCost to be in dependencies
 
   return null;
   // return totalAveCost ? (
