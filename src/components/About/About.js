@@ -6,17 +6,24 @@ const About = () => {
   return (
     <>
       <h2 className={styles.Header}> Hello, I am Michael Malliotakis</h2>
-      <p className={styles.Text}>This is my first portfolio app.</p>
+      <p className={styles.Text}>
+        This is a <u>Development oriented</u> app, I use as a playground, for
+        testing things as I learn them.
+      </p>
       <h3 className={styles.Text}>Noteworthy aspects of the app:</h3>
       <ol className={styles.Label}>
         <li>Firebase authentication</li>
         <li>Cookies</li>
         <li>
-          UseContext (colors theme, automatic users average data updating, etc)
+          React state management (colors theme, automatic users average data
+          updating, etc)
         </li>
         <li>User input modal (createPortal())</li>
-        <li>Various user input invalidations</li>
+        <li>Form validation</li>
         <li>Responsive CSS (including side menu)</li>
+        <li>npm</li>
+        <li>React</li>
+        <li>Devops (netlify)</li>
       </ol>
       <h3 className={styles.Text}>A brief summary of the app:</h3>
       <p className={styles.Text2}>
