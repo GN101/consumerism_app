@@ -84,9 +84,11 @@ const UserPanel = () => {
           Lets go
         </button>
       </form>
-      <button className={styles.Button} onClick={togglePortal}>
-        Edit Expenses
-      </button>
+      {document.cookie.length > 333 ? (
+        <button className={styles.Button} onClick={togglePortal}>
+          Edit Expenses
+        </button>
+      ) : null}
       {showPortal ? (
         <PortalInputColumn onClose={togglePortal}>
           <UserInputColumn></UserInputColumn>

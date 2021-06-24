@@ -13,8 +13,9 @@
 .Text2 {
   font-size: 15px;
   margin: 8px auto;
-  text-align: left;
+  max-width: 924px;
   padding: 0 25px;
+  text-align: left;
   color: white;
 }
 .Text3 {
@@ -24,6 +25,25 @@
   color: #ffee56;
 }
 
+.Links {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
 .Label {
   color: #ffee56;
+  margin: 0 auto;
+}
+
+@media (min-width: 796px) {
+  .Text {
+    margin: 18px auto 5px auto;
+  }
+}
+
+@media (max-width: 321px) {
+  .Header {
+    margin: 8px 27px;
+  }
 }

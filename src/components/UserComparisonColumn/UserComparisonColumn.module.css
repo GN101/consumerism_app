@@ -1,6 +1,8 @@
 .Table {
   overflow-x: auto;
+  font-size: 14.5px;
 }
+
 .Title {
   width: auto;
   color: whitesmoke;
@@ -27,4 +29,10 @@
 }
 .SumValue {
   text-align: center;
+}
+
+@media (max-width: 370px) {
+  .Table {
+    font-size: 13px;
+  }
 }
